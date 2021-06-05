@@ -27,7 +27,9 @@ Route::get('buscador-productos', 'ProductoController@buscador')->name('buscador'
 /****FIN PRODUCTOS****/
 
 /****CATEGORIAS****/
-Route::get('categorias', 'CategoriaController@index')->name('categorias');
+//Route::get('categorias', 'CategoriaController@index')->name('categorias');
+Route::get('categoria/{id}', 'CategoriaController@productoXCategoria')->name('categoria');
+
 /****FIN CATEGORIAS****/
 
 /****ATRIBUTOS****/

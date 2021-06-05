@@ -21,6 +21,7 @@ class PaymentController extends Controller
     public function processPayment(Request $request){
         $total = \Cart::getTotal();
         // Validacion para el envio de los datos que son necesarios para proceder a la compra
+        //dd($request->all());
         $this->validate($request, [
             'card_no' => 'required',
             'expiry_month' => 'required',
@@ -53,10 +54,10 @@ class PaymentController extends Controller
             $cartCollection = \Cart::getContent();
             foreach ($cartCollection as $r){
                 $detalle = new Detalle();
-                $detalle->id_venta = $id_venta;
-                $detalle->id_producto = $r->id;
-                $detalle->precio = $r->price;
-                $detalle->cantidad = $r->quantity;
+                $detalle->id_venta      = $id_venta;
+                $detalle->id_producto   = $r->id;
+                $detalle->precio        = $r->price;
+                $detalle->cantidad      = $r->quantity;
                 $detalle->save();
             }
 
@@ -102,6 +103,7 @@ class PaymentController extends Controller
         }
         catch (\Exception $e) {
             DB::rollBack();
+            dd("Error");
             return redirect('payment')->with('error', $e->getMessage());
         }
     }

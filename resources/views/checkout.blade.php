@@ -16,20 +16,20 @@
                     <div class="col-md-8">
                         <table class="table table-striped table-responsive-sm">
                             <thead>
-                                <th>ID</th>
+                                <!--<th>ID</th>-->
                                 <th>Nombre</th>
                                 <th>Precio</th>
-                                <th>Cantidad</th>
+                                <!--<th>Cantidad</th>-->
                                 <th>Total</th>
                                 <th></th>
                             </thead>
                             <tbody>
                                 @foreach(Cart::getContent() as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
+                                        <!--<td>{{ $item->id }}</td>-->
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->price }}</td>
-                                        <td>{{ $item->quantity }}</td>
+                                        <!--<td>{{ $item->quantity }}</td>-->
                                         <td>${{ $item->price * $item->quantity }}</td>
                                         <td>
                                             <form action="{{ route('cart.remove') }}" method="post">

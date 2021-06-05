@@ -54,17 +54,65 @@
         </div>
         <div class="content-membership">
             <div class="container-home h-100">
-                <div class="row justify-content-center">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-9 col-10">
+            <div class="row">
+                    @if(isset($datos['productos']))
+                        @foreach ($datos['productos'] as $producto)
+                            <div class="col-4">
+                                <div class="card card-membership card-top" style="width: 18rem;">
+                                    <div class="card-header header-green">
+                                        <div class="row">
+                                            <div class="col-12 text-center type-description-membership">
+                                                <h6>{{ $producto->nombre_producto }}</h6>
+                                            </div>
+                                            <div class="col-12 text-center price-description-membership">
+                                                <h3 class="price-membership"><span>USD </span>500</h3>
+                                                <p>(TE AHORRAS 2 MEMBRESÍAS)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body list-contain-membership justify-content-center">
+                                        <div class="row">
+                                            <div class="col-12 d-flex justify-content-center list-contain">
+                                                <ul class="list-inline">
+                                                <li>Trading en Vivo</li>
+                                                    <li>Trading Academy</li>
+                                                    <li>WeProfit</li>
+                                                    <li>Criptoanálisis</li>
+                                                    <li>Podcast (Markets)</li>
+                                                    <li>Mindset</li>
+                                                    <li>Grupos de Telegram</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 text-center">
+                                                <p class="fuente">Inscripción 10 usd pago único</p>
+                                            </div>
+                                            <!--<div class="col-12 d-flex justify-content-center">
+                                                <a href="{{url('productos')}}" class="btn">Conoce más</a>
+                                            </div>-->
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <form action="{{ route('cart.add') }}" method="post">
+                                                    @csrf                                                
+                                                    <button type="submit" class="btn btn-primary btn-add-sp">Conoce más</button>
+                                                    <input type="hidden" name="id_producto" value="{{ $producto->id_producto }}">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+
+                    <!--<div class="col-4">
                         <div class="card card-membership card-top" style="width: 18rem;">
                             <div class="card-header header-green">
                                 <div class="row">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 type-description-membership text-center">
-                                        <h6>Membresía mensual </h6>
+                                    <div class="col-12 text-center type-description-membership text-center">
+                                        <h6>MEMBRESÍA MENSUAL</h6>
                                     </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12  text-center price-description-membership">
-                                        <h3 class="price-membership"><span>USD</span> 50</h3>
-                                        <!-- <p>CDFS, CFDS, CFDS y CFDS</p> -->
+                                    <div class="col-12 text-center price-description-membership">
+                                        <h3 class="price-membership"><span>USD </span>50</h3>
+                                        <p>MES</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,24 +126,27 @@
                                             <li>Criptoanálisis</li>
                                             <li>Podcast (Markets)</li>
                                             <li>Mindset</li>
-                                            <li>Grupos de Telegram.</li>
+                                            <li>Grupos de Telegram</li>
                                         </ul>
                                     </div>
+                                    <div class="col-12 text-center">
+                                        <p class="fuente">Inscripción 10 usd pago único</p>
+                                    </div>
                                     <div class="col-12 d-flex justify-content-center">
-                                        <a href="#" class="btn">Conoce más</a>
+                                        <a href="{{url('productos')}}" class="btn">Conoce más</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-9 col-10">
+                    <div class="col-4">
                         <div class="card card-membership card-principal" style="width: 18rem;">
                             <div class="card-header header-purple">
                                 <div class="row">
                                     <div class="col-12 text-center price-description-membership">
-                                        <h6>Membresía semestral</h6>
-                                        <h3 class="price-membership"><span>USD</span> 250</h3>
-                                        <p>(Te ahorras 1 membresía)</p>
+                                        <h6>MEMBRESÍA SEMESTRAL</h6>
+                                        <h3 class="price-membership"><span>USD </span>499</h3>
+                                        <p>6 MESES</p>
                                     </div>
                                 </div>
                             </div>
@@ -109,26 +160,29 @@
                                             <li>Criptoanálisis</li>
                                             <li>Podcast (Markets)</li>
                                             <li>Mindset</li>
-                                            <li>Grupos de Telegram.</li>
+                                            <li>Grupos de Telegram</li>
                                         </ul>
                                     </div>
+                                    <div class="col-12 text-center">
+                                        <p class="fuente">Inscripción 10 usd pago único</p>
+                                    </div>
                                     <div class="col-12 d-flex justify-content-center">
-                                        <a href="#" class="btn">Conoce más</a>
+                                        <a href="{{url('productos')}}" class="btn">Conoce más</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-9 col-10">
+                    <div class="col-4">
                         <div class="card card-membership card-top" style="width: 18rem;">
                             <div class="card-header header-green">
                                 <div class="row">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 type-description-membership text-center">
-                                        <h6>Anualidad</h6>
+                                    <div class="col-12 text-center type-description-membership">
+                                        <h6>ANUALIDAD</h6>
                                     </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center price-description-membership">
-                                        <h3 class="price-membership"><span>USD</span> 500</h3>
-                                        <p>(te ahorras 2 membresías)</p>
+                                    <div class="col-12 text-center price-description-membership">
+                                        <h3 class="price-membership"><span>USD </span>500</h3>
+                                        <p>(TE AHORRAS 2 MEMBRESÍAS)</p>
                                     </div>
                                 </div>
                             </div>
@@ -142,17 +196,19 @@
                                             <li>Criptoanálisis</li>
                                             <li>Podcast (Markets)</li>
                                             <li>Mindset</li>
-                                            <li>Grupos de Telegram.</li>
+                                            <li>Grupos de Telegram</li>
                                         </ul>
                                     </div>
+                                    <div class="col-12 text-center">
+                                        <p class="fuente">Inscripción 10 usd pago único</p>
+                                    </div>
                                     <div class="col-12 d-flex justify-content-center">
-                                        <a href="#" class="btn">Conoce más</a>
+                                        <a href="{{url('productos')}}" class="btn">Conoce más</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>-->
             </div>
         </div>
         <div class="content-comments-members container-home">

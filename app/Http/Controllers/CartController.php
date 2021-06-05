@@ -13,7 +13,9 @@ class CartController extends Controller{
 
     public function add (Request $request){
         $producto = ProductoModel::find($request->id_producto);
+        //dd($producto);
         $utils = new Utils();
+        \Cart::clear();
         \Cart::add(array(
             'id' => $producto->id_producto,
             'name' => $producto->nombre_producto,
@@ -21,7 +23,9 @@ class CartController extends Controller{
             'quantity' => 1,
             'attributes' => array('url_imagen' => $producto->url_imagen),
         ));
-        return back()->with("success", "$producto->nombre_producto se agregó con éxito");
+        //return view('checkout');
+        return redirect('cart/checkout');
+        //return back()->with("success", "$producto->nombre_producto se agregó con éxito");
     }
 
     public function removeItem(Request $request){
