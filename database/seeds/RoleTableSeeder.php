@@ -1,0 +1,24 @@
+<?php
+
+use App\Models\Role;
+use Illuminate\Database\Seeder;
+class RoleTableSeeder extends Seeder
+{
+    public function run()
+    {
+        $role = new Role();
+        $role->name = 'admin';
+        $role->description = 'Administrator';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'unica';
+        $role->description = 'unica';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'premium';
+        $role->description = 'premium';
+        $role->save();
+    }
+}
