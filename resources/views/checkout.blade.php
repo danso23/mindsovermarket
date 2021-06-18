@@ -35,7 +35,7 @@
                                             <form action="{{ route('cart.remove') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id_producto" value="{{ $item->id }}">
-                                                <button type="submit" class="btn btn-link btn-sm text-danger">X</button>
+                                                <button type="submit" class="btn btn-link btn-sm" style="color: #70b62c">X</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -47,7 +47,7 @@
                         @csrf
                         <div class="card">
                             <div class="card-body card-body-custom"  style="font-family:Avenir-Roman">
-                                <h5 class="card-title text-danger">TOTAL A PAGAR</h5>
+                                <h5 class="card-title" style="color: #70b62c">TOTAL A PAGAR</h5>
                                 <p class="card-text"><b>Subtotal:</b></p>
                                 <p class="card-text">${{ Cart::getSubTotal() }}</p>
                                     <div class="form-group">
@@ -104,7 +104,7 @@
                                     </div>
                             </div>
                             <div class="card-footer text-muted">
-                                <button type="submit" class="btn btn-danger">Finalizar compra</button>
+                                <button type="submit" class="btn" style="background-color: #70b62c; border-color:#70b62c; color:white;">Finalizar compra</button>
                             </div>
                         </div>
                     </form>

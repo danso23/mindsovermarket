@@ -76,14 +76,14 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="form-control total btn btn-primary">
+                            <div class="form-control total btn btn-primary" style="background-color: #48448F; border-color:#48448F">
                                 Total: <span class="amount font-weight-bold"><input type="hidden" name="total" id="total" value=" {{ Cart::getTotal() }}">${{ Cart::getTotal() }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 form-group">
-                            <button class="form-control btn btn-success submit-button" type="submit" style="margin-top: 10px;">Pagar »</button>
+                            <button class="form-control btn btn-success submit-button" type="submit" style="margin-top: 10px; background-color: #70b62c; border-color:#70b62c;">Pagar »</button>
                         </div>
                     </div>
                 </form>

@@ -65,8 +65,8 @@
                                                 <h6>{{ $producto->nombre_producto }}</h6>
                                             </div>
                                             <div class="col-12 text-center price-description-membership">
-                                                <h3 class="price-membership"><span>USD </span>500</h3>
-                                                <p>(TE AHORRAS 2 MEMBRESÍAS)</p>
+                                                <h3 class="price-membership"><span>USD </span>{{ $producto->precio }}</h3>
+                                                <p>{{ $producto->desc_producto}}</p>
                                             </div>
                                         </div>
                                     </div>
