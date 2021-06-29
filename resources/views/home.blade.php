@@ -9,12 +9,15 @@
                   <div class="col-6 text-left">
                     <h1>TODO LO QUE NECESITAS PARA SER UN TRADER EN UN SOLO LUGAR</h1>
                     <p class="lead">Conoce nuestras membresias y unete a nuestra plataforma.</p>
-                    <a class="btn btn-green-df" href="{{ route('register') }}" >Registrate</a>
+                    @if (Auth::guest())
+                        <a class="btn btn-green-df" href="{{ route('register') }}" >Registrate</a>
+                    @endif
                   </div>
                 </div>
             </div>
         </div>
         <div class="content-why-chooose container-home">
+        <!-- <iframe width="100%" height="550" src="http://www.youtube.com/embed/5lIYcv1ejsw?AutoHide=1&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe> -->
             <div class="h-100">
                 <div class="row justify-content-center h-100">
                     <div class="col xl-5 col-lg-5 col-md-3 col-sm-9">
@@ -102,113 +105,6 @@
                             </div>
                         @endforeach
                     @endif
-
-                    <!--<div class="col-4">
-                        <div class="card card-membership card-top" style="width: 18rem;">
-                            <div class="card-header header-green">
-                                <div class="row">
-                                    <div class="col-12 text-center type-description-membership text-center">
-                                        <h6>MEMBRESÍA MENSUAL</h6>
-                                    </div>
-                                    <div class="col-12 text-center price-description-membership">
-                                        <h3 class="price-membership"><span>USD </span>50</h3>
-                                        <p>MES</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body list-contain-membership justify-content-center">
-                                <div class="row">
-                                    <div class="col-12 d-flex justify-content-center list-contain">
-                                        <ul class="list-inline">
-                                            <li>Trading en Vivo</li>
-                                            <li>Trading Academy</li>
-                                            <li>WeProfit</li>
-                                            <li>Criptoanálisis</li>
-                                            <li>Podcast (Markets)</li>
-                                            <li>Mindset</li>
-                                            <li>Grupos de Telegram</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="fuente">Inscripción 10 usd pago único</p>
-                                    </div>
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <a href="{{url('productos')}}" class="btn">Conoce más</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card card-membership card-principal" style="width: 18rem;">
-                            <div class="card-header header-purple">
-                                <div class="row">
-                                    <div class="col-12 text-center price-description-membership">
-                                        <h6>MEMBRESÍA SEMESTRAL</h6>
-                                        <h3 class="price-membership"><span>USD </span>499</h3>
-                                        <p>6 MESES</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body list-contain-membership justify-content-center">
-                                <div class="row">
-                                    <div class="col-12 d-flex justify-content-center list-contain">
-                                        <ul class="list-inline">
-                                        <li>Trading en Vivo</li>
-                                            <li>Trading Academy</li>
-                                            <li>WeProfit</li>
-                                            <li>Criptoanálisis</li>
-                                            <li>Podcast (Markets)</li>
-                                            <li>Mindset</li>
-                                            <li>Grupos de Telegram</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="fuente">Inscripción 10 usd pago único</p>
-                                    </div>
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <a href="{{url('productos')}}" class="btn">Conoce más</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card card-membership card-top" style="width: 18rem;">
-                            <div class="card-header header-green">
-                                <div class="row">
-                                    <div class="col-12 text-center type-description-membership">
-                                        <h6>ANUALIDAD</h6>
-                                    </div>
-                                    <div class="col-12 text-center price-description-membership">
-                                        <h3 class="price-membership"><span>USD </span>500</h3>
-                                        <p>(TE AHORRAS 2 MEMBRESÍAS)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body list-contain-membership justify-content-center">
-                                <div class="row">
-                                    <div class="col-12 d-flex justify-content-center list-contain">
-                                        <ul class="list-inline">
-                                        <li>Trading en Vivo</li>
-                                            <li>Trading Academy</li>
-                                            <li>WeProfit</li>
-                                            <li>Criptoanálisis</li>
-                                            <li>Podcast (Markets)</li>
-                                            <li>Mindset</li>
-                                            <li>Grupos de Telegram</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="fuente">Inscripción 10 usd pago único</p>
-                                    </div>
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <a href="{{url('productos')}}" class="btn">Conoce más</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
             </div>
         </div>
         <div class="content-comments-members container-home">
@@ -302,4 +198,12 @@
             </div>
         </div>
     </section>
+    <!-- <div class="video-container" >
+     <div class="video-foreground">
+       <iframe
+               src="https://www.youtube.com/embed/uOu5UxgyTcw?controls=1&showinfo=0&rel=0&autoplay=1&loop=1"frameBorder="0" allowFullScreen>
+                
+    </iframe>
+  </div>             
+ </div>     -->
 @endsection
