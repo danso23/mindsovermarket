@@ -60,7 +60,7 @@
             <div class="row">
                     @if(isset($datos['productos']))
                         @foreach ($datos['productos'] as $producto)
-                            <div class="col-4">
+                            <div class="col-12 col-lg-4">
                                 <div class="card card-membership card-top" style="width: 18rem;">
                                     <div class="card-header header-green">
                                         <div class="row">

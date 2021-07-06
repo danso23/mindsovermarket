@@ -2,7 +2,7 @@
 
 @section('content')
     @if (count(Cart::getContent()))
-        <section>
+        <section class="mt-3">
             <div class="container">
                 @if(session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">

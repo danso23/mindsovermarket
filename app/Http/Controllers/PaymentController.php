@@ -63,7 +63,7 @@ class PaymentController extends Controller
 
             // Se genera el cargo a pagar y se pasa la terjeta previamente creada
             $charge = \Stripe\Charge::create([
-                'currency' => 'MXN',
+                'currency' => 'USD',
                 'amount' =>  $total * 100,
                 'description' => 'Compra N°' . $id_venta,
                 'source' => $response['id']
@@ -103,7 +103,7 @@ class PaymentController extends Controller
         }
         catch (\Exception $e) {
             DB::rollBack();
-            dd("Error");
+            dd("Error ".$e->getMessage());
             return redirect('payment')->with('error', $e->getMessage());
         }
     }

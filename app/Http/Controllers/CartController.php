@@ -19,7 +19,7 @@ class CartController extends Controller{
         \Cart::add(array(
             'id' => $producto->id_producto,
             'name' => $producto->nombre_producto,
-            'price' => $utils->convertCurrency($producto->precio),//$this->convertCurrency($producto->precio),
+            'price' => $utils->convertCurrency($producto->precio) + 10,//$this->convertCurrency($producto->precio),
             'quantity' => 1,
             'attributes' => array('url_imagen' => $producto->url_imagen),
         ));

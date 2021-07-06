@@ -9,6 +9,7 @@ use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\GestorMail;
 
 class RegisterController extends Controller
 {
@@ -74,8 +75,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        ##print_r($data);exit;
+    {        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -91,8 +91,17 @@ class RegisterController extends Controller
             'proof_of_address' => $data['proof_of_address'],
             'rfc' => $data['rfc'],*/
         ]);
-
         $user->roles()->attach(Role::where('name', 'premium')->first());
+
+        $variablesCorreo['subject'] = "Correo Informativo";
+        $variablesCorreo['user'] = $user;
+        $variablesCorreo['name_contacto'] = $user->name;
+        $variablesCorreo['asunto_contacto'] = "Mensaje de Prueba";
+        $variablesCorreo['mensaje_contacto'] = "Este es un cuerpo de mensaje que quiero enviar";
+        $variablesCorreo['email_contacto'] = "Pos te lo envíe desde aca: uncorreo@dominio.com";                             
+    
+
+        \Mail::to($user->email)->send(new GestorMail($variablesCorreo));
 
         return $user;
     }

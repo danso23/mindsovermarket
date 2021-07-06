@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\GestorMail;
 
 class UtilsController extends Controller{
 
@@ -27,5 +28,21 @@ class UtilsController extends Controller{
         $total = $val * $amount;
         return number_format($total, 2, '.', '');*/
         return $amount;
+    }
+
+    public function EnvioCorreo(Request $request){
+
+        //$variablesCorreo            = $request->all();        
+        $variablesCorreo['subject'] = "Correo Informativo";
+
+        $variablesCorreo['name_contacto'] = "Antonio Ruiz";
+        $variablesCorreo['asunto_contacto'] = "Mensaje de Prueba";
+        $variablesCorreo['mensaje_contacto'] = "Este es un cuerpo de mensaje que quiero enviar";
+        $variablesCorreo['email_contacto'] = "Pos te lo env�e desde aca: uncorreo@dominio.com";                             
+    
+
+        \Mail::to('iruhary@gmail.com')->send(new GestorMail($variablesCorreo));            
+        
+        return redirect('/');
     }
 }
