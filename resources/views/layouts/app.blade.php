@@ -36,7 +36,7 @@
                     @if (Auth::guest())
                         <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                     @else
-                        <a class="btn" href="{{ url('/logout') }}"> logout </a>
+                        <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                     @endif
                 </li>
             </ul>
@@ -77,7 +77,7 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> logout </a>
+                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                                 @endif
                             </li>
                         </ul>
@@ -121,7 +121,7 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> logout </a>
+                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                                 @endif
                             </li>
                         </ul>

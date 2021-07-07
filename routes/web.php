@@ -17,12 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 Route::get('/', 'ProductoController@home')->name('home');
-/****CURSOS****/
-Route::get('productos', 'ProductoController@index')->name('productos');
-Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
-Route::group(['prefix' => 'cursos'], function() {
-    Route::get('/view', 'CursoController@index')->name('cursos.view');
-});
+
 ##ProductoXcategoria
 Route::get('categoria/{id}', 'ProductoController@productoXCategoria')->name('categoria');
 ##Buscador
@@ -64,4 +59,10 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 /******ENVIO MAIL *********/
 Route::get('sendMail','UtilsController@EnvioCorreo');
 
-
+/****CURSOS****/
+Route::get('productos', 'ProductoController@index')->name('productos');
+Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
+Route::group(['prefix' => 'cursos'], function() {
+    Route::get('/view', 'Cursos\CursoController@index')->name('cursos.view');
+    Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
+});
