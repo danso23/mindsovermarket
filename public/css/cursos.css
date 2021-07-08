@@ -1,0 +1,7 @@
+.card-curso{border-radius: 11px;}
+.card-curso img {border-radius: 11px 11px 0 0;}
+.img-curso {
+    height: 120px;
+    width: 450px;
+    object-fit: cover;
+}

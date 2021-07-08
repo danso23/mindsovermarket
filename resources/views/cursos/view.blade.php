@@ -1,20 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="{{ asset('public/css/cursos.css') }}" rel="stylesheet" type="text/css" />
     <section class="cursos">
-        <div class="container" id="divCurso">
-            <div class="card mt-3" style="border-radius: 11px;">
-                <div class="card-body">
-                    <video poster="{{ asset('public/cursos') }}/{{$cursos[0]->portada}}" muted loop controls controlslist="nodownload">
-                        <source src="{{ asset('public/cursos') }}/{{$cursos[0]->desc_curso}}" type="video/mp4">
-                        <source src="{{ asset('public/cursos') }}/{{$cursos[0]->desc_curso}}" type="video/ogg">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="card-text text-center">Desarrollo web</p>
-                    
+        <div class="row">
+            <div class="container" id="divCurso">
+                <div class="row">
+                    @foreach ($cursos as $curso)
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
+                            <div class="card mt-3 card-curso">
+                                <img src="{{ asset('public/cursos') }}/{{$curso->portada}}" class="img-fluid img-curso" alt="{{ $curso->nombre }}">
+                                <div class="card-body">
+                                    <p class="card-text text-center">{{ $curso->nombre }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
-
 @endsection

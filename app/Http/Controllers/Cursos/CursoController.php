@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CursoController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $user = Auth::user();
         $cursos = Curso::where('activo', '1')->get();
         if($user)
