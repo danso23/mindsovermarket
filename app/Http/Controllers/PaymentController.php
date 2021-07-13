@@ -33,7 +33,7 @@ class PaymentController extends Controller
 
             // Se inicializa el stripe con la clave secreta, aqui se debe de remplazar por la del cliente
             // esta se otorga al crear una cuenta en stripe
-            $stripe = Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $stripe = Stripe\Stripe::setApiKey('sk_test_51IvU3hCjrYS9cPLbMhk1XGD5AjhGqm3qtFR3dPkH6DG7BTVPKW8TSjGuWvEJuzAgKo7KssFlty4pIzImyNKEGTJm00rjryyGTu');
 
             // Crea la tarjeta o token que servira para realizar el pago
             $response = \Stripe\Token::create([

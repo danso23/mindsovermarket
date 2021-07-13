@@ -5,3 +5,10 @@
     width: 450px;
     object-fit: cover;
 }
+
+.btn-red-df {
+    background-color: #bd2130;
+    color: var(--white-df);
+    width: 180px;
+    border-radius: 20px;
+}

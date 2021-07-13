@@ -17,4 +17,11 @@ class CursoController extends Controller
         else
             return redirect('/');
     }
+    public function create(){
+        return view('cursos.form.create');
+    }
+
+    public function save(Request $request){
+        
+    }
 }

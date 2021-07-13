@@ -10,8 +10,7 @@ use App\Models\CategoriaModel AS Categoria;
 class CursoDetalleController extends Controller
 {
     public function index(Request $request, $id){
-        $categorias = Categoria::where('activo', '1')->selectRaw('id_categoria, nombre_categoria')->get();
-        $datos = array('cursos' => '', 'categorias' => $categorias );
-        return view('cursos.detail')->with('datos', $datos);
+        $cursos = '';
+        return view('cursos.detail')->with('cursos', $cursos);
     }
 }
