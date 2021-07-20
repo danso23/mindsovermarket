@@ -283,10 +283,6 @@ a.btn-more:after {
   width: 66px;
 }
 
-.imgCursos{
-  width: 100% !important;
-}
-
 @media (max-width: 767px) {
   #site-header .page-title {
     display: none;
@@ -655,13 +651,6 @@ font-weight: bold;
 }
 
 .hero .content-membership{
-  margin-top: 3em;
-  padding-top: 3em;
-  padding-bottom: 3em;
-  background-color: var(--gray-light-df);
-}
-
-.cursos .content-ebooks{
   margin-top: 3em;
   padding-top: 3em;
   padding-bottom: 3em;
@@ -2372,8 +2361,72 @@ input[type=number] { -moz-appearance:textfield; }
     border-radius: 20px;
 }
 
+.video-container{
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+
+
+.video-container iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container iframe {
+  pointer-events: none;
+}
+.video-container iframe{
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 120px);
+}
+.video-foreground{
+  pointer-events:none;
+}
+
+video {
+  max-width: 100%;
+  /* height: 7rem; */
+  border-radius: 11px 11px 0 0;
+}
+#divCurso{display: inline-flex;}
 .custom-nav {
   background-color: #48448F;
 }
 
 .error {color: red;}
+
+.title-header{
+  font-size: 30px; */
+    /* font-family: "Bebas-regular"; */
+    color: #70b62c !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.title-small{
+  font-size: 15px; */
+    /* font-family: "Bebas-regular"; */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.cursos-title{
+  font-weight: 400;
+  color: #48448F !important;
+  background-color: transparent;
+}
+
+.cursos-title:hover{
+  color: #70b62c !important;
+  text-decoration: underline;
+  background-color: transparent;
+  border-color: transparent;
+}

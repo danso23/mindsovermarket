@@ -1,7 +1,8 @@
 @extends('layouts.app')
-
+@section('css')
+    <link href="{{ asset('public/css/cursos/cursos.css') }}" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
-<link href="{{ asset('public/css/cursos.css') }}" rel="stylesheet" type="text/css" />
     <section class="cursos">
         <div class="row">
             <div class="container" id="divCurso">
@@ -17,8 +18,9 @@
                         {{-- <div class="card mt-3 card-curso">
                             <p class="card-text text-center">{{$datos['materiales'][0]->nombre}}</p>
                         </div></br> --}}
-                        @foreach ($datos['modulos'] as $mod)
+                        
                         <div id="accordion">
+                            @foreach ($datos['modulos'] as $mod)
                             <div class="card">
                                 <div class="card-header" id="heading{{ $mod->id_modulo}}">
                                 <h5 class="mb-0">
@@ -36,8 +38,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

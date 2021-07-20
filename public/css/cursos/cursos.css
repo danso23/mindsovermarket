@@ -1,0 +1,73 @@
+.card-curso{border-radius: 11px;}
+.card-curso img {border-radius: 11px 11px 0 0;}
+.img-curso {
+    height: 120px;
+    width: 450px;
+    object-fit: cover;
+}
+
+.btn-red-df {
+    background-color: #bd2130;
+    color: var(--white-df);
+    width: 180px;
+    border-radius: 20px;
+}
+
+.btn-collapse {
+    text-decoration: none !important;
+    color: #70b62c;
+}
+
+.a-temario {
+    color:#70b62c;
+    text-decoration: none !important;
+}
+
+.title-video{
+    color: #70b62c;
+}
+.title-header{
+    font-size: 30px;
+    /* font-family: "Bebas-regular"; */
+    color: #70b62c !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.title-small{
+    font-size: 15px;
+    /* font-family: "Bebas-regular"; */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.cursos-title{
+    font-weight: 400;
+    color: #48448F !important;
+    background-color: transparent;
+    font-family: inherit;
+}
+
+.cursos-title:hover{
+    color: #70b62c !important;
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent;
+}
+  
+#divCurso{display: inline-flex;}
+
+.cursos .content-banner{
+    background-image: url('../../img/Imagenes/DF-banner.jpg');
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--white-df);
+    position: relative;
+    top: -91px;
+}
+  
+.cursos .content-banner h1{
+    font-weight: bold;
+}
