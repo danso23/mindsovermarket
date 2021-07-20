@@ -13,7 +13,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-6 text-left">
                     <h1>APRENDE DE NASDAQ Y DOW JONES</h1>
-                    <p class="lead">Impartido por: Isaac Peña</p>
+                    <p class="lead">Impartido por: Isaac PeÃ±a</p>
                 </div>
             </div>
         </div>
