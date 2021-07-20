@@ -3,8 +3,8 @@ function showVideo(element) {
     urlTemario = '',
     video = '',
     source = '';
-    nameTemario = $(element).attr('data-temario'),
-    urlTemario = $(element).attr('data-url-temario'),
+    nameTemario = element.dataset.temario;
+    urlTemario = element.dataset.urlTemario;
     document.getElementById('videoPrincipal').innerHTML = '';
     source = document.createElement('source');
     source.setAttribute('src', urlTemario);
