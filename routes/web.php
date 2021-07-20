@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 Route::get('/', 'ProductoController@home')->name('home');
-/****PRODUCTOS****/
-Route::get('productos', 'ProductoController@index')->name('productos');
-Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
+
 ##ProductoXcategoria
 Route::get('categoria/{id}', 'ProductoController@productoXCategoria')->name('categoria');
 ##Buscador
@@ -58,5 +56,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+/******ENVIO MAIL *********/
+Route::get('sendMail','UtilsController@EnvioCorreo');
 
+/****CURSOS****/
+Route::get('productos', 'ProductoController@index')->name('productos');
+Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
+Route::group(['prefix' => 'cursos'], function() {
+    Route::get('/view', 'Cursos\CursoController@index')->name('cursos.view');
+    Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
 
+    Route::get('/form/create', 'Cursos\CursoController@create')->name('cursos.form.create');
+    Route::get('/form/createcurso', 'Cursos\CursoController@createcurso')->name('cursos.form.cursoscreate');
+    Route::get('/form/createtemario', 'Cursos\CursoController@createtemario')->name('cursos.form.temariocreate');
+    Route::post('/form/save','Cursos\CursoController@save')->name('cursos.form.save');
+});
+
+Route::group(['prefix' => 'Admin'], function() {
+    Route::post('/subirArchivo', 'Admin\DetalleController@uploadFile')->name('admin.upload');
+});

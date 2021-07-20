@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Minds Over Market') }}</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link href="{{ asset('public/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- Favicon-->
@@ -24,6 +24,7 @@
     <link href="{{ asset('/public/css/style.css') }}" rel="stylesheet" />
     <!-- AOS ANIMATION -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/animation_aos/aos.css') }}">
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -36,12 +37,12 @@
                     @if (Auth::guest())
                         <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                     @else
-                        <a class="btn" href="{{ url('/logout') }}"> logout </a>
+                        <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                     @endif
                 </li>
             </ul>
         </div>
-        <div class="info-nav d-xl-block d-lg-none d-md-none d-sm-none d-none">
+        <div class="@if (Request::is('/')) info-nav @else info-nav custom-nav @endif d-xl-block d-lg-none d-md-none d-sm-none d-none">
             <div class="container">
                 <div class="d-flex row bd-highlight">
                     <div class="p-2 bd-highlight">
@@ -77,7 +78,7 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> logout </a>
+                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                                 @endif
                             </li>
                         </ul>
@@ -85,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="info-nav d-block d-md-block d-lg-block d-xl-none">
+        <div class="@if (Request::is('/')) info-nav @else info-nav custom-nav @endif d-block d-md-block d-lg-block d-xl-none">
             <div class="container">
                 <div class="d-flex row bd-highlight justify-content-center">
                     <div class="col-lg-3 col-md-3 col-sm-2 col-3 p-2 bd-highlight">
@@ -121,7 +122,7 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> logout </a>
+                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                                 @endif
                             </li>
                         </ul>
@@ -129,7 +130,6 @@
                 </div>
             </div>
         </div>
-        @include('layouts.template_navbar_responsive')
         <!-- END HEADER -->
 
         <!-- Modal -->
@@ -250,6 +250,7 @@
         <script type="text/javascript" src="{{ asset('public/animation_aos/aos.js') }}"></script>
         <!-- INIT AOS -->
         <script type="text/javascript" src="{{ asset('public/js/animation.js') }}"></script>
+        @yield('script')
     </div>
     </section> 
 </body>

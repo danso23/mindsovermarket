@@ -6,8 +6,8 @@
     @isset($datos)
         <div class="row">
             <div class="col-lg-12">
-                <div class="text-center">
-                    <h2>Completa los campos para procesar tu pago</h2>
+                <div class="text-center"></br>
+                    <div class="title-header" style="color: #70b62c;">Completa los campos para procesar tu pago</div>
                     <br>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <label>CVC</label>
-                            <input autocomplete="off" class="form-control solonumeros" placeholder="ex. 311" size="3" type="text" name="cvv" maxlength="3" required>
+                            <input autocomplete="off" class="form-control solonumeros" placeholder="ex. 311" size="3" type="password" name="cvv" maxlength="3" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <label>Mes</label>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="ticket">
+    <section class="ticket mt-3">
         <div class="container">
             @if($datos['success'])
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
