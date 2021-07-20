@@ -67,6 +67,8 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
 
     Route::get('/form/create', 'Cursos\CursoController@create')->name('cursos.form.create');
+    Route::get('/form/createcurso', 'Cursos\CursoController@createcurso')->name('cursos.form.cursoscreate');
+    Route::get('/form/createtemario', 'Cursos\CursoController@createtemario')->name('cursos.form.temariocreate');
     Route::post('/form/save','Cursos\CursoController@save')->name('cursos.form.save');
 });
 

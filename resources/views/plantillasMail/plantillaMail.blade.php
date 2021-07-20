@@ -14,13 +14,13 @@
 				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
 					<!--Titulo o imgen, encabezado-->
 					<tr>
-						<td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0">
+						<td align="center" bgcolor="#48448f" style="padding: 40px 0 30px 0">
 							<img src="{{asset('images/logo.png')}}" alt="Logo" style="display: block;" />
 						</td>
 					</tr>
 					<!--cuerpo del correo-->
 					<tr>
-						<td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+						<td bgcolor="##70b62c" style="padding: 40px 30px 40px 30px;">
 							<table border="0" cellspacing="0" cellpadding="0" width="100%">
 								<tr>
 									<td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
@@ -47,7 +47,7 @@
 
 					<!--inicio footer de encabezado-->
 					<tr>
-						<td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px">
+						<td bgcolor="#48448f" style="padding: 30px 30px 30px 30px">
 							<table border="0" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td width="75%" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;">&reg; Derechos reservados {{date("Y")}}

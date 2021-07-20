@@ -3047,12 +3047,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #007bff;
+  color: #48448F;
   background-color: transparent;
 }
 
 .btn-link:hover {
-  color: #0056b3;
+  color: #48448F;
   text-decoration: underline;
   background-color: transparent;
   border-color: transparent;

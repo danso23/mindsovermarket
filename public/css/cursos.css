@@ -12,3 +12,17 @@
     width: 180px;
     border-radius: 20px;
 }
+
+.btn-collapse {
+    text-decoration: none !important;
+    color: #70b62c;
+}
+
+.a-temario {
+    color:#70b62c;
+    text-decoration: none !important;
+}
+
+.title-video{
+    color: #70b62c;
+}

@@ -20,6 +20,13 @@ class CursoController extends Controller
     public function create(){
         return view('cursos.form.create');
     }
+    public function createcurso(){
+        return view('cursos.form.cursoscreate');
+    }
+
+    public function createtemario(){
+        return view('cursos.form.temariocreate');
+    }
 
     public function save(Request $request){
         

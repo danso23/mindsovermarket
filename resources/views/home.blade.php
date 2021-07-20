@@ -11,13 +11,14 @@
                     <p class="lead">Conoce nuestras membresias y unete a nuestra plataforma.</p>
                     @if (Auth::guest())
                         <a class="btn btn-green-df" href="{{ route('register') }}" >Registrate</a>
+                    @else
+                        <a class="btn btn-green-df" href="{{ route('cursos.view') }}" >Mis cursos</a>
                     @endif
                   </div>
                 </div>
             </div>
         </div>
         <div class="content-why-chooose container-home">
-        <!-- <iframe width="100%" height="550" src="http://www.youtube.com/embed/5lIYcv1ejsw?AutoHide=1&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe> -->
             <div class="h-100">
                 <div class="row justify-content-center h-100">
                     <div class="col xl-5 col-lg-5 col-md-3 col-sm-9">
@@ -55,6 +56,7 @@
                 </div>
             </div>
         </div>
+        @guest
         <div class="content-membership">
             <div class="container-home h-100">
             <div class="row">
@@ -107,6 +109,7 @@
                     @endif
             </div>
         </div>
+        @endguest
         <div class="content-comments-members container-home">
             <div class="h-100">
                 <div class="row justify-content-center">

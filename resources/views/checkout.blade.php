@@ -35,7 +35,7 @@
                                             <form action="{{ route('cart.remove') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id_producto" value="{{ $item->id }}">
-                                                <button type="submit" class="btn btn-link btn-sm" style="color: #70b62c">X</button>
+                                                <button type="submit" class="btn btn-link btn-sm" style="color: #70b62c">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

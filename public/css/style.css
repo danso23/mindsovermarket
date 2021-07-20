@@ -2393,7 +2393,7 @@ input[type=number] { -moz-appearance:textfield; }
 
 video {
   max-width: 100%;
-  height: 7rem;
+  /* height: 7rem; */
   border-radius: 11px 11px 0 0;
 }
 #divCurso{display: inline-flex;}
@@ -2402,3 +2402,31 @@ video {
 }
 
 .error {color: red;}
+
+.title-header{
+  font-size: 30px; */
+    /* font-family: "Bebas-regular"; */
+    color: #70b62c !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.title-small{
+  font-size: 15px; */
+    /* font-family: "Bebas-regular"; */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.cursos-title{
+  font-weight: 400;
+  color: #48448F !important;
+  background-color: transparent;
+}
+
+.cursos-title:hover{
+  color: #70b62c !important;
+  text-decoration: underline;
+  background-color: transparent;
+  border-color: transparent;
+}

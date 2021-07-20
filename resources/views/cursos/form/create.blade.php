@@ -16,22 +16,28 @@
                 </div>
             @endif
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h1>Materiales</h1>
-                <form method="POST" action="{{ route('cursos.form.save') }}" id="frmMateriales">
-                    @csrf
-                    <div class="row justify-content-center">
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-12 form-group">
-                            <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="name" id="name">
+            <div class="card">
+                <div class="card-header title-header" style="color: #70b62c;">Materiales</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('cursos.form.save') }}" id="frmMateriales">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right title-small">Nombre del curso</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="name" id="name">
+                                </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                            <input type="file" class="form-control custom-input" placeholder="Materiales" name="material" id="material">
+                        <div class="form-group row">
+                        <label for="materiales" class="col-md-4 col-form-label text-md-right title-small">Material</label>
+                                <div class="col-md-6">
+                                    <input type="file" class="form-control custom-input" placeholder="Materiales" name="material" id="material">
+                                </div>
                         </div>
+                        <input type="submit" class="btn btn-red-df pull-left" id="frmMaterialCancelar" value="Cancelar">
+                        <input type="submit" class="btn btn-green-df pull-left" id="frmMaterialGuardar" value="Guardar">
+                    </form>
                     </div>
-                    <input type="submit" class="btn btn-red-df pull-left" id="frmMaterialCancelar" value="Cancelar">
-                    <input type="submit" class="btn btn-green-df pull-left" id="frmMaterialGuardar" value="Guardar">
-                </form>
+                </div>
             </div>
         </div>
     </div>
