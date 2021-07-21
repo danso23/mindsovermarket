@@ -87,7 +87,7 @@
             <div class="col-12 col-sm-6 text-left " style="background-color: #F1F1F1; border-radius: 8px; margin: 15px; padding: 20px;">   
                 <p style="color: #484490; font-family: inherit; font-weight: bold">DESCARGA AQUÍ EL MATERIAL</p>
                 <p>{{$datos['materiales'][0]->nombre}}</p>
-                <a class="btn btn-green-df"  href="../pdfs/reporte2-05-10.pdf" download="Reporte2Mayo2010"> Descargar </a>
+                <a class="btn btn-green-df"  href="{{ asset('public/cursos/documento-prueba.pdf') }}" download="Reporte2Mayo2010"> Descargar </a>
             </div>
             <div class="d-lg-inline col-sm-12 col-md-6 col-12 text-lg-left text-center">
             </div>
