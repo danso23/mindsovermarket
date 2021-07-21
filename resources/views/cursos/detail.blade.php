@@ -7,16 +7,16 @@
     <div class="row col-12 justify-content-center" style="background-color: #f1f1f1; margin-left:0px;">
         <div class="row col-8">
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="#">TRADING</a>
+                <a href="{{ route('cursos.view')}}">TRADING</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-2 text-center text.sm-center">
-                <a href="#">CRYPTOS</a>
+                <a href="{{ route('cursos.view')}}">CRYPTOS</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="#">LIVES</a>
+                <a href="{{ route('cursos.view')}}">LIVES</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="#">TIENDA</a>
+                <a href="{{ route('cursos.view')}}">TIENDA</a>
             </div>
         </div>
     </div>
