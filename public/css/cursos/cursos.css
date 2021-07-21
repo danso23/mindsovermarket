@@ -1,4 +1,4 @@
-.card-curso{border-radius: 11px;}
+.card-curso{border-radius: 11px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
 .card-curso img {border-radius: 11px 11px 0 0;}
 .img-curso {
     height: 120px;
@@ -42,10 +42,11 @@
 }
 
 .cursos-title{
-    font-weight: 400;
+    font-weight: 700;
     color: #48448F !important;
     background-color: transparent;
     font-family: inherit;
+    font-size: 15px;
 }
 
 .cursos-title:hover{
@@ -65,9 +66,13 @@
     background-size: cover;
     color: var(--white-df);
     position: relative;
-    top: -91px;
 }
   
 .cursos .content-banner h1{
     font-weight: bold;
+}
+
+.img-curses{
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
 }

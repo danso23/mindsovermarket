@@ -1677,6 +1677,16 @@ font-weight: bold;
   text-decoration: none;
 }
 
+.cursos a{
+  color: var(--gray-dark-df);
+  font-size: 12px;
+}
+
+.cursos a:hover{
+  color: var(--green-df);
+  text-decoration: none;
+}
+
 .site-footer .content-social-networks ul li{
   display: inline-block;
   margin-right: 12px;

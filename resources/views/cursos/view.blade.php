@@ -4,9 +4,22 @@
     <link href="{{ asset('public/css/cursos/cursos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-    <section class="cursos"></br>
-    <div class="container" style="1px red solid; height:100px;">
-
+    <section class="cursos">
+    <div class="row col-12 justify-content-center" style="background-color: #f1f1f1; margin-left:0px;">
+        <div class="row col-8">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
+                <a href="#">TRADING</a>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-2 text-center text.sm-center">
+                <a href="#">CRYPTOS</a>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
+                <a href="#">LIVES</a>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
+                <a href="#">TIENDA</a>
+            </div>
+        </div>
     </div>
     <div class="content-banner">
         <div class="container h-100">
@@ -19,7 +32,7 @@
         </div>
     </div>
         <div class="row">
-            <div class="container" id="divCurso">
+            <div class="container mt-4" id="divCurso">
                 <div class="row justify-content-md-between" style="justify-content: center; ">
                     @foreach ($cursos as $curso)
                     <div class="col-10 col-md-6 col-lg-3 col-sm-6">
@@ -36,25 +49,25 @@
                 </div>
             </div>
         </div>
-        <div class="content-ebooks" style="border: 1px red solid;">
+        <div class="content-ebooks">
         <div class="container content-f1">
                 <div class="row mrl-q">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-sm-center content-footer-logo">
-                        <a href=""><img src="{{ asset('public/img/Logotipo/DF-logotipopiedepagina.svg') }}" alt="index.php"></a>
-                        <div class="row justify-content-start">
-                            <div class="col-md-11 col-lg-11">
-                                <p>Conoce el material extra que tenemos para ti...</p>
+                <div class="container h-100">
+                    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+                            <div class="col-12 col-sm-6 text-left ">
+                                <h1 style="color: #70b62c; font-weight: bold;">¡CONOCE LOS </h1><h1 style="color: #48448f !important; font-weight: bold;">E-BOOKS</h1><h1 style="color: #70b62c; font-weight: bold;"> DE TRADING!</h1>
+                                <p class="lead">Conoce el material extra que tenemos para ti...</p>
+                            </div>
+                            <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center">
+                                <img src="{{ asset('public/img/Libros/DF-book.jpg') }}" class="img-curses">
+                            </div>
+                            <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
+                                <img src="{{ asset('public/img/Libros/DF-book002.jpg') }}" class="img-curses">
+                            </div>
+                            <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
+                                <img src="{{ asset('public/img/Libros/DF-book003.jpg') }}" class="img-curses">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-3 text-center text-sm-center text-md-left text-lg-left content-comunidad">
-                    
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-2 text-center text.sm-center text-md-left text-lg-left content-cryptos">
-                    
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-3 text-center text-sm-center text-md-left text-lg-left content-cursos-live">
-                        
                     </div>
                 </div>
             </div>
