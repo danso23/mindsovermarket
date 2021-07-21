@@ -11,7 +11,7 @@
     color: #70b62c;
 }
 
-.a-temario {
+.a-temario, .a-temario h4 {
     color:#70b62c;
     text-decoration: none !important;
 }
