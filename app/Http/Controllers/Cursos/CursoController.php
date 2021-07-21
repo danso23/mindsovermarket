@@ -18,7 +18,7 @@ class CursoController extends Controller
             return redirect('/');
     }
     public function create(){
-        return view('cursos.form.create');
+        return view('cursos.form.materialescreate');
     }
     public function createcurso(){
         return view('cursos.form.cursoscreate');

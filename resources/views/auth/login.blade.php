@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container content-register">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 content-register-right align-self-center text-center">
+        <div class="col-md-8 align-self-center text-center">
         </br>
             <div class="card">
                 <div class="card-header title-header" style="color: #70b62c;">Inicio de sesión</div>
@@ -13,7 +13,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right title-small">Correo electrónico</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right title-small label-form">Correo electrónico</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror custom-input" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo electrónico">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right title-small">Contraseña</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right title-small label-form">Contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror custom-input" name="password" required autocomplete="current-password" placeholder="Contraseña">
@@ -45,7 +45,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label label-form" for="remember">
                                         Recordar contraseña
                                     </label>
                                 </div>

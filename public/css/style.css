@@ -1465,7 +1465,7 @@ font-weight: bold;
 }
 
 @media (max-width: 575px){
-  .content-register .content-register-left img {
+  .img-register {
     margin-left: 0%;
     width: 100%;
     margin: auto;
@@ -2361,15 +2361,22 @@ input[type=number] { -moz-appearance:textfield; }
   border-radius: 20px;
 }
 
+.btn-red-df {
+  background-color: #bd2130;
+  color: var(--white-df);
+  width: 180px;
+  border-radius: 20px;
+}
+
 .fuente {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
 .btn-sesion{
-  background-color: var(--green-df);
-    color: var(--white-df);
-    border-radius: 20px;
+  background-color: var(--purple-df);
+  color: var(--white-df);
+  border-radius: 20px;
 }
 
 .custom-nav {
@@ -2377,3 +2384,26 @@ input[type=number] { -moz-appearance:textfield; }
 }
 
 .error {color: red;}
+
+.custom-input, .custom-input::placeholder {
+  border-radius: 20px;
+  background-color: #70b62c;
+  border: none;
+  color: #ffffff !important;
+  padding-left: 25px;
+  height: 45px;
+}
+
+.custom-input:hover, .custom-input:focus {
+  background-color: #70b62c;
+  color: #ffffff !important;
+}
+
+.label-form {
+  color: #48448f;
+  font-weight: 600;
+}
+
+.img-register {
+  width: 93%;
+}
