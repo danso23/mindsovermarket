@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header title-header" style="color: #70b62c;">Módulos-Temario</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cursos.form.save') }}" id="frmCursos">
+                    <form method="POST" action="{{ route('cursos.form.saveTemarios') }}" id="frmTemario">
                         @csrf
                         <div class="form-group row">
                             <label for="name_curso" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del curso</label>
@@ -54,8 +54,8 @@
                         <a class="btn btn-link" href="#" style="text-align:left;">
                                         <!-- Añadir más temas... -->
                                     </a></br></br>
-                        <input type="submit" class="btn btn-red-df pull-left" id="frmMaterialCancelar" value="Cancelar">
-                        <input type="submit" class="btn btn-green-df pull-left" id="frmMaterialGuardar" value="Guardar">
+                        <input class="btn btn-red-df pull-left" id="frmTemarioCancelar" value="Cancelar">
+                        <input type="submit" class="btn btn-purple-df pull-left" id="frmTemarioGuardar" value="Guardar">
                     </form>
                     </div>
                 </div>
