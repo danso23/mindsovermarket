@@ -283,10 +283,6 @@ a.btn-more:after {
   width: 66px;
 }
 
-.imgCursos{
-  width: 100% !important;
-}
-
 @media (max-width: 767px) {
   #site-header .page-title {
     display: none;
@@ -655,13 +651,6 @@ font-weight: bold;
 }
 
 .hero .content-membership{
-  margin-top: 3em;
-  padding-top: 3em;
-  padding-bottom: 3em;
-  background-color: var(--gray-light-df);
-}
-
-.cursos .content-ebooks{
   margin-top: 3em;
   padding-top: 3em;
   padding-bottom: 3em;
@@ -1465,7 +1454,7 @@ font-weight: bold;
 }
 
 @media (max-width: 575px){
-  .img-register {
+  .content-register .content-register-left img {
     margin-left: 0%;
     width: 100%;
     margin: auto;
@@ -1673,16 +1662,6 @@ font-weight: bold;
 }
 
 .site-footer ul li a:hover{
-  color: var(--green-df);
-  text-decoration: none;
-}
-
-.cursos a{
-  color: var(--gray-dark-df);
-  font-size: 12px;
-}
-
-.cursos a:hover{
   color: var(--green-df);
   text-decoration: none;
 }
@@ -2371,49 +2350,83 @@ input[type=number] { -moz-appearance:textfield; }
   border-radius: 20px;
 }
 
-.btn-red-df {
-  background-color: #bd2130;
-  color: var(--white-df);
-  width: 180px;
-  border-radius: 20px;
-}
-
 .fuente {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
 .btn-sesion{
-  background-color: var(--purple-df);
-  color: var(--white-df);
-  border-radius: 20px;
+  background-color: var(--green-df);
+    color: var(--white-df);
+    border-radius: 20px;
 }
 
+.video-container{
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+
+
+.video-container iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container iframe {
+  pointer-events: none;
+}
+.video-container iframe{
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 120px);
+}
+.video-foreground{
+  pointer-events:none;
+}
+
+video {
+  max-width: 100%;
+  /* height: 7rem; */
+  border-radius: 11px 11px 0 0;
+}
+#divCurso{display: inline-flex;}
 .custom-nav {
   background-color: #48448F;
 }
 
 .error {color: red;}
 
-.custom-input, .custom-input::placeholder {
-  border-radius: 20px;
-  background-color: #70b62c;
-  border: none;
-  color: #ffffff !important;
-  padding-left: 25px;
-  height: 45px;
+.title-header{
+  font-size: 30px; */
+    /* font-family: "Bebas-regular"; */
+    color: #70b62c !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
-.custom-input:hover, .custom-input:focus {
-  background-color: #70b62c;
-  color: #ffffff !important;
+.title-small{
+  font-size: 15px; */
+    /* font-family: "Bebas-regular"; */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
-.label-form {
-  color: #48448f;
-  font-weight: 600;
+.cursos-title{
+  font-weight: 400;
+  color: #48448F !important;
+  background-color: transparent;
 }
 
-.img-register {
-  width: 93%;
+.cursos-title:hover{
+  color: #70b62c !important;
+  text-decoration: underline;
+  background-color: transparent;
+  border-color: transparent;
 }

@@ -1,3 +1,4 @@
+var url = window.location.origin + "/mindsovermarket";
 var form = $('#frmMateriales'),
     messageResponse= $('#processData'),
     textErrorRecaptcha = '<div class="error">Por favor selecciona el código de verificación humana</div>';
@@ -8,9 +9,6 @@ function FormValidate() {
         return arg !== value;
     }, "Seleccione una opción");
     $.validator.addMethod('filesize', function(value, element, param) {
-        // param = size (in bytes) 
-        // element = element to validate (<input>)
-        // value = value of the element (file name)
         return this.optional(element) || (element.files[0].size <= param) 
     });
     form.validate({
@@ -41,22 +39,56 @@ $(document).ready( function() {
         e.preventDefault();
     });
     FormValidate();
-});
 
-$('#material').change(function () {
-    var datos = $('#material').prop('files')[0];
-
-    var form_data = new FormData();                  
-    form_data.append('file', datos );
     $.ajax({
-        data: form_data ,
-        url: "subir.php",
-        type: "POST",
-        contentType: false,
-        processData: false,
-        success:
-            function (r) {
-                alert('' + r);
-            }
+        url: url+"/cursos/obtenerCursos",
+        type: "GET",
+        success: function(data){
+            var nElement = '<option value="default" disabled="disabled" selected="selected">Selecciona un curso</option>';
+            data.forEach(val => {
+                nElement += '<option value="'+val.id_curso+'">'+val.nombre+'</option>';
+            });
+            $("#slcCurso").empty();
+            $("#slcCurso").html(nElement);
+        }
+    });
+
+    $("#frmMaterialCancelar, #frmTemarioCancelar, #frmCursoCancelar").click(function() {
+        location.reload();
     });
 });
+
+function uploadFile(el){//Funcion encargada de enviar el archivo via AJAX
+    var inputFileImage = document.getElementById(el.id);
+    var file = inputFileImage.files[0];
+    var data = new FormData();
+    data.append('fileToUpload',file);
+                
+    $.ajax({
+        url: url+"/public/subirFile.php",
+        type: "POST",
+        data: data,
+        contentType: false,
+        cache: false,
+        processData:false,
+        success: function(data) {
+            if (data != "") {
+            $(".upload-msg").addClass('alert alert-success').attr('role', 'alert').html('Archivo actualizado, da click al boton modificar para guardar esta acción');
+            $("#txtLogotipo").attr('data-logo', data);
+            window.setTimeout(function() {
+            $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+                $(".upload-msg").removeClass('alert-success').html('');
+            }); }, 5000);
+            }
+            else {
+                $(".upload-msg").addClass('alert alert-danger').attr('role', 'alert').html('No se logro subir el archivo');
+                window.setTimeout(function() {
+                $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove();
+                    $(".upload-msg").removeClass('alert-success').html('');
+                }); }, 5000);
+            }
+        }
+    });   
+}

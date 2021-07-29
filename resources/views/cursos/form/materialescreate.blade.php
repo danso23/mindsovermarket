@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('css')
-    <link href="{{ asset('public/css/cursos.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/css/cursos/cursos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
     <div class="container mt-5">
@@ -25,30 +25,30 @@
             @endif
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="card">
-                <div class="card-header title-header" style="color: #70b62c;">Cursos</div>
+                <div class="card-header title-header" style="color: #70b62c;">Materiales</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cursos.form.saveCursos') }}" id="frmCursos">
+                    <form method="POST" action="{{ route('cursos.form.saveMateriales') }}" id="frmMateriales">
                         @csrf
                         <div class="form-group row">
-                            <label for="Curso" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del curso</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="Curso" id="Curso">
-                                </div>
+                            <label for="nameCurso" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del curso</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="nameCurso" id="nameCurso">
+                            </div>
                         </div>
                         <div class="form-group row">
-                            <label for="descripcion" class="col-md-4 col-form-label text-md-right title-small label-form">Descripción del curso</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control custom-input" placeholder="Descripcion del curso" name="descripcion" id="descripcion">
-                                </div>
+                            <label for="materialFile" class="col-md-4 col-form-label text-md-right title-small label-form">Material</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control custom-input" placeholder="Materiales" name="materialFile" id="materialFile" onchange="uploadFile(this)">
+                            </div>
                         </div>
                         <div class="form-group row">
-                        <label for="portada" class="col-md-4 col-form-label text-md-right title-small label-form">Portada</label>
-                                <div class="col-md-6">
-                                    <input type="file" class="form-control custom-input" placeholder="Portada" name="portada" id="portada" onchange="uploadFile(this)">
-                                </div>
+                            <label for="slcCurso" class="col-md-4 col-form-label text-md-right title-small label-form">Seleccionar curso</label>
+                            <div class="col-md-6">
+                                <select name="slcCurso" id="slcCurso" class="form-control custom-input"></select>
+                            </div>
                         </div>
-                        <input class="btn btn-red-df pull-left" id="frmCursoCancelar" value="Cancelar">
-                        <input type="submit" class="btn btn-purple-df pull-left" id="frmCursoGuardar" value="Guardar">
+                        <input class="btn btn-red-df pull-left" id="frmMaterialCancelar" value="Cancelar">
+                        <input type="submit" class="btn btn-purple-df pull-left" id="frmMaterialGuardar" value="Guardar">
                     </form>
                     </div>
                 </div>

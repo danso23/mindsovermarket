@@ -67,13 +67,15 @@
                     </div>
                     <div class="d-highlight">
                         <ul class="menu-right">
-                            <!-- <li class="menu-m">
+                            @auth
+                            <li class="menu-m">
                                 <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="text-white">
                                         <i class="fas fa-bars fa-1x"></i>
                                     </span>
                                 </button>
-                            </li> -->
+                            </li>
+                            @endauth
                             <li>
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
@@ -111,13 +113,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-2 bd-highlight menu-login">
                         <ul class="menu-right">
-                            <!-- <li class="menu-m">
+                            @auth
+                            <li class="menu-m">
                                 <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="text-white">
                                         <i class="fas fa-bars fa-1x"></i>
                                     </span>
                                 </button>
-                            </li> -->
+                            </li>
+                            @endauth
                             <li class="d-none d-sm-block">
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
@@ -131,7 +135,7 @@
             </div>
         </div>
         <!-- END HEADER -->
-
+        @include('layouts.template_navbar_responsive')
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
