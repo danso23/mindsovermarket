@@ -60,5 +60,8 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/additional-methods.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/cursos/form.js') }}"></script>
+    <script>
+        var url_global = "{{ url('') }}";
+    </script>
 @endsection
