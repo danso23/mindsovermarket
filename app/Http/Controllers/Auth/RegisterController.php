@@ -87,6 +87,7 @@ class RegisterController extends Controller
             'country' => $data['country'],
             'state' => $data['state'],
             'zip_code' => $data['zip_code'],
+            'tipo_user' => 1,
             /*'ine' => $data['ine'],
             'proof_of_address' => $data['proof_of_address'],
             'rfc' => $data['rfc'],*/

@@ -69,3 +69,12 @@
     height: 200px;
     border-radius: 10px 10px 0px 0px;
 }
+.row-category-videos{background-color: #f1f1f1; margin-left:0px}
+
+#videoPrincipal{max-height: 335px;}
+
+.div-card-collapse {background-color: #F1F1F1; border-radius: 8px; padding: 20px;}
+
+.div-info-curso {background-color: #F1F1F1; border-radius: 8px; padding: 20px;}
+
+.h1-title-curso-detail {color: #48448f !important; font-weight: bold;}

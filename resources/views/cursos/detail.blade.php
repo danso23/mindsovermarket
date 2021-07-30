@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <section class="cursos">
-    <div class="row col-12 justify-content-center" style="background-color: #f1f1f1; margin-left:0px;">
+    <div class="row col-12 justify-content-center row-category-videos">
         <div class="row col-8">
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
                 <a href="{{ route('cursos.view')}}">TRADING</a>
@@ -20,14 +20,14 @@
             </div>
         </div>
     </div>
-    <div class="row col-12 justify-content-center" style="background-color: #D3D3D3; margin-left:0px;">
+    <div class="row col-12 justify-content-center row-category-videos">
         <div class="h-100 align-items-center d-lg-inline-flex col-12">
             <div class="col-12 col-sm-6 text-left "> </br>   
                 <a href=""><img style="height:60px;" src="{{ asset('public/img/Iconos/crecimiento.svg') }}" alt="index.php"></a>
-                <h1 style="color: #48448f !important; font-weight: bold;">APRENDE DE NASDAQ Y DOW JONES</h1>
+                <h1 class="h1-title-curso-detail">APRENDE DE NASDAQ Y DOW JONES</h1>
                 <p class="lead">Impartido por Isaac Peña</p>
             </div>
-            <div class="d-lg-inline col-sm-12 col-md-6 col-12 text-lg-left text-center">
+            <div class="d-lg-inline col-sm-12 col-md-10 col-12 col-lg-6 text-lg-left text-center">
                 <div class="card mt-3 card-curso">
                     <video id="videoPrincipal" poster="" preload="auto" muted loop controls controlslist="nodownload">
                         El navegador no soporta este contenido.
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
-        <div class="col-12 col-sm-6 text-left " style="background-color: #F1F1F1; border-radius: 8px; margin: 15px; padding: 20px;">   
+        <div class="col-12 col-sm-10 text-left div-card-collapse">   
             <div id="accordion">
                 @foreach ($datos['modulos'] as $mod)
                 <div class="card">
@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
-        <div class="col-12 col-sm-6 text-left " style="background-color: #F1F1F1; border-radius: 8px; margin: 15px; padding: 20px;">   
+        <div class="col-12 col-sm-6 text-left div-info-curso">   
             <p style="color: #484490; font-family: inherit; font-weight: bold">¿QUÉ APRENDERÁS DE ESTE CURSO?</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi magni ducimus tempora numquam adipisci autem fugiat, quidem, consequuntur libero velit voluptatem officia. Placeat fugit molestiae nesciunt ex beatae suscipit?</p>
         </div>
@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
-        <div class="col-12 col-sm-6 text-left " style="background-color: #F1F1F1; border-radius: 8px; margin: 15px; padding: 20px;">   
+        <div class="col-12 col-sm-6 text-left div-info-curso">   
             <p style="color: #484490; font-family: inherit; font-weight: bold">SOBRE EL PROFESOR</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi magni ducimus tempora numquam adipisci autem fugiat, quidem, consequuntur libero velit voluptatem officia. Placeat fugit molestiae nesciunt ex beatae suscipit?</p>
         </div>
@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
-        <div class="col-12 col-sm-6 text-left " style="background-color: #F1F1F1; border-radius: 8px; margin: 15px; padding: 20px;">   
+        <div class="col-12 col-sm-6 text-left div-info-curso">   
             <p style="color: #484490; font-family: inherit; font-weight: bold">DESCARGA AQUÍ EL MATERIAL</p>
             <p>{{$datos['materiales'][0]->nombre}}</p>
             <a class="btn btn-green-df"  href="{{ asset('public/cursos/documento-prueba.pdf') }}" download="Reporte2Mayo2010"> Descargar </a>
