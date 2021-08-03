@@ -99,8 +99,8 @@ class RegisterController extends Controller
         $variablesCorreo['name_contacto'] = $user->name;
         $variablesCorreo['asunto_contacto'] = "Mensaje de Prueba";
         $variablesCorreo['mensaje_contacto'] = "Este es un cuerpo de mensaje que quiero enviar";
-        $variablesCorreo['email_contacto'] = "Pos te lo envíe desde aca: uncorreo@dominio.com";                             
-    
+        $variablesCorreo['email_contacto'] = "Pos te lo envíe desde aca: uncorreo@dominio.com";
+        $variablesCorreo['plantilla'] ="plantillasMail.plantillaMail";
 
         \Mail::to($user->email)->send(new GestorMail($variablesCorreo));
 
