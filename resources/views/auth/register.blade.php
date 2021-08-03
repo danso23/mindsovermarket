@@ -1,12 +1,12 @@
 @extends('layouts.template_register')
 
 @section('content')
-<div class="container content-register">
+<div class="container">
     <div class="row h-100 justify-content-center">
-        <div class="col-5 col-sm-5 col-md-6 col-lg-6 content-register-left">
+        <div class="col-5 col-sm-5 col-md-6 col-lg-6">
             <div class="row">
                 <div class="col-12">
-                    <img src="{{ asset('public/img/Imagenes/DF-registro001.jpg') }}" alt="">
+                    <img src="{{ asset('public/img/Imagenes/DF-registro001.jpg') }}" class="img-register" alt="">
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10">
                             <input type="date" class="form-control custom-input datepicker" data-date-format="mm/dd/yyyy" placeholder="Fecha de nacimiento" name="date_of_birth" id="date_of_birth">
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10 d-none d-sm-none d-md-none d-lg-block">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10 mt-3">
                             <input type="text" class="form-control custom-input" placeholder="Número celular" maxlength="10" name="phone" id="phone">
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10">
                             <input type="text" class="form-control custom-input" placeholder="País" name="country" id="country">
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10 mt-3 mt-md-0 d-sm-none d-md-none d-lg-block">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10 mt-3 mt-md-3">
                             <input type="text" class="form-control custom-input" placeholder="Estado" name="state" id="state">
                         </div>
                     </div>
@@ -77,12 +77,12 @@
                         </div>
                     </div>
                     <div class="form-check content-acept-terms">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-10 col-10">
+                        <div class="">
                             <input type="checkbox" class="form-check-input" id="acept-terms">
                             <label class="form-check-label acept-terms" for="acept-terms">Acepto los <span>Terminos</span>, <span>Condiciones</span> y <span>Politicas de MOM</span></label>
                         </div>
                     </div><br>
-                    <button class="btn btn-green-df pull-left">Registrate</button>
+                    <button class="btn btn-purple-df pull-left">Registrate</button>
                     <!-- <button class="btn btn-purple-df pull-right">Inicia sesión</button> -->
                 </form>
                 <div class="row py-4 d-flex align-items-center socials-medias">

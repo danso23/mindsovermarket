@@ -18,9 +18,9 @@ class GestorMail extends Mailable
      * @return void
      */
     public function __construct($datos){
-        
         $this->datos    = $datos;
-        $this->subject  = $datos['subject'];        
+        $this->subject  = $datos['subject'];
+        $this->plantilla = $datos['plantilla'];
     }
 
     /**
@@ -30,7 +30,7 @@ class GestorMail extends Mailable
      */
     public function build(){
         
-        return $this->view('plantillasMail.plantillaMail')->subject($this->subject);
+        return $this->view($this->plantilla)->subject($this->subject);
 
     }
 }

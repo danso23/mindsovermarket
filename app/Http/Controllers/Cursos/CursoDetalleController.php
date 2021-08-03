@@ -15,6 +15,7 @@ class CursoDetalleController extends Controller
         $materiales = Material::selectRaw('materiales.id_material, materiales.nombre, materiales.url')
         ->where('materiales.id_curso', $id)
         ->get();
+        //$materiales = Material::join('material_temario', 'material_temario.')
         $modulo = Modulo::selectRaw('modulos.id_modulo, modulos.nombre')
         ->where('modulos.id_curso', $id)
         ->get();

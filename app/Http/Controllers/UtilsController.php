@@ -31,17 +31,17 @@ class UtilsController extends Controller{
     }
 
     public function EnvioCorreo(Request $request){
-
+        $email = $request->email;
         //$variablesCorreo            = $request->all();        
         $variablesCorreo['subject'] = "Correo Informativo";
 
         $variablesCorreo['name_contacto'] = "Antonio Ruiz";
         $variablesCorreo['asunto_contacto'] = "Mensaje de Prueba";
         $variablesCorreo['mensaje_contacto'] = "Este es un cuerpo de mensaje que quiero enviar";
-        $variablesCorreo['email_contacto'] = "Pos te lo env�e desde aca: uncorreo@dominio.com";                             
-    
+        $variablesCorreo['email_contacto'] = "Pos te lo envíe desde aca: uncorreo@dominio.com";                             
+        $variablesCorreo['plantilla'] ="plantillasMail.pruebaMail";
 
-        \Mail::to('iruhary@gmail.com')->send(new GestorMail($variablesCorreo));            
+        \Mail::to($email)->send(new GestorMail($variablesCorreo));
         
         return redirect('/');
     }
