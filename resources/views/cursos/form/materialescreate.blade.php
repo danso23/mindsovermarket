@@ -30,9 +30,9 @@
                     <form method="POST" action="{{ route('cursos.form.saveMateriales') }}" id="frmMateriales">
                         @csrf
                         <div class="form-group row">
-                            <label for="nameCurso" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del curso</label>
+                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del material</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="nameCurso" id="nameCurso">
+                                <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="nameMaterial" id="nameMaterial">
                             </div>
                         </div>
                         <div class="form-group row">

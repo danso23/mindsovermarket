@@ -77,6 +77,11 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
 });
 
+
+Route::group(['prefix' => 'categorias'], function() {
+    Route::get('/mostrar', 'Categorias\CategoriaController@getCategorias')->name('categorias.getCategorias');
+    Route::get('/curso/{id}', 'Categorias\CategoriaController@mostrarCursosByCategoria')->name('categorias.curso.mostrarCursosByCategoria');
+});
 Route::group(['prefix' => 'Admin'], function() {
     Route::post('/subirArchivo', 'Admin\DetalleController@uploadFile')->name('admin.upload');
 });

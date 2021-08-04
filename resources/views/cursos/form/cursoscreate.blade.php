@@ -43,9 +43,9 @@
                         </div>
                         <div class="form-group row">
                         <label for="portada" class="col-md-4 col-form-label text-md-right title-small label-form">Portada</label>
-                                <div class="col-md-6">
-                                    <input type="file" class="form-control custom-input" placeholder="Portada" name="portada" id="portada" onchange="uploadFile(this)">
-                                </div>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control custom-input" placeholder="Portada" name="portada" id="portada" onchange="uploadFile(this)">
+                            </div>
                         </div>
                         <input class="btn btn-red-df pull-left" id="frmCursoCancelar" value="Cancelar">
                         <input type="submit" class="btn btn-purple-df pull-left" id="frmCursoGuardar" value="Guardar">
