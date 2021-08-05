@@ -88,3 +88,7 @@ Route::group(['prefix' => 'categorias'], function() {
 Route::group(['prefix' => 'Admin'], function() {
     Route::post('/subirArchivo', 'Admin\DetalleController@uploadFile')->name('admin.upload');
 });
+
+Route::group(['prefix' => 'Perfil'], function() {
+    Route::get('/MostrarPerfil', 'Perfil\PerfilController@miPerfil')->name('perfil.mostrar');
+});
