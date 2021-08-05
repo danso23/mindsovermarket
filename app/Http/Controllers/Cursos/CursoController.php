@@ -50,6 +50,7 @@ class CursoController extends Controller
     }
 
     public function createtemario(){
+        $user = Auth::user();
         if($user == null)
             return redirect('/');
         if($user->tipo_user != 3)

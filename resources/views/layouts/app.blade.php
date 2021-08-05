@@ -72,7 +72,7 @@
                                 <li class="menu-m">
                                     <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="text-white">
-                                            <i class="fas fa-bars fa-1x"></i>
+                                            <i class='fas fa-user-alt'></i>
                                         </span>
                                     </button>
                                 </li>
@@ -120,7 +120,7 @@
                                 <li class="menu-m">
                                     <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="text-white">
-                                            <i class="fas fa-bars fa-1x"></i>
+                                            <i class='fas fa-user-alt'></i>
                                         </span>
                                     </button>
                                 </li>
