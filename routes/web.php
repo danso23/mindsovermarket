@@ -75,6 +75,9 @@ Route::group(['prefix' => 'cursos'], function() {
 
     Route::get('/uploadFile', 'Cursos\CursoController@uploadFile')->name('cursos.uploadFile');
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
+
+    /***CATALÓGOS***/
+    Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos');
 });
 
 

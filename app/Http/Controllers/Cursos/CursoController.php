@@ -104,4 +104,8 @@ class CursoController extends Controller
         $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
         return Response::json($cursos);
     }
+
+    public function mostrarCatalogos(Request $request){
+        return view('cursos.catalogos.temario');
+    }
 }

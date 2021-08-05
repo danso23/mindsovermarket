@@ -23,31 +23,31 @@
                         @csrf
                         <div class="form-group row">
                             <label for="nameTemario" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del temario</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control custom-input" placeholder="Nombre del temario" name="nameTemario" id="nameTemario">
-                                </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control custom-input" placeholder="Nombre del temario" name="nameTemario" id="nameTemario">
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="nameModulo" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del módulo</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control custom-input" placeholder="Nombre del módulo" name="nameModulo" id="nameModulo">
-                                </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control custom-input" placeholder="Nombre del módulo" name="nameModulo" id="nameModulo">
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="descripcionTema" class="col-md-4 col-form-label text-md-right title-small label-form">Descripción del tema</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control custom-input" placeholder="Descripción del tema" name="descripcionTema" id="descripcionTema">
-                                </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control custom-input" placeholder="Descripción del tema" name="descripcionTema" id="descripcionTema">
+                            </div>
                         </div>
                         <div class="form-group row">
-                        <label for="video" class="col-md-4 col-form-label text-md-right title-small label-form">Video</label>
-                                <div class="col-md-6">
-                                    <input type="file" class="form-control custom-input" placeholder="Video" name="video" id="video">
-                                </div>
+                            <label for="video" class="col-md-4 col-form-label text-md-right title-small label-form">Video</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control custom-input" placeholder="Video" name="video" id="video">
+                            </div>
                         </div>
                         <a class="btn btn-link" href="#" style="text-align:left;">
                                         <!-- Añadir más temas... -->
-                                    </a></br></br>
+                        </a></br></br>
                         <input class="btn btn-red-df pull-left" id="frmTemarioCancelar" value="Cancelar">
                         <input type="submit" class="btn btn-purple-df pull-left" id="frmTemarioGuardar" value="Guardar">
                     </form>
