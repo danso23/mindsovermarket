@@ -51,7 +51,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="d-highlight">
+                    <div class="d-highlight align-self-lg-end p-2">
                         <ul class="menu-right">
                             @auth
                                 @if (auth()->user()->tipo_user == 3)
