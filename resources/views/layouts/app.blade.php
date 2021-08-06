@@ -68,13 +68,15 @@
                     <div class="d-highlight">
                         <ul class="menu-right">
                             @auth
-                            <li class="menu-m">
-                                <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="text-white">
-                                        <i class="fas fa-bars fa-1x"></i>
-                                    </span>
-                                </button>
-                            </li>
+                                @if (auth()->user()->tipo_user == 3)
+                                <li class="menu-m">
+                                    <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="text-white">
+                                            <i class='fas fa-user-alt'></i>
+                                        </span>
+                                    </button>
+                                </li>
+                                @endif
                             @endauth
                             <li>
                                 @if (Auth::guest())
@@ -114,13 +116,15 @@
                     <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-2 bd-highlight menu-login">
                         <ul class="menu-right">
                             @auth
-                            <li class="menu-m">
-                                <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="text-white">
-                                        <i class="fas fa-bars fa-1x"></i>
-                                    </span>
-                                </button>
-                            </li>
+                                @if (auth()->user()->tipo_user == 3)
+                                <li class="menu-m">
+                                    <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="text-white">
+                                            <i class='fas fa-user-alt'></i>
+                                        </span>
+                                    </button>
+                                </li>
+                                @endif
                             @endauth
                             <li class="d-none d-sm-block">
                                 @if (Auth::guest())

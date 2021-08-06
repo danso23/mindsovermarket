@@ -15,16 +15,24 @@
                     </ul>
                 </div>
             @endif
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="card">
                 <div class="card-header title-header" style="color: #70b62c;">Cursos</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cursos.form.save') }}" id="frmCursos">
+                    <form method="POST" action="{{ route('cursos.form.saveCursos') }}" id="frmCursos">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del curso</label>
+                            <label for="Curso" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre del curso</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="name" id="name">
+                                    <input type="text" class="form-control custom-input" placeholder="Nombre del curso" name="Curso" id="Curso">
                                 </div>
                         </div>
                         <div class="form-group row">
@@ -35,12 +43,12 @@
                         </div>
                         <div class="form-group row">
                         <label for="portada" class="col-md-4 col-form-label text-md-right title-small label-form">Portada</label>
-                                <div class="col-md-6">
-                                    <input type="file" class="form-control custom-input" placeholder="Portada" name="portada" id="portada">
-                                </div>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control custom-input" placeholder="Portada" name="portada" id="portada" onchange="uploadFile(this)">
+                            </div>
                         </div>
-                        <input type="submit" class="btn btn-red-df pull-left" id="frmMaterialCancelar" value="Cancelar">
-                        <input type="submit" class="btn btn-purple-df pull-left" id="frmMaterialGuardar" value="Guardar">
+                        <input class="btn btn-red-df pull-left" id="frmCursoCancelar" value="Cancelar">
+                        <input type="submit" class="btn btn-purple-df pull-left" id="frmCursoGuardar" value="Guardar">
                     </form>
                     </div>
                 </div>
@@ -52,5 +60,8 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/additional-methods.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/cursos/form.js') }}"></script>
+    <script>
+        var url_global = "{{ url('') }}";
+    </script>
 @endsection

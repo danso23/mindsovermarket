@@ -7,6 +7,7 @@
                     <li><a href="{{ route('cursos.form.materialescreate') }}">Materiales</a></li>
                     <li><a href="{{ route('cursos.form.cursoscreate') }}">Curso</a></li>
                     <li><a href="{{ route('cursos.form.temariocreate') }}">Temario</a></li>
+                    <li><a href="{{ route('cursos.catalogos') }}">Catalógos</a></li>
                 </ul>
             </div>
         </div>

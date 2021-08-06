@@ -410,7 +410,7 @@ a.btn-more:after {
 }
 
 #navigation .inner-navigation {
-  padding: 13.5% 5%;
+  padding: 19.5% 5%;
 }
 
 #navigation ul.menu,
@@ -440,7 +440,8 @@ a.btn-more:after {
 }
 
 #navigation ul.menu > li > a:hover {
-  color: #e41714;
+  color: #70b62c;
+  text-decoration: none;
 }
 
 #navigation .current-menu-item a,

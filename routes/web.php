@@ -69,9 +69,26 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/form/createmateriales', 'Cursos\CursoController@create')->name('cursos.form.materialescreate');
     Route::get('/form/createcurso', 'Cursos\CursoController@createcurso')->name('cursos.form.cursoscreate');
     Route::get('/form/createtemario', 'Cursos\CursoController@createtemario')->name('cursos.form.temariocreate');
-    Route::post('/form/save','Cursos\CursoController@save')->name('cursos.form.save');
+    Route::post('/form/saveMateriales','Cursos\CursoController@saveMateriales')->name('cursos.form.saveMateriales');
+    Route::post('/form/saveCursos','Cursos\CursoController@saveCursos')->name('cursos.form.saveCursos');
+    Route::post('/form/saveTemarios','Cursos\CursoController@saveTemarios')->name('cursos.form.saveTemarios');
+
+    Route::get('/uploadFile', 'Cursos\CursoController@uploadFile')->name('cursos.uploadFile');
+    Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
+
+    /***CATALÓGOS***/
+    Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos');
 });
 
+
+Route::group(['prefix' => 'categorias'], function() {
+    Route::get('/mostrar', 'Categorias\CategoriaController@getCategorias')->name('categorias.getCategorias');
+    Route::get('/curso/{id}', 'Categorias\CategoriaController@mostrarCursosByCategoria')->name('categorias.curso.mostrarCursosByCategoria');
+});
 Route::group(['prefix' => 'Admin'], function() {
     Route::post('/subirArchivo', 'Admin\DetalleController@uploadFile')->name('admin.upload');
+});
+
+Route::group(['prefix' => 'Perfil'], function() {
+    Route::get('/MostrarPerfil', 'Perfil\PerfilController@miPerfil')->name('perfil.mostrar');
 });

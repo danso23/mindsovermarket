@@ -87,6 +87,7 @@ class RegisterController extends Controller
             'country' => $data['country'],
             'state' => $data['state'],
             'zip_code' => $data['zip_code'],
+            'tipo_user' => 1,
             /*'ine' => $data['ine'],
             'proof_of_address' => $data['proof_of_address'],
             'rfc' => $data['rfc'],*/
@@ -96,10 +97,10 @@ class RegisterController extends Controller
         $variablesCorreo['subject'] = "Correo Informativo";
         $variablesCorreo['user'] = $user;
         $variablesCorreo['name_contacto'] = $user->name;
-        $variablesCorreo['asunto_contacto'] = "Mensaje de Prueba";
-        $variablesCorreo['mensaje_contacto'] = "Este es un cuerpo de mensaje que quiero enviar";
-        $variablesCorreo['email_contacto'] = "Pos te lo envíe desde aca: uncorreo@dominio.com";                             
-    
+        $variablesCorreo['asunto_contacto'] = "Bienvenido a MindsOverMarket";
+        $variablesCorreo['mensaje_contacto'] = "Gracias por registrarte, a parti de ahora formaras parte del equipo MOM";
+        $variablesCorreo['email_contacto'] = $user->email;
+        $variablesCorreo['plantilla'] ="plantillasMail.plantillaMail";
 
         \Mail::to($user->email)->send(new GestorMail($variablesCorreo));
 

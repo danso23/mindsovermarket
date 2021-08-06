@@ -5,19 +5,19 @@
 @endsection
 @section('content')
     <section class="cursos">
-    <div class="row col-12 justify-content-center" style="background-color: #f1f1f1; margin-left:0px;">
+    <div class="row col-12 justify-content-center row-category-videos">
         <div class="row col-8">
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="#">TRADING</a>
+                <a href="{{ url('categorias/curso/1') }}">TRADING</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-2 text-center text.sm-center">
-                <a href="#">CRYPTOS</a>
+                <a href="{{ url('categorias/curso/2') }}">CRYPTOS</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="#">LIVES</a>
+                <a href="{{ url('categorias/curso/3') }}">LIVES</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="#">TIENDA</a>
+                <a href="{{ url('categorias/curso/4') }}">TIENDA</a>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
     </div>
         <div class="row">
             <div class="container mt-4" id="divCurso">
-                <div class="row justify-content-md-between" style="justify-content: center; ">
+                <div class="row justify-content-md-start justify-content-center">
                     @foreach ($cursos as $curso)
                     <div class="col-10 col-md-6 col-lg-3 col-sm-6">
                         <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
