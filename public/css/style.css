@@ -1005,9 +1005,6 @@ font-weight: bold;
   .info-nav .menu-center .input-group-append {
     width: 28px;
   }
-  .svg-inline--fa.fa-w-16 {
-    width: 10px!important;
-  }
 
 }
 
@@ -2418,3 +2415,8 @@ input[type=number] { -moz-appearance:textfield; }
 .img-register {
   width: 93%;
 }
+
+.user-perfil {
+  color: #F1F1F1;
+}
+.user-perfil:hover{cursor: pointer;}

@@ -28,20 +28,6 @@
 </head>
 <body>
     <div id="app">
-       <!-- HEADER -->
-        <div class="col-12 text-center barra-top m-0">
-            <h5>CONOCE MÁS DE NUESTROS CURSOS <br class="d-block d-sm-block d-md-none d-lg-none"><a class="btn" href="#">Consulta las bases <span>aquí</span></a></h5>
-            <br class="d-block d-sm-none">
-            <ul class="menu-right d-block d-sm-none d-md-none d-lg-none d-xl-none">
-                <li>
-                    @if (Auth::guest())
-                        <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
-                    @else
-                        <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
-                    @endif
-                </li>
-            </ul>
-        </div>
         <div class="@if (Request::is('/')) info-nav @else info-nav custom-nav @endif d-xl-block d-lg-none d-md-none d-sm-none d-none">
             <div class="container">
                 <div class="d-flex row bd-highlight">
@@ -51,7 +37,7 @@
                             <!-- <img src="img/logo.png" class="logo-white" alt=""> -->
                         </a>
                     </div>
-                    <div class="p-2 bd-highlight col-7">
+                    <div class="p-2 bd-highlight col-7 align-self-end">
                         <ul class="menu-center">
                             <li>
                                 <form action="" class="form-inline">
@@ -69,10 +55,10 @@
                         <ul class="menu-right">
                             @auth
                                 @if (auth()->user()->tipo_user == 3)
-                                <li class="menu-m">
+                                <li class="menu-m align-bottom">
                                     <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="text-white">
-                                            <i class='fas fa-user-alt'></i>
+                                            <i class="fas fa-bars"></i>
                                         </span>
                                     </button>
                                 </li>
@@ -82,6 +68,7 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
+                                    <i class="fas fa-info-circle" data-toggle="popover" data-content="Consulta tu CURP <a target='_blank' href='https://www.gob.mx/curp/'>aquí</a>" data-html="true"></i>
                                     <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
                                 @endif
                             </li>
@@ -99,7 +86,7 @@
                             <!-- <img src="img/logo.png" class="logo-white" alt=""> -->
                         </a>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-6 p-2 bd-highlight">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-6 p-2 bd-highlight align-self-end">
                         <ul class="menu-center">
                             <li>
                                 <form action="" class="">
@@ -113,14 +100,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-2 bd-highlight menu-login">
+                    <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-2 bd-highlight menu-login align-self-end">
                         <ul class="menu-right">
                             @auth
                                 @if (auth()->user()->tipo_user == 3)
-                                <li class="menu-m">
+                                <li class="menu-m align-bottom">
                                     <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="text-white">
-                                            <i class='fas fa-user-alt'></i>
+                                            <i class="fas fa-bars"></i>
                                         </span>
                                     </button>
                                 </li>
@@ -130,7 +117,9 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
+                                <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a><br><a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true">{{auth()->user()->name}} 
+                                    <i class="fas fa-user"></i>
+                                </span>
                                 @endif
                             </li>
                         </ul>
