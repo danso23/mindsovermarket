@@ -36,7 +36,6 @@ class UtilsController extends Controller{
         $variablesCorreo['subject'] = "Suscripción MOM";
 
         $variablesCorreo['name_contacto'] = "Antonio Ruiz";
-
         $variablesCorreo['asunto_contacto'] = "Suscripción Minds Over Market";
         $variablesCorreo['mensaje_contacto'] = "Bienvenido a la academia Minds Over Market. Gracias por suscribirte con nosotros. La suscripción se renovará automáticamente al terminar el plazo.";
         $variablesCorreo['email_contacto'] = "Cualquier duda puedes escribirnos al correo: contacto@mindsovermarket.com";                             

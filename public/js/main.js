@@ -62,6 +62,9 @@ $(document).ready( function() {
         });
     });
 })(jQuery);
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
 
 window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
