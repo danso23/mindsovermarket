@@ -2420,3 +2420,4 @@ input[type=number] { -moz-appearance:textfield; }
   color: #F1F1F1;
 }
 .user-perfil:hover{cursor: pointer;}
+.btn-sesion:hover{color: #fff !important;}

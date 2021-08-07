@@ -38,7 +38,7 @@ Route::post('atributos-producto/{id}', 'Producto_AtributoController@getAtributos
 Route::post('cart-add', 'CartController@add')->name('cart.add');
 Route::get('cart/checkout', 'CartController@cart')->name('cart.checkout');
 Route::post('remove-item', 'CartController@removeItem')->name('cart.remove');
-Route::post('completa-envio', 'CartController@guardaEnvio')->name('guarda.envio');
+Route::post('completa-envio', 'CartController@guardaEnvio')->name('guarda.envio')->middleware('auth');
 
 /**** PAYMENT *****/
 Route::get('/payment', 'PaymentController@index')->name('payment');
@@ -49,7 +49,6 @@ Route::get('/payment/ticket', 'PaymentController@ticket')->name('payment.ticket'
 Route::get('/paypal/pay', 'PaypalController@payWithPayPal');
 Route::get('/paypal/status', 'PaypalController@payPalStatus');
 
-Route::post('/whatsend', 'Whatsapp\WhatsappController@sendMessage')->name('whatsend');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -77,7 +76,7 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
 
     /***CATALÓGOS***/
-    Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos');
+    Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos')->middleware('auth');
 });
 
 

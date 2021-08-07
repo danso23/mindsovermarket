@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 align-self-center text-center">
+        <div class="col-md-12 col-lg-8 align-self-center text-center">
         </br>
             <div class="card">
                 <div class="card-header title-header" style="color: #70b62c;">Inicio de sesión</div>
@@ -53,7 +53,8 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-12">
+                                <a class="btn btn-sesion" href="{{ route('register') }}" >Registrate</a>
                                 <button type="submit" class="btn btn-sesion">
                                     Inicia sesión
                                 </button>
