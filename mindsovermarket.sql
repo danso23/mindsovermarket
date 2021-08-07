@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2021 a las 04:12:45
+-- Tiempo de generación: 07-08-2021 a las 07:10:51
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -299,7 +299,8 @@ CREATE TABLE `password_resets` (
 --
 
 INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`) VALUES
-(3, 'danielsolis023@gmail.com', '$2y$10$sqb0v7Jg37h3PDFgaLUcouegS5I2cS5UFaz1CeWdn3lIu2eu//S/u', '2021-07-13 22:04:46');
+(3, 'danielsolis023@gmail.com', '$2y$10$sqb0v7Jg37h3PDFgaLUcouegS5I2cS5UFaz1CeWdn3lIu2eu//S/u', '2021-07-13 22:04:46'),
+(4, 'iruhary@gmail.com', '$2y$10$NeWR1qZCOX3Wxox8VNu.n.jPhU2ddOXyGfs7iZYHt3nukImDzmguG', '2021-08-06 22:25:26');
 
 -- --------------------------------------------------------
 
@@ -519,7 +520,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `name`, `email`, `membresia`, `token`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`, `created_at`, `updated_at`, `last_name`, `last_name2`, `date_of_birth`, `phone`, `country`, `state`, `zip_code`, `ine`, `proof_of_address`, `rfc`, `remember_token`, `tipo_user`) VALUES
-(1, '$2y$10$CZTdQaYJvnbGaYWkW4wzqOLyFaALxQGgx9Mn9wnx4.qbbu3Zihy42', 'Mariné', 'iruhary@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-13 03:50:34', '2021-07-13 03:50:34', 'Moreno', 'Burgos', '1996-10-10', '9992660071', 'México', 'Yucatán', '97470', NULL, NULL, NULL, 'T9vgz29rNW1jzSPwXKoPdX6hSe4wZokkogxIbR1SgJ41PbG5ZrLFRbEp4e8b', 3),
+(1, '$2y$10$CZTdQaYJvnbGaYWkW4wzqOLyFaALxQGgx9Mn9wnx4.qbbu3Zihy42', 'Mariné', 'iruhary@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-13 03:50:34', '2021-07-13 03:50:34', 'Moreno', 'Burgos', '1996-10-10', '9992660071', 'México', 'Yucatán', '97470', NULL, NULL, NULL, 'dkHKgoETdq8vPJUL6bXvHrWSnk77bnvpc0AKuCI236yeQP7HGx1CVXzhd5Xs', 3),
 (2, '$2y$10$Dk/PEIjf/MbcICWh024GQ.g48iZK5GPK8sjpJq6AaR6056WILMO4q', 'Felix', 'felix.rasgado@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:14:18', '2021-07-28 03:14:18', 'Rasgado', 'Rasgado', '1999-09-19', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
 (3, '$2y$10$WXcQmE/lCjROGRYEjXCwvODxdBrUdyJ6r0ebhKr89RbZ7B0xexBXW', 'Gerardo', 'gerardo.bellavista@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:15:15', '2021-07-28 03:15:15', 'Bellavista', 'Bellavista', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
 (4, '$2y$10$8bfx.uCsNvBddgyjdfKhweo2ejERJtwZVIvCr7cYq.9qVgUMd.A5y', 'Erwin', 'erwin.park@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:16:17', '2021-07-28 03:16:17', 'Park', 'Park', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
@@ -748,7 +749,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`

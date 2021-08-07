@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('css')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
     <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
