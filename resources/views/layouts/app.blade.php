@@ -68,8 +68,9 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <i class="fas fa-info-circle" data-toggle="popover" data-content="Consulta tu CURP <a target='_blank' href='https://www.gob.mx/curp/'>aquí</a>" data-html="true"></i>
-                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
+                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a><br><a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true">{{auth()->user()->name}} 
+                                        <i class="fas fa-user"></i>
+                                    </span>
                                 @endif
                             </li>
                         </ul>
