@@ -56,7 +56,7 @@ body.menu-opened {
 
 .info-nav ul.menu-right li, .info-nav ul.menu-center li{
   display: inline-block;
-  margin: 10px 15px 0 5px;
+  margin: 0px 15px 0 5px;
 }
 
 .info-nav ul.menu-right li a{
