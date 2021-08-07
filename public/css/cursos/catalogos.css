@@ -219,3 +219,5 @@ table.table .avatar {
 }
 
 .modal-backdrop{background-color: none !important;}
+
+.modal-open{overflow: auto !important;}
