@@ -34,20 +34,8 @@
         <div class="row">
             <div class="container mt-4" id="divCurso">
                 <div class="row justify-content-md-start justify-content-center">
-                    @foreach ($cursos as $curso)
-                    <div class="col-10 col-md-6 col-lg-3 col-sm-6">
-                        <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
-                            <div class="card mt-3 card-curso">
-                                <img src="{{ asset('public/cursos') }}/{{$curso->portada}}" class="img-fluid img-curso" alt="{{ $curso->nombre }}">
-                                <div class="card-body">
-                                    <p class="card-text text-center cursos-title">{{ $curso->nombre }}</p>
-                                </div> 
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/sIR_Ak8n3CQ?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
         <div class="content-ebooks">

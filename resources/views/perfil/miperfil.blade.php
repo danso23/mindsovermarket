@@ -6,50 +6,75 @@
 <div class="row col-12 justify-content-center row-category-videos">
         <div class="h-100 align-items-center d-lg-inline-flex col-12">
             <div class="col-12 col-sm-12 text-center "> </br>   
-                <a href=""><img style="height:60px;" src="{{ asset('public/img/Iconos/perfil.png') }}" alt="index.php"></a>
+                
                 <h1 class="h1-title-curso-detail">Mi perfil</h1>
             </div>
         </div>
 </div>
 
-<div class="container mt-5">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center text-center">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <form method="POST" action="{{ route('cursos.form.saveMateriales') }}" id="frmMateriales">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Nombre(s):</label>
-                            <label for="nameMaterial" class="col-md-3 col-form-label text-md-right title-small label-form">Iruhary</label>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Apellidos:</label>
-                            <label for="nameMaterial" class="col-md-3 col-form-label text-md-right title-small label-form">Moreno Burgos</label>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Correo:</label>
-                            <label for="nameMaterial" class="col-md-3 col-form-label text-md-right title-small label-form">iruhary@gmail.com</label>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Suscripción:</label>
-                            <label for="nameMaterial" class="col-md-3 col-form-label text-md-right title-small label-form">Mensual.</label>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Fecha de vencimiento:</label>
-                            <label for="nameMaterial" class="col-md-3 col-form-label text-md-right title-small label-form">15/07/2021.</label>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nameMaterial" class="col-md-4 col-form-label text-md-right title-small label-form">Si no tienes una membresía solicitala aquí:</label>
-                            
-                        </div>
-                        <input class="btn btn-red-df pull-left" id="frmMaterialCancelar" value="Membresías">
-                    </form>
-                    </div>
-                </div>
-            </div>
+<div class="container mt-2">
+@foreach ($perfil as $datosperfil)
+    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Nombre(s)</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{ $datosperfil->name }}</label>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Apellidos</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">Moreno Burgos</label>
         </div>
     </div>
+    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Correo</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">iruhary@gmail.com</label>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Membresía</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">Anual</label>
+        </div>
+    </div>
+    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Teléfono</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">(999)1-125-2298</label>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Vencimiento</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">15/05/2022</label>
+        </div>
+    </div>
+    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Fecha de nacimiento</label></br> 
+             <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">10/10/1996</label>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">País</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">México</label>
+        </div>
+    </div>
+    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Código postal</label></br> 
+             <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">97470</label>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Estado</label></br> 
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">Yucatán</label>
+        </div>
+    </div>
+    <div class="h-100 align-items-center d-lg-inline-flex col-12">
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
+            
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Contraseña</label></br> 
+            <a class="btn" href="{{ url('/actualizar') }}"> Actualizar contraseña </a>
+        </div>
+    </div>
+    @endforeach
+</div>
 @endsection
 @section('script')
     <script type="text/javascript" src="{{ asset('public/js/cursos/cursos.js') }}"></script>

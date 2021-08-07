@@ -2412,6 +2412,11 @@ input[type=number] { -moz-appearance:textfield; }
   font-weight: 600;
 }
 
+.label-perfil {
+  color:#70b62c;
+  font-weight: 600;
+}
+
 .img-register {
   width: 93%;
 }
