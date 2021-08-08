@@ -13,11 +13,10 @@
 </div>
 
 <div class="container mt-2">
-@foreach ($perfil as $datosperfil)
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Nombre(s)</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{ $datosperfil->name }}</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">MARINÉ IRUHARY</label>
         </div>
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Apellidos</label></br> 
@@ -73,7 +72,6 @@
             <a class="btn" href="{{ url('/actualizar') }}"> Actualizar contraseña </a>
         </div>
     </div>
-    @endforeach
 </div>
 @endsection
 @section('script')

@@ -69,7 +69,9 @@
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
                                     <i class="fas fa-info-circle" data-toggle="popover" data-content="Consulta tu CURP <a target='_blank' href='https://www.gob.mx/curp/'>aquí</a>" data-html="true"></i>
-                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
+                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a><br><a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true">{{auth()->user()->name}} 
+                                    <i class="fas fa-user"></i>
+                                </span>
                                 @endif
                             </li>
                         </ul>
@@ -213,18 +215,16 @@
             <div class="container">
                 <div class="row py-4 d-flex align-items-center socials-medias">
                   <div class="col-md-6 col-lg-4 text-center text-md-left">
-                    <a class="fb-ic">
+                    <a class="fb-ic" href="https://wa.link/zz6hxq">
                       <i class="fab fa-whatsapp mr-4"> </i>
                     </a>
-                    <a class="ins-ic">
+                    <a class="ins-ic" href="https://www.instagram.com/mindsovermarket/?hl=es">
                       <i class="fab fa-instagram mr-4"> </i>
                     </a>
-                    <a class="fb-ic">
+                    <a class="fb-ic" href="https://www.facebook.com/MindsOverMarket">
                       <i class="fab fa-facebook-f mr-4"> </i>
                     </a>
-                    <a class="tw-ic">
-                      <i class="fab fa-twitter mr-4"> </i>
-                    </a>
+        
                   </div>
                   <div class="col-md-6 col-lg-8 text-center text-md-left mb-4 mb-md-0">
                       <h6 class="mb-0">Copyright © MINDS OVER MARKET | <a href="">Politicas De Privacidad</a> | <a href="">Términos Y Condiciones</a></h6>
