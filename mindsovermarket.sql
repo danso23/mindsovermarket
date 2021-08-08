@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 29-07-2021 a las 02:45:51
--- Versión del servidor: 10.4.19-MariaDB-cll-lve
--- Versión de PHP: 7.2.34
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-08-2021 a las 07:10:51
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,10 +18,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `u223232943_mindsover`
+-- Base de datos: `cursosenlinea`
 --
-create database cursosenlinea;
-use cursosenlinea;
+
 -- --------------------------------------------------------
 
 --
@@ -56,16 +54,10 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `desc_categoria`, `activo`, `fecha_creacion`) VALUES
-(1, 'APPAREL', 'Pelotas de beisbol y mucho mas', 1, '2021-03-02 16:41:01'),
-(2, 'BATES', 'Gorras de distintas marcas', 1, '2021-03-02 16:41:01'),
-(3, 'ZAPATOS', NULL, 1, '2021-03-07 06:42:29'),
-(4, 'GUANTES', NULL, 1, '2021-03-07 06:42:29'),
-(5, 'CATCHERS', NULL, 1, '2021-03-07 06:42:29'),
-(6, 'MALETAS', NULL, 1, '2021-03-07 06:42:29'),
-(7, 'CASCOS', NULL, 1, '2021-03-07 06:42:29'),
-(8, 'PELOTAS', NULL, 1, '2021-03-07 06:42:29'),
-(9, 'MALLAS', NULL, 1, '2021-03-07 06:42:29'),
-(10, 'SOFTBAL', NULL, 1, '2021-03-07 06:42:29');
+(1, 'TRADING', 'Trading y otros', 1, '2021-08-04 01:04:26'),
+(2, 'CRYPTOS', 'Cryptos y otros', 1, '2021-08-04 01:04:26'),
+(3, 'LIVES', 'Clases en vivo', 1, '2021-08-04 01:04:26'),
+(4, 'TIENDA', 'Tienda de cursos', 1, '2021-08-04 01:04:26');
 
 -- --------------------------------------------------------
 
@@ -130,6 +122,7 @@ CREATE TABLE `cursos` (
   `desc_curso` varchar(255) DEFAULT NULL,
   `portada` varchar(155) DEFAULT NULL,
   `activo` tinyint(4) DEFAULT NULL,
+  `id_categoria` int(11) DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='catalogo de cursos';
 
@@ -137,15 +130,14 @@ CREATE TABLE `cursos` (
 -- Volcado de datos para la tabla `cursos`
 --
 
-INSERT INTO `cursos` (`id_curso`, `nombre`, `desc_curso`, `portada`, `activo`, `fecha_creacion`) VALUES
-(2, 'Formación general para principiantes', 'Formación general para principiantes', 'Cielo.jpg', 1, '2021-07-12 23:53:20'),
-(3, 'Trading de futuros', 'Trading de futuros', 'node.png', 1, '2021-07-13 19:40:17'),
-(4, 'Análisis técnico', 'Análisis técnico', 'analisis.jpg', 1, '2021-07-13 21:48:07'),
-(5, 'Gestión de riesgo', 'Gestión de riesgo', 'gestion.jpg', 1, '2021-07-13 21:48:40'),
-(6, 'Aprende a operar CFD´s ', 'Aprende a operar CFD´s ', 'cfd.png', 1, '2021-07-14 00:35:36'),
-(7, 'Nuevo curso', 'aaaa', 'Cielo Rojo para PC.jpg', NULL, '2021-07-27 22:08:10'),
-(8, 'El principito', 'Lobo y 3 cochinitos', 'img_minds.jpg', NULL, '2021-07-27 22:09:14'),
-(9, 'Trading para principiantes', 'Aqui encontraras mucha información', 'Cielo Rojo para PC.jpg', 1, '2021-07-28 03:14:34');
+INSERT INTO `cursos` (`id_curso`, `nombre`, `desc_curso`, `portada`, `activo`, `id_categoria`, `fecha_creacion`) VALUES
+(2, 'Formación general para principiantes', 'Formación general para principiantes', 'Cielo.jpg', 1, 1, '2021-07-12 23:53:20'),
+(3, 'Trading de futuros', 'Trading de futuros', 'node.png', 1, 2, '2021-07-13 19:40:17'),
+(4, 'Análisis técnico', 'Análisis técnico', 'analisis.jpg', 1, 2, '2021-07-13 21:48:07'),
+(5, 'Gestión de riesgo', 'Gestión de riesgo', 'gestion.jpg', 1, 3, '2021-07-13 21:48:40'),
+(6, 'Aprende a operar CFD´s ', 'Aprende a operar CFD´s ', 'cfd.png', 1, 1, '2021-07-14 00:35:36'),
+(7, 'Nuevo curso', 'aaaa', 'Cielo Rojo para PC.jpg', 1, 4, '2021-07-27 22:08:10'),
+(8, 'El principito', 'Lobo y 3 cochinitos', 'img_minds.jpg', 0, 3, '2021-07-27 22:09:14');
 
 -- --------------------------------------------------------
 
@@ -206,8 +198,7 @@ INSERT INTO `materiales` (`id_material`, `nombre`, `url`, `bActivo`, `fecha_crea
 (8, 'Libro', '2° GLM Ficha Mayo-03 feb AE-Potencias fin dos-convertido.docx', 1, '2021-07-26 17:13:00', NULL),
 (9, 'Material crypto 1', 'img_minds.jpg', 1, '2021-07-26 20:36:32', NULL),
 (10, 'Crypto avanzado', 'Fondo de pantalla.jpg', 1, '2021-07-26 21:03:42', NULL),
-(11, 'Material de prueba', 'Cielo Rojo para PC.jpg', 1, '2021-07-27 16:58:22', 4),
-(12, 'Formato de prueba', 'WhatsApp Image 2021-04-21 at 12.57.12 PM.jpeg', 1, '2021-07-28 03:13:46', 3);
+(11, 'Material de prueba', 'Cielo Rojo para PC.jpg', 1, '2021-07-27 16:58:22', 4);
 
 -- --------------------------------------------------------
 
@@ -308,7 +299,8 @@ CREATE TABLE `password_resets` (
 --
 
 INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`) VALUES
-(3, 'danielsolis023@gmail.com', '$2y$10$sqb0v7Jg37h3PDFgaLUcouegS5I2cS5UFaz1CeWdn3lIu2eu//S/u', '2021-07-13 22:04:46');
+(3, 'danielsolis023@gmail.com', '$2y$10$sqb0v7Jg37h3PDFgaLUcouegS5I2cS5UFaz1CeWdn3lIu2eu//S/u', '2021-07-13 22:04:46'),
+(4, 'iruhary@gmail.com', '$2y$10$NeWR1qZCOX3Wxox8VNu.n.jPhU2ddOXyGfs7iZYHt3nukImDzmguG', '2021-08-06 22:25:26');
 
 -- --------------------------------------------------------
 
@@ -385,7 +377,8 @@ INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`)
 (30, 3, 3, '2021-07-28 03:15:15', '2021-07-28 03:15:15'),
 (31, 3, 4, '2021-07-28 03:16:17', '2021-07-28 03:16:17'),
 (32, 3, 5, '2021-07-28 03:17:19', '2021-07-28 03:17:19'),
-(33, 3, 6, '2021-07-28 03:17:59', '2021-07-28 03:17:59');
+(33, 3, 6, '2021-07-28 03:17:59', '2021-07-28 03:17:59'),
+(34, 3, 7, '2021-08-04 05:42:06', '2021-08-04 05:42:06');
 
 -- --------------------------------------------------------
 
@@ -500,7 +493,7 @@ CREATE TABLE `users` (
   `password` varchar(75) CHARACTER SET utf8mb4 DEFAULT NULL,
   `name` varchar(45) CHARACTER SET utf8mb4 DEFAULT NULL,
   `email` varchar(45) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `membresia` int(10) DEFAULT 1,
+  `membresia` int(10) DEFAULT 0,
   `token` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
   `stripe_id` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `card_brand` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
@@ -527,12 +520,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `name`, `email`, `membresia`, `token`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`, `created_at`, `updated_at`, `last_name`, `last_name2`, `date_of_birth`, `phone`, `country`, `state`, `zip_code`, `ine`, `proof_of_address`, `rfc`, `remember_token`, `tipo_user`) VALUES
-(1, '$2y$10$CZTdQaYJvnbGaYWkW4wzqOLyFaALxQGgx9Mn9wnx4.qbbu3Zihy42', 'Mariné', 'iruhary@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-13 03:50:34', '2021-07-13 03:50:34', 'Moreno', 'Burgos', '1996-10-10', '9992660071', 'México', 'Yucatán', '97470', NULL, NULL, NULL, 'iY5YYDd9aki6D6tMOtTJ0TeY1MYIS54iXluGN4E7svFeFDXLcW26YWfpItAC', 3),
+(1, '$2y$10$CZTdQaYJvnbGaYWkW4wzqOLyFaALxQGgx9Mn9wnx4.qbbu3Zihy42', 'Mariné', 'iruhary@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-13 03:50:34', '2021-07-13 03:50:34', 'Moreno', 'Burgos', '1996-10-10', '9992660071', 'México', 'Yucatán', '97470', NULL, NULL, NULL, 'dkHKgoETdq8vPJUL6bXvHrWSnk77bnvpc0AKuCI236yeQP7HGx1CVXzhd5Xs', 3),
 (2, '$2y$10$Dk/PEIjf/MbcICWh024GQ.g48iZK5GPK8sjpJq6AaR6056WILMO4q', 'Felix', 'felix.rasgado@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:14:18', '2021-07-28 03:14:18', 'Rasgado', 'Rasgado', '1999-09-19', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
 (3, '$2y$10$WXcQmE/lCjROGRYEjXCwvODxdBrUdyJ6r0ebhKr89RbZ7B0xexBXW', 'Gerardo', 'gerardo.bellavista@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:15:15', '2021-07-28 03:15:15', 'Bellavista', 'Bellavista', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
 (4, '$2y$10$8bfx.uCsNvBddgyjdfKhweo2ejERJtwZVIvCr7cYq.9qVgUMd.A5y', 'Erwin', 'erwin.park@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:16:17', '2021-07-28 03:16:17', 'Park', 'Park', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
-(5, '$2y$10$U2K6bnnjJKpkFi/2Pb7jKuHptV.rgZl.jStpwN8y7xALhub3Wab0O', 'Isaac', 'isaac.pena@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:17:19', '2021-07-28 03:17:19', 'Peña', 'Peña', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, 'a9ROVmOWUFErYuTM1TE0BmwJJ0T9RVcyT8AUIFKf1ndpBWoYBipaS9KUeKiZ', 3),
-(6, '$2y$10$p3DXSmaTb43OqnhOLfbNjeDKgidkyn0WsyyDAXpbN.RNvlXvTCv3W', 'Julio', 'julio.gonzales@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:17:59', '2021-07-28 03:17:59', 'Gonzales', 'Gonzales', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3);
+(5, '$2y$10$U2K6bnnjJKpkFi/2Pb7jKuHptV.rgZl.jStpwN8y7xALhub3Wab0O', 'Isaac', 'isaac.pena@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:17:19', '2021-07-28 03:17:19', 'Peña', 'Peña', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
+(6, '$2y$10$p3DXSmaTb43OqnhOLfbNjeDKgidkyn0WsyyDAXpbN.RNvlXvTCv3W', 'Julio', 'julio.gonzales@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:17:59', '2021-07-28 03:17:59', 'Gonzales', 'Gonzales', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
+(7, '$2y$10$DWCHfyW9CNT2FP/ftBKJfu5yfJI5lKBYGvIYIFahdWTtiQvKkc80u', 'Alberto', 'alberto@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-08-04 05:42:06', '2021-08-04 05:42:06', 'Reyes', 'Gamboa', '1999-02-20', '9999999999', 'México', 'yucatán', '97000', NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -572,7 +566,8 @@ ALTER TABLE `charges`
 -- Indices de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`id_curso`);
+  ADD PRIMARY KEY (`id_curso`),
+  ADD KEY `fk_cursos_id_categoria_idx` (`id_categoria`);
 
 --
 -- Indices de la tabla `detalle_ventas`
@@ -694,7 +689,7 @@ ALTER TABLE `carro_compras`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `charges`
@@ -706,7 +701,7 @@ ALTER TABLE `charges`
 -- AUTO_INCREMENT de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_ventas`
@@ -724,7 +719,7 @@ ALTER TABLE `direcciones`
 -- AUTO_INCREMENT de la tabla `materiales`
 --
 ALTER TABLE `materiales`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `material_temario`
@@ -754,7 +749,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -772,7 +767,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `subscriptions`
@@ -796,7 +791,7 @@ ALTER TABLE `temario`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
@@ -807,6 +802,12 @@ ALTER TABLE `ventas`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `fk_cursos_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `modulos`

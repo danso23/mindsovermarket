@@ -33,12 +33,12 @@ class UtilsController extends Controller{
     public function EnvioCorreo(Request $request){
         $email = $request->email;
         //$variablesCorreo            = $request->all();        
-        $variablesCorreo['subject'] = "Correo Informativo";
+        $variablesCorreo['subject'] = "Suscripción MOM";
 
         $variablesCorreo['name_contacto'] = "Antonio Ruiz";
-        $variablesCorreo['asunto_contacto'] = "Mensaje de Prueba";
-        $variablesCorreo['mensaje_contacto'] = "Este es un cuerpo de mensaje que quiero enviar";
-        $variablesCorreo['email_contacto'] = "Pos te lo envíe desde aca: uncorreo@dominio.com";                             
+        $variablesCorreo['asunto_contacto'] = "Suscripción Minds Over Market";
+        $variablesCorreo['mensaje_contacto'] = "Bienvenido a la academia Minds Over Market. Gracias por suscribirte con nosotros. La suscripción se renovará automáticamente al terminar el plazo.";
+        $variablesCorreo['email_contacto'] = "Cualquier duda puedes escribirnos al correo: contacto@mindsovermarket.com";                             
         $variablesCorreo['plantilla'] ="plantillasMail.pruebaMail";
 
         \Mail::to($email)->send(new GestorMail($variablesCorreo));

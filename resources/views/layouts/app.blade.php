@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link href="{{ asset('public/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/img/favicon.ico') }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="{{ asset('public/js/all.js') }}" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -28,20 +28,6 @@
 </head>
 <body>
     <div id="app">
-       <!-- HEADER -->
-        <div class="col-12 text-center barra-top m-0">
-            <h5>CONOCE MÁS DE NUESTROS CURSOS <br class="d-block d-sm-block d-md-none d-lg-none"><a class="btn" href="#">Consulta las bases <span>aquí</span></a></h5>
-            <br class="d-block d-sm-none">
-            <ul class="menu-right d-block d-sm-none d-md-none d-lg-none d-xl-none">
-                <li>
-                    @if (Auth::guest())
-                        <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
-                    @else
-                        <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
-                    @endif
-                </li>
-            </ul>
-        </div>
         <div class="@if (Request::is('/')) info-nav @else info-nav custom-nav @endif d-xl-block d-lg-none d-md-none d-sm-none d-none">
             <div class="container">
                 <div class="d-flex row bd-highlight">
@@ -51,7 +37,7 @@
                             <!-- <img src="img/logo.png" class="logo-white" alt=""> -->
                         </a>
                     </div>
-                    <div class="p-2 bd-highlight col-7">
+                    <div class="p-2 bd-highlight col-7 align-self-end">
                         <ul class="menu-center">
                             <li>
                                 <form action="" class="form-inline">
@@ -65,14 +51,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="d-highlight">
+                    <div class="d-highlight align-self-lg-end p-2">
                         <ul class="menu-right">
                             @auth
                                 @if (auth()->user()->tipo_user == 3)
-                                <li class="menu-m">
+                                <li class="menu-m align-bottom">
                                     <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="text-white">
-                                            <i class="fas fa-bars fa-1x"></i>
+                                            <i class="fas fa-bars"></i>
                                         </span>
                                     </button>
                                 </li>
@@ -82,7 +68,18 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
+
+                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
+                                    <br>
+                                    <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
+                                    <br>
+                                    <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
+                                    <br>
+                                    @if (auth()->user()->tipo_user == 3)
+                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                    @endif
+                                    " data-placement="bottom" data-html="true">{{auth()->user()->name}} 
+                                        <i class="fas fa-user"></i>
                                 @endif
                             </li>
                         </ul>
@@ -99,7 +96,7 @@
                             <!-- <img src="img/logo.png" class="logo-white" alt=""> -->
                         </a>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-6 p-2 bd-highlight">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-6 p-2 bd-highlight align-self-end">
                         <ul class="menu-center">
                             <li>
                                 <form action="" class="">
@@ -113,14 +110,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-2 bd-highlight menu-login">
+                    <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-2 bd-highlight menu-login align-self-end">
                         <ul class="menu-right">
                             @auth
                                 @if (auth()->user()->tipo_user == 3)
-                                <li class="menu-m">
+                                <li class="menu-m align-bottom">
                                     <button class="navbar-toggler toggler-example toggle-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="text-white">
-                                            <i class="fas fa-bars fa-1x"></i>
+                                            <i class="fas fa-bars"></i>
                                         </span>
                                     </button>
                                 </li>
@@ -130,7 +127,9 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <a class="btn" href="{{ url('/logout') }}"> Cerrar sesión </a>
+                                <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a><br><a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true">{{auth()->user()->name}} 
+                                    <i class="fas fa-user"></i>
+                                </span>
                                 @endif
                             </li>
                         </ul>
@@ -224,18 +223,16 @@
             <div class="container">
                 <div class="row py-4 d-flex align-items-center socials-medias">
                   <div class="col-md-6 col-lg-4 text-center text-md-left">
-                    <a class="fb-ic">
+                    <a class="fb-ic" href="https://wa.link/zz6hxq">
                       <i class="fab fa-whatsapp mr-4"> </i>
                     </a>
-                    <a class="ins-ic">
+                    <a class="ins-ic" href="https://www.instagram.com/mindsovermarket/?hl=es">
                       <i class="fab fa-instagram mr-4"> </i>
                     </a>
-                    <a class="fb-ic">
+                    <a class="fb-ic" href="https://www.facebook.com/MindsOverMarket">
                       <i class="fab fa-facebook-f mr-4"> </i>
                     </a>
-                    <a class="tw-ic">
-                      <i class="fab fa-twitter mr-4"> </i>
-                    </a>
+        
                   </div>
                   <div class="col-md-6 col-lg-8 text-center text-md-left mb-4 mb-md-0">
                       <h6 class="mb-0">Copyright © MINDS OVER MARKET | <a href="">Politicas De Privacidad</a> | <a href="">Términos Y Condiciones</a></h6>

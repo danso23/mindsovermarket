@@ -10,5 +10,9 @@ class CursoModulo extends Model
         protected $primaryKey = 'id_modulo';
         protected $fillable = ["nombre", "id_curso", "fecha_creacion"];
         public $timestamps = false;
+        
+        public function temarios(){
+            return $this->belongsTo(Curso::class, 'id_modulo', 'id_modulo');
+        }
 }
 

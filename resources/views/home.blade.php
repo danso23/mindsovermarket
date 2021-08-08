@@ -201,12 +201,4 @@
             </div>
         </div>
     </section>
-    <!-- <div class="video-container" >
-     <div class="video-foreground">
-       <iframe
-               src="https://www.youtube.com/embed/uOu5UxgyTcw?controls=1&showinfo=0&rel=0&autoplay=1&loop=1"frameBorder="0" allowFullScreen>
-                
-    </iframe>
-  </div>             
- </div>     -->
 @endsection
