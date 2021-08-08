@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('css')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
     <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
@@ -29,11 +29,11 @@
 								<label for="selectAll"></label>
 							</span>
 						</th>
-                        <th>Name</th>
-                        <th>Email</th>
-						<th>Address</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
+                        <th>Temario</th>
+                        <th>video</th>
+						<th>Módulo</th>
+                        <th>Curso</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -214,7 +214,7 @@
         </div>
     </div>
 	<!-- Edit Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
+	<div id="addEmployeeModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
@@ -249,7 +249,7 @@
 		</div>
 	</div>
 	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade" data-backdrop="false" data-dismiss="modal" >
+	<div id="editEmployeeModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
@@ -284,7 +284,7 @@
 		</div>
 	</div>
 	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
+	<div id="deleteEmployeeModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>

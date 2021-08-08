@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link href="{{ asset('public/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/img/favicon.ico') }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="{{ asset('public/js/all.js') }}" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -68,10 +68,16 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-                                    <i class="fas fa-info-circle" data-toggle="popover" data-content="Consulta tu CURP <a target='_blank' href='https://www.gob.mx/curp/'>aquí</a>" data-html="true"></i>
-                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a><br><a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true">{{auth()->user()->name}} 
-                                    <i class="fas fa-user"></i>
-                                </span>
+
+                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
+                                    <br>
+                                    <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
+                                    <br>
+                                    @if (auth()->user()->tipo_user == 3)
+                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                    @endif
+                                    " data-placement="bottom" data-html="true">{{auth()->user()->name}} 
+                                        <i class="fas fa-user"></i>
                                 @endif
                             </li>
                         </ul>

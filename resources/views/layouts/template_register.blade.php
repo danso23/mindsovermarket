@@ -9,10 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('public/fonts/all.css') }}" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/img/favicon.ico') }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="{{ asset('/js/all.js') }}" crossorigin="anonymous"></script>
     <!-- Google fonts-->
