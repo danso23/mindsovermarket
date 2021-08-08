@@ -90,6 +90,5 @@ Route::group(['prefix' => 'Admin'], function() {
 });
 
 Route::group(['prefix' => 'Perfil'], function() {
-    Route::get('/MostrarPerfil', 'Perfil\PerfilController@miPerfil')->name('perfil.mostrar');
-    Route::get('/obtenerDetalles', 'Perfil\Perfil@obtenerDetalles')->name('perfil.obtenerDetalles');
+    Route::get('/MostrarPerfil', 'Perfil\PerfilController@miPerfil')->name('perfil.mostrar')->middleware('auth');
 });

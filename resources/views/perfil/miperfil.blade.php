@@ -16,17 +16,17 @@
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Nombre(s)</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">MARINÉ IRUHARY</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->name}}</label>
         </div>
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Apellidos</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">Moreno Burgos</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->last_name}} {{$user->last_name2}}</label>
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Correo</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">iruhary@gmail.com</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->email}}</label>
         </div>
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Membresía</label></br> 
@@ -36,7 +36,7 @@
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Teléfono</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">(999)1-125-2298</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->phone}}</label>
         </div>
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Vencimiento</label></br> 
@@ -46,21 +46,21 @@
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Fecha de nacimiento</label></br> 
-             <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">10/10/1996</label>
+             <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{ \Carbon\Carbon::parse($user->date_of_birth)->format('d/M/Y') }}</label>
         </div>
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">País</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">México</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->country}}</label>
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center"> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Código postal</label></br> 
-             <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">97470</label>
+             <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->zip_code}}</label>
         </div>
         <div class="col-12 col-sm-12 col-lg-6 col-md-6 text-center "> </br>   
             <label for="namePerfil" class="col-form-label text-md-right title-small label-form">Estado</label></br> 
-            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">Yucatán</label>
+            <label for="namePerfil" class="col-form-label text-md-right title-small label-perfil">{{$user->state}}</label>
         </div>
     </div>
     <div class="h-100 align-items-center d-lg-inline-flex col-12">
