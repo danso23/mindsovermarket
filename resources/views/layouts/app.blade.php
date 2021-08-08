@@ -71,6 +71,8 @@
 
                                     <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
                                     <br>
+                                    <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
+                                    <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
                                     <br>
                                     @if (auth()->user()->tipo_user == 3)
