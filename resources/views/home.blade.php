@@ -12,7 +12,7 @@
                     @if (Auth::guest())
                         <a class="btn btn-green-df" href="{{ route('register') }}" >Registrate</a>
                     @else
-                        <a class="btn btn-green-df" href="{{ route('cursos.view') }}" >Mis cursos</a>
+                        <a class="btn btn-green-df" href="{{ route('cursos.view') }}" >Acceder</a>
                     @endif
                   </div>
                 </div>

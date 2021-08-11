@@ -7,16 +7,19 @@
     <section class="cursos">
     <div class="row col-12 justify-content-center row-category-videos">
         <div class="row col-8">
-            <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 text-center text-sm-center">
                 <a href="{{ url('categorias/curso/1') }}">TRADING</a>
             </div>
-            <div class="col-12 col-sm-12 col-md-3 col-lg-2 text-center text.sm-center">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 text-center text.sm-center">
                 <a href="{{ url('categorias/curso/2') }}">CRYPTOS</a>
             </div>
-            <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 text-center text-sm-center">
                 <a href="{{ url('categorias/curso/3') }}">LIVES</a>
             </div>
-            <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 text-center text-sm-center">
+                <a href="{{ url('categorias/curso/3') }}">ANÁLISIS</a>
+            </div>
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 text-center text-sm-center">
                 <a href="{{ url('categorias/curso/4') }}">TIENDA</a>
             </div>
         </div>
