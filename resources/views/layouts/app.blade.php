@@ -108,8 +108,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-5 col-2 p-sm-2 p-3 bd-highlight menu-login align-self-md-end align-self-center">
-                        <ul class="menu-right mb-0 mb-sm-3">
+                    <div class="col-lg-4 col-md-4 col-sm-5 col-3 p-sm-2 p-3 bd-highlight menu-login align-self-md-end align-self-center">
+                        <ul class="menu-right mb-0 mb-sm-3 d-flex">
                             @auth
                                 @if (auth()->user()->tipo_user == 3)
                                 <li class="menu-m align-bottom">
@@ -121,26 +121,24 @@
                                 </li>
                                 @endif
                             @endauth
-                            <li class="d-none d-sm-block">
+                            <li class="align-self-center">
                                 @if (Auth::guest())
-                                    <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
+                                    <a class="btn d-none d-sm-block" href="{{ url('/login') }}"> Iniciar sesión </a>
+                                    <span class="user-perfil d-block d-sm-none" data-toggle="popover" data-content="
+                                    <a href='{{ url('/login') }}' class='btn'>Iniciar sesión</a>
+                                    <br>
+                                    " data-placement="bottom" data-html="true">
+                                        <i class="fas fa-user fa-lg"></i>
+                                    </span>
                                 @else
-                                <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
-                                <br>
-                                <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
-                                <br>
-                                <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true">{{auth()->user()->name}} 
-                                    <i class="fas fa-user"></i>
-                                </span>
+                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
+                                    <br>
+                                    <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
+                                    <br>
+                                    <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true"><span class="d-none d-sm-block d-md-inline">{{auth()->user()->name}}</span>
+                                        <i class="fas fa-user"> </i>
+                                    </span>
                                 @endif
-                            </li>
-                            <li>
-                                <span class="user-perfil d-block d-sm-none" data-toggle="popover" data-content="
-                                <a href='{{ url('/login') }}' class='btn'>Iniciar sesión</a>
-                                <br>
-                                " data-placement="bottom" data-html="true">
-                                    <i class="fas fa-user fa-lg"></i>
-                                </span>
                             </li>
                         </ul>
                     </div>
