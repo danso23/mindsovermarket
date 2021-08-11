@@ -37,7 +37,7 @@
                             <!-- <img src="img/logo.png" class="logo-white" alt=""> -->
                         </a>
                     </div>
-                    <div class="p-2 bd-highlight col-6 align-self-end">
+                    <div class="p-2 bd-highlight col-6 align-self-end" style="display: flex;">
                         <ul class="menu-center">
                             <li>
                                 <form action="" class="form-inline">
