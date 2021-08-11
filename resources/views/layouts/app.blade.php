@@ -68,16 +68,18 @@
                                 @if (Auth::guest())
                                     <a class="btn" href="{{ url('/login') }}"> Iniciar sesión </a>
                                 @else
-
-                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
+                                    <span class="user-perfil" data-toggle="popover" tabindex="0" data-trigger="focus" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
                                     <br>
-                                    <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
+                                    <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
                                     <br>
                                     @if (auth()->user()->tipo_user == 3)
                                         <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
                                     @endif
+                                    <br>
+                                    <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
                                     " data-placement="bottom" data-html="true">{{auth()->user()->name}} 
                                         <i class="fas fa-user"></i>
+                                    </span>
                                 @endif
                             </li>
                         </ul>
@@ -124,16 +126,20 @@
                             <li class="align-self-center">
                                 @if (Auth::guest())
                                     <a class="btn d-none d-sm-block" href="{{ url('/login') }}"> Iniciar sesión </a>
-                                    <span class="user-perfil d-block d-sm-none" data-toggle="popover" data-content="
+                                    <span class="user-perfil d-block d-sm-none" data-toggle="popover" tabindex="0" data-trigger="focus" data-content="
                                     <a href='{{ url('/login') }}' class='btn'>Iniciar sesión</a>
                                     <br>
                                     " data-placement="bottom" data-html="true">
                                         <i class="fas fa-user fa-lg"></i>
                                     </span>
                                 @else
-                                    <span class="user-perfil" data-toggle="popover" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
+                                    <span class="user-perfil" data-toggle="popover" tabindex="0" data-trigger="focus" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
                                     <br>
                                     <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
+                                    <br>
+                                    @if (auth()->user()->tipo_user == 3)
+                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                    @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true"><span class="d-none d-sm-block d-md-inline">{{auth()->user()->name}}</span>
                                         <i class="fas fa-user"> </i>
