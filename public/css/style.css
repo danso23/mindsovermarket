@@ -578,6 +578,7 @@ a.btn-more:after {
 }
 
 .hero .content-banner{
+  background-image: url('../img/Imagenes/banner.jpg');
   height: 550px;
   background-position: center;
   background-repeat: no-repeat;
