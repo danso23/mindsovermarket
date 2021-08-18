@@ -36,7 +36,7 @@
     </div>
         <div class="row">
             <div class="container mt-4" id="divCurso">
-                <div class="row justify-content-md-start justify-content-center">
+                <div class="row justify-content-md-start justify-content-center col-12">
                     @foreach ($cursos as $curso)
                     <div class="col-10 col-md-6 col-lg-3 col-sm-6">
                         <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
