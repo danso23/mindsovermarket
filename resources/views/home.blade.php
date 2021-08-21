@@ -79,7 +79,7 @@
                                         <div class="row">
                                             <div class="col-12 d-flex justify-content-center list-contain">
                                                 <ul class="list-inline">
-                                                <li>Trading en Vivo</li>
+                                                    <li>Trading en Vivo</li>
                                                     <li>Trading Academy</li>
                                                     <li>WeProfit</li>
                                                     <li>Criptoanálisis</li>
