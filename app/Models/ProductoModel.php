@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProductoModel extends Model{
     protected $table = 'productos';
     protected $primaryKey = 'id_producto';
-    protected $fillable = ['nombre_producto', 'desc_producto', 'url_imagen', 'precio', 'cantidad', 'activo'];
+    protected $fillable = ['nombre_producto', 'desc_producto', 'url_imagen', 'precio', 'cantidad', 'activo', 'listado_puntos'];
     public $timestamps = false;
 }
