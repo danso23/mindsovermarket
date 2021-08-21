@@ -1,7 +1,6 @@
- (function($) {
+(function($) {
 $(document).ready( function() {
     var $window = $(window);
-
     var site_init = function() {
         $('.toggle-menu').on( 'click', function(e) {
             e.preventDefault();
