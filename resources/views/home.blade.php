@@ -18,8 +18,9 @@
                 </div>
             </div>
         </div>
-        <div class="content-why-chooose container-home">
-            <div class="h-100">
+        <div class="content-why-chooose container-home mt-0">
+            <div class="h-100 p-5" style=" 
+    background-color: var(--gray-light-df); border-radius: 0px 50px;">
                 <div class="row justify-content-center h-100">
                     <div class="col xl-5 col-lg-5 col-md-3 col-sm-9">
                         <h2>¿POR QUÉ ELEGIRNOS A <span>NOSOTROS</span>?</h2>

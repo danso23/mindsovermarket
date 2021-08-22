@@ -41,14 +41,13 @@
         <div class="content-ebooks">
         <div class="container content-f1">
                 <div class="row mrl-q">
-                <div class="container h-100">
+                <div class="container h-100" > 
                     <div class="h-100 align-items-center d-lg-inline-flex col-12">
                             <div class="col-12 col-sm-6 text-left ">
                                 <h1 style="color: #70b62c; font-weight: bold;">¡CONOCE LOS </h1><h1 style="color: #48448f !important; font-weight: bold;">E-BOOKS</h1><h1 style="color: #70b62c; font-weight: bold;"> DE TRADING!</h1>
                                 <p class="lead">Conoce el material extra que tenemos para ti...</p>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center">
-                            <a href="pagina2.html"><img src="{{ asset('public/img/Libros/DF-book.jpg') }}"  class="img-curses"></a>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
                                 <img src="{{ asset('public/img/Libros/DF-book002.jpg') }}" class="img-curses">
