@@ -48,7 +48,7 @@
                                 <p class="lead">Conoce el material extra que tenemos para ti...</p>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center">
-                                <img src="{{ asset('public/img/Libros/DF-book.jpg') }}" class="img-curses">
+                            <a href="pagina2.html"><img src="{{ asset('public/img/Libros/DF-book.jpg') }}"  class="img-curses"></a>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
                                 <img src="{{ asset('public/img/Libros/DF-book002.jpg') }}" class="img-curses">

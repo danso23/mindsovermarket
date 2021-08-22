@@ -62,10 +62,10 @@
                                 <p class="lead">Conoce el material extra que tenemos para ti...</p>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center">
-                                <img src="{{ asset('public/img/Libros/DF-book.jpg') }}" class="img-curses">
+                                <a href="{{ asset('public/doc_1.pdf') }}" download="Manual de Trading Avanzado"><img src="{{ asset('public/img/Libros/DF-book.jpg') }}" class="img-curses"></a>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
-                                <img src="{{ asset('public/img/Libros/DF-book002.jpg') }}" class="img-curses">
+                                <a href="{{ asset('public/doc_2.pdf') }}" download="Curso Intensivo Trading"><img src="{{ asset('public/img/Libros/DF-book002.jpg') }}" class="img-curses"></a>
                             </div>
                             <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
                                 <img src="{{ asset('public/img/Libros/DF-book003.jpg') }}" class="img-curses">
