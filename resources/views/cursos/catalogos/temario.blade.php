@@ -81,11 +81,11 @@
 						</div>
 						<div class="form-group">
 							<label>Descripción</label>
-							<input type="text" name="descripcion" id="descripcion" class="form-control" required>
+							<textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
 						</div>
 						<div class="form-group">
 							<label>Video</label>
-							<textarea type="text" name="url_video" id="url_video" class="form-control" required></textarea>
+							<input type="text" name="url_video" id="url_video" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Módulo</label>

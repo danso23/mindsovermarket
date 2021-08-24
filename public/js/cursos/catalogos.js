@@ -47,6 +47,8 @@ function dataTemario() {
                         "<th>Fecha creación</th>"+
                         "<th>Acciones</th>"+
 						"<th>ID</th>"+
+						"<th>Mod</th>"+
+						"<th>Cur</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
@@ -67,6 +69,8 @@ function dataTemario() {
 						"<a href='#deleteTemarioModal' class='delete' id='btn_delete_"+el.id_temario+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_temario+"</td>"+
+					"<td>"+el.id_modulo+"</td>"+
+					"<td>"+el.id_curso+"</td>"+
 				"</tr>";
 			});
 			element+="</tbody>";
@@ -107,12 +111,17 @@ function crearDataTable(table){
                 // },
                 // "targets": 0
         	},
-        	{"visible": false,  "targets": [ 6 ] }
+        	{"visible": false,  "targets": [ 6,7,8 ] }
         ]
 	});
 }
 
 function editaTemario(position){
+	let form = $("#formEditarTemario");
 	var datos = objDataTbl.row( position ).data();
-	console.log(datos)
+	document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
+	document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
+	document.querySelector('#'+form[0].id +' #url_video').value=datos[3];
+	document.querySelector('#'+form[0].id +' #modulo').value=datos[7];
+	document.querySelector('#'+form[0].id +' #curso').value=datos[8];
 }
