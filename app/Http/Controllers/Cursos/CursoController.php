@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\CursoMaterial As Material;
+use App\Models\CursoModulo As Modulo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Response;
@@ -106,6 +107,9 @@ class CursoController extends Controller
     }
 
     public function mostrarCatalogos(Request $request){
-        return view('cursos.catalogos.temario');
+        $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
+        $modulos = Modulo::where('activo', '1')->selectRaw('id_modulo, nombre')->get();
+        $datos = array("cursos" => $cursos, "modulos" => $modulos);
+        return view('cursos.catalogos.temario')->with('datos', $datos);
     }
 }

@@ -98,26 +98,6 @@ a.icon-shopping a img, .menu-right a img{
   padding-bottom: 10px;
 }
 
-.modal{
-  background-color: #ffffff94!important;
-}
-
-.modal-content .input-group .input-group-prepend span.icon-search{
-  background-color: #010101!important;
-  border: 0!important;
-}
-
-.modal-content .input-group .input-group-prepend span.icon-search i{
-  color: #f0f0f0;
-}
-
-.modal-content .input-group input.form-search{
-  background-color: #010101!important;
-  border: 0!important;
-  border: 0!important;
-  color: #f0f0f0!important;
-}
-
 .form-control:focus {
   /* border-color: #010101!important; */
   box-shadow: none;
