@@ -14,7 +14,7 @@
                 <a href="{{ url('categorias/curso/2') }}">CRYPTOS</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
-                <a href="{{ url('categorias/curso/3') }}">LIVES</a>
+                <a href="{{ url('cursos/lives') }}">LIVES</a>
             </div>
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-sm-center">
                 <a href="{{ url('categorias/curso/4') }}">TIENDA</a>
