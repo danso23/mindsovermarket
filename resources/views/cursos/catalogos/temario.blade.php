@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('css')
+	<meta name="_token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
@@ -35,7 +36,7 @@
 						<h4 class="modal-title">Agregar Temario</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body">
 						<div class="form-group">
 							<label>Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -70,11 +71,12 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form id="formEditarTemario">
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Temario</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body">
+						<input type="hidden" name="hddIdTemario" id="hddIdTemario">			
 						<div class="form-group">
 							<label>Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -107,8 +109,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
+						<input type="button" class="btn btn-default" id="btnCancelarTemario" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-info" id="btnGuardarTemario" value="Save">
 					</div>
 				</form>
 			</div>

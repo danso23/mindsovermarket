@@ -95,4 +95,5 @@ Route::group(['prefix' => 'Perfil'], function() {
 
 Route::group(['prefix' => 'Admin'], function() {
     Route::get('/mostrarTemarios', 'Admin\TemarioController@mostraTemarios')->name('admin.mostrarTemarios');
+    Route::get('/editarTemario/{id}', 'Admin\TemarioController@editarTemario')->name('admin.editarTemario');
 });

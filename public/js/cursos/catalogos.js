@@ -24,6 +24,10 @@ $(document).ready(function(){
 		}
 	});
 	dataTemario();
+	$("#btnGuardarTemario").click(function(e) {
+		e.preventDefault();
+		guardarTemario();
+	});
 });
 
 function dataTemario() {
@@ -115,13 +119,25 @@ function crearDataTable(table){
         ]
 	});
 }
-
-function editaTemario(position){
-	let form = $("#formEditarTemario");
+var form = $("#formEditarTemario");
+function editaTemario(position){	
 	var datos = objDataTbl.row( position ).data();
 	document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
 	document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
 	document.querySelector('#'+form[0].id +' #url_video').value=datos[3];
+	document.querySelector('#'+form[0].id+' #hddIdTemario').value=datos[6];
 	document.querySelector('#'+form[0].id +' #modulo').value=datos[7];
 	document.querySelector('#'+form[0].id +' #curso').value=datos[8];
+}
+
+function guardarTemario(){
+	dataform = $('#'+form[0].id).serialize();
+	$.ajax({
+		type: "GET",
+    	dataType: "json",
+    	url: url_global+"/Admin/editarTemario/"+document.getElementById("hddIdTemario").value+"?"+dataform,
+		success: function(data){
+			alert(data.message);
+		}
+	});
 }
