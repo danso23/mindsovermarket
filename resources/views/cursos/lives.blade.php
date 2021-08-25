@@ -21,20 +21,21 @@
             </div>
         </div>
     </div>
-    <div class="content-banner">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-6 text-left">
-                    <h1>APRENDE DE NASDAQ Y DOW JONES</h1>
-                    <p class="lead">Impartido por: Isaac Peña</p>
-                </div>
-            </div>}
-        </div>
-    </div>
         <div class="row">
             <div class="container mt-4" id="divCurso">
                 <div class="row justify-content-md-start justify-content-center">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/4WHmvhQL6AU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container mt-4">
+                <div class="row justify-content-md-start justify-content-center">
+                        <label for="fechaInicial" class="col-md-4 col-form-label text-md-right title-small label-form">Filtro de fechas</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control custom-input" placeholder="Fecha inicial" name="fechaInicial" id="fechaInicial">
+                                <input type="text" class="form-control custom-input" placeholder="Fecha final" name="fechaFinal" id="fechaFinal">
+                            </div>
                 </div>
             </div>
         </div>
@@ -44,16 +45,13 @@
                 <div class="container h-100" > 
                     <div class="h-100 align-items-center d-lg-inline-flex col-12">
                             <div class="col-12 col-sm-6 text-left ">
-                                <h1 style="color: #70b62c; font-weight: bold;">¡CONOCE LOS </h1><h1 style="color: #48448f !important; font-weight: bold;">E-BOOKS</h1><h1 style="color: #70b62c; font-weight: bold;"> DE TRADING!</h1>
-                                <p class="lead">Conoce el material ex..</p>
+                                <h1 style="color: #48448f !important; font-weight: bold;">Próximos cursos</h1>
                             </div>
-                            <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center">
-                            </div>
-                            <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
-                                <img src="{{ asset('public/img/Libros/DF-book002.jpg') }}" class="img-curses">
-                            </div>
-                            <div class="d-lg-inline col-sm-12 col-md-2 col-12 text-lg-left text-center ">
-                                <img src="{{ asset('public/img/Libros/DF-book003.jpg') }}" class="img-curses">
+                            <div class="card" style="width: 18rem;">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
