@@ -78,6 +78,9 @@ Route::group(['prefix' => 'cursos'], function() {
 
     /***CATALÓGOS***/
     Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos')->middleware('auth');
+
+    /** LIVES **/
+    Route::get('/lives', 'Cursos\CursoController@obtenerLives')->name('cursos.lives')->middleware('auth');
 });
 
 
