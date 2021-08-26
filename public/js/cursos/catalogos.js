@@ -69,7 +69,7 @@ function dataTemario() {
 					"<td>"+el.url_video+"</td>"+
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
-						"<a href='#editTemarioModal' class='edit' id='btn_edit_"+el.id_temario+"' data-toggle='modal' onclick='editaTemario("+i+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#editTemarioModal' class='edit' id='btn_edit_"+el.id_temario+"' data-toggle='modal' onclick='editaTemario("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
 						"<a href='#deleteTemarioModal' class='delete' id='btn_delete_"+el.id_temario+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_temario+"</td>"+
@@ -120,24 +120,54 @@ function crearDataTable(table){
 	});
 }
 var form = $("#formEditarTemario");
-function editaTemario(position){	
-	var datos = objDataTbl.row( position ).data();
-	document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
-	document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
-	document.querySelector('#'+form[0].id +' #url_video').value=datos[3];
-	document.querySelector('#'+form[0].id+' #hddIdTemario').value=datos[6];
-	document.querySelector('#'+form[0].id +' #modulo').value=datos[7];
-	document.querySelector('#'+form[0].id +' #curso').value=datos[8];
+function editaTemario(position, tipoAccion){	
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
+		document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
+		document.querySelector('#'+form[0].id +' #url_video').value=datos[3];
+		document.querySelector('#'+form[0].id+' #hddIdTemario').value=datos[6];
+		document.querySelector('#'+form[0].id +' #modulo').value=datos[7];
+		document.querySelector('#'+form[0].id +' #curso').value=datos[8];
+		document.getElementById("modal-title-temario").innerHTML = 'Editar temario N° '+datos[6];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-temario").innerHTML = 'Agregar temario';
+		document.querySelector('#'+form[0].id+' #hddIdTemario').value=0;
+		document.getElementById("formEditarTemario").reset();
+	}
 }
 
 function guardarTemario(){
 	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
 	$.ajax({
-		type: "GET",
+		type: "POST",
     	dataType: "json",
-    	url: url_global+"/Admin/editarTemario/"+document.getElementById("hddIdTemario").value+"?"+dataform,
+    	url: url_global+"/Admin/storeTemario/"+document.getElementById("hddIdTemario").value,
+		data: dataform,
 		success: function(data){
 			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
 		}
 	});
 }

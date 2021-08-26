@@ -17,7 +17,7 @@
 						<h2>Administrador de <b>Temarios</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<a href="#addTemarioModal" class="btn btn-success mb-2" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Temario</span></a>
+						<a href="#editTemarioModal" class="btn btn-success mb-2" data-toggle="modal" onclick="editaTemario('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Temario</span></a>
                         <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
 					</div>
                 </div>
@@ -28,51 +28,13 @@
         </div>
     </div>
 	<!-- Edit Modal HTML -->
-	<div id="addTemarioModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form id="formAgregarTemario">
-					<div class="modal-header">						
-						<h4 class="modal-title">Agregar Temario</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label>Nombre</label>
-							<input type="text" name="nombre" id="nombre" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Descripción</label>
-							<input type="text" name="descripcion" id="descripcion" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Video</label>
-							<textarea type="text" name="url_video" id="url_video" class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Módulo</label>
-							<select name="modulo" id="modulo"></select>
-						</div>
-						<div class="form-group">
-							<label>Curso</label>
-							<select name="curso" id="curso"></select>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-						<input type="submit" class="btn btn-success" value="Agregar">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Edit Modal HTML -->
 	<div id="editTemarioModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form id="formEditarTemario">
+					@csrf
 					<div class="modal-header">
-						<h4 class="modal-title">Edit Temario</h4>
+						<h4 class="modal-title" id="modal-title-temario">Edit Temario</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
