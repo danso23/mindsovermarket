@@ -23,25 +23,40 @@ class TemarioController extends Controller {
         return Response::json($temarios);
     }
 
-    public function editarTemario(Request $request, $id){
+    public function storeTemario(Request $request, $id){
         DB::beginTransaction();
         try {
-            $temario = Temario::where('id_temario', $id)
-            ->update([
-                'nombre' => $request->nombre,
-                'descripcion' => $request->descripcion,
-                'url_video' => $request->url_video,
-                'id_modulo' => $request->modulo,
-                'id_curso' => $request->curso
-            ]);
-            
-            DB::commit();
-            $result = array(
-                "Error" => false,
-                "message" => "Se ha editado con exito el temario con folio [$id]"
-            );
-            return Response::json($result);
-        } catch (\Exception $e) {
+            if($id != 0){
+                $temario = Temario::where('id_temario', $id)
+                ->update([
+                    'nombre' => $request->nombre,
+                    'descripcion' => $request->descripcion,
+                    'url_video' => $request->url_video,
+                    'id_modulo' => $request->modulo,
+                    'id_curso' => $request->curso
+                ]);
+                $result = array(
+                    "Error" => false,
+                    "message" => "Se ha editado con exito el temario con folio [$id]"
+                );
+            }
+            else{
+                $temario = new Temario();
+                $temario->nombre = $request->nombre;
+                $temario->descripcion = $request->descripcion;
+                $temario->url_video = $request->url_video;
+                $temario->id_modulo = $request->modulo;
+                $temario->id_curso = $request->curso;
+                $temario->bActivo = 1;
+                $temario->save();
+                $result = array(
+                    "Error" => false,
+                    "message" => "Se ha guardado con exito el temario ",
+                    "iId" => $temario->id
+                );
+            }
+        }
+        catch (\Exception $e) {
             DB::rollback();
             $result = array(
                 "Error" => true,
@@ -49,5 +64,7 @@ class TemarioController extends Controller {
             );
             return Response::json($result);
         }
+        DB::commit();
+        return Response::json($result);
     }
 }
