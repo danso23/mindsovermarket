@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-08-2021 a las 07:10:51
+-- Tiempo de generación: 25-08-2021 a las 02:18:06
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -261,25 +261,26 @@ CREATE TABLE `modulos` (
   `id_modulo` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `id_curso` int(11) NOT NULL
+  `id_curso` int(11) NOT NULL,
+  `activo` tinyint(4) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `modulos`
 --
 
-INSERT INTO `modulos` (`id_modulo`, `nombre`, `fecha_creacion`, `id_curso`) VALUES
-(2, 'Introducción al trading', '2021-07-12 18:53:46', 2),
-(3, 'Broker y plataforma', '2021-07-13 14:40:43', 3),
-(4, 'Análisis técnico básico', '2021-07-13 16:49:35', 4),
-(5, 'Teoría del mercado', '2021-07-13 16:49:51', 4),
-(6, 'Indicadores técnicos', '2021-07-13 16:50:15', 4),
-(7, 'Trading avanzado', '2021-07-13 16:50:15', 4),
-(8, 'Análisis técnico básico', '2021-07-13 16:50:37', 5),
-(9, 'Herramientas de trabajo', '2021-07-13 20:26:32', 6),
-(10, 'Nivel Básicos', '2021-07-13 20:26:45', 6),
-(11, 'Nivel Intermedio ', '2021-07-13 20:26:57', 6),
-(12, 'Nivel Avanzado', '2021-07-13 20:27:10', 6);
+INSERT INTO `modulos` (`id_modulo`, `nombre`, `fecha_creacion`, `id_curso`, `activo`) VALUES
+(2, 'Introducción al trading', '2021-07-12 18:53:46', 2, 1),
+(3, 'Broker y plataforma', '2021-07-13 14:40:43', 3, 1),
+(4, 'Análisis técnico básico', '2021-07-13 16:49:35', 4, 1),
+(5, 'Teoría del mercado', '2021-07-13 16:49:51', 4, 1),
+(6, 'Indicadores técnicos', '2021-07-13 16:50:15', 4, 1),
+(7, 'Trading avanzado', '2021-07-13 16:50:15', 4, 1),
+(8, 'Análisis técnico básico', '2021-07-13 16:50:37', 5, 1),
+(9, 'Herramientas de trabajo', '2021-07-13 20:26:32', 6, 1),
+(10, 'Nivel Básicos', '2021-07-13 20:26:45', 6, 1),
+(11, 'Nivel Intermedio ', '2021-07-13 20:26:57', 6, 1),
+(12, 'Nivel Avanzado', '2021-07-13 20:27:10', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -318,17 +319,18 @@ CREATE TABLE `productos` (
   `cantidad` int(11) DEFAULT NULL,
   `id_marca` int(11) DEFAULT NULL,
   `activo` tinyint(4) DEFAULT NULL,
-  `fecha_creacion` timestamp NULL DEFAULT current_timestamp()
+  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
+  `listado_puntos` text COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `id_categoria`, `nombre_producto`, `desc_producto`, `url_imagen`, `precio`, `cantidad`, `id_marca`, `activo`, `fecha_creacion`) VALUES
-(1, 1, 'MENSUALIDAD', 'MES', '01.jpg', 50, 5, NULL, 1, '2021-03-02 16:43:03'),
-(2, 1, 'SEMESTRAL', '6 MESES', '02.jpg', 250, 4, NULL, 1, '2021-03-07 06:25:10'),
-(3, 2, 'ANUALIDAD', '(TE AHORRAS 2 MEMBRESÍAS)', '03.jpg', 500, 8, NULL, 1, '2021-03-02 16:47:15');
+INSERT INTO `productos` (`id_producto`, `id_categoria`, `nombre_producto`, `desc_producto`, `url_imagen`, `precio`, `cantidad`, `id_marca`, `activo`, `fecha_creacion`, `listado_puntos`) VALUES
+(1, 1, 'MENSUALIDAD', 'MES', '01.jpg', 60, 5, NULL, 1, '2021-03-02 16:43:03', '<ul class=\"list-inline\"><li>Trading en Vivo</li><li>Trading Academy</li><li>Mindset</li><li>Comunicad</li></ul>'),
+(2, 1, 'SEMESTRAL', '6 MESES', '02.jpg', 250, 4, NULL, 1, '2021-03-07 06:25:10', '<ul class=\"list-inline\"><li>Trading en Vivo</li><li>Trading Academy</li><li>Crypto Academy</li><li>Mindset</li><li>Comunicad</li><li>Señales</li></ul>'),
+(3, 2, 'ANUALIDAD', '(TE AHORRAS 2 MEMBRESÍAS)', '03.jpg', 500, 8, NULL, 1, '2021-03-02 16:47:15', '<ul class=\"list-inline\"><li>Trading en Vivo</li><li>Trading Academy</li><li>Crypto Academy</li><li>Mindset</li><li>Comunicad</li><li>Señales</li><li>Capacitacion 1 a 1</li><li>Programación Blockchain</li></ul>');
 
 -- --------------------------------------------------------
 
@@ -438,9 +440,9 @@ CREATE TABLE `temario` (
 --
 
 INSERT INTO `temario` (`id_temario`, `nombre`, `descripcion`, `url_video`, `bActivo`, `fecha_creacion`, `id_modulo`, `id_curso`) VALUES
-(6, 'Clase 1: ¿Qué es la bolsa de valores?', '(acciones, divisas, índices, futuros, cfd’s) ', 'video_example_.mp4', 1, '0000-00-00 00:00:00', 2, 2),
-(7, 'Clase 2: Participantes del mercado.', '(trader profesional, trader minorista y broker, inversionista y trader)', 'video_example_.mp4', 1, '0000-00-00 00:00:00', 2, 2),
-(9, 'Clase 3: ¿Cómo elegir un broker?', '(caracteristicas)', 'video_example_.mp4', 1, '0000-00-00 00:00:00', 2, 2),
+(6, 'Clase 1: ¿Qué es la bolsa de valores?', '(acciones, divisas, índices, futuros, cfd’s) ', 'video_example_.mp4', 1, '2021-07-13 14:39:28', 2, 2),
+(7, 'Clase 2: Participantes del mercado.', '(trader profesional, trader minorista y broker, inversionista y trader)', 'video_example_.mp4', 1, '2021-07-13 14:39:28', 2, 2),
+(9, 'Clase 3: ¿Cómo elegir un broker?', '(caracteristicas)', 'video_example_.mp4', 1, '2021-07-13 14:39:28', 2, 2),
 (10, 'Clase 4: tipos de análisis: fundamental y técnico.', '', 'video_example_.mp4', 1, '2021-07-13 14:39:28', 2, 2),
 (11, 'Clase 5: broker ', '(registro, como fondear, como retirar, contactar a soporte, descargar plataforma de operaciones)', 'video_example_.mp4', 1, '2021-07-13 14:42:06', 3, 3),
 (12, 'Clase 6: Ninja trader ', '(instalación, como abrir un gráfico, seleccionar instrumento, como instalar indicadores, como hacer ', 'video_example_.mp4', 1, '2021-07-13 16:52:51', 3, 3),
@@ -520,7 +522,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `name`, `email`, `membresia`, `token`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`, `created_at`, `updated_at`, `last_name`, `last_name2`, `date_of_birth`, `phone`, `country`, `state`, `zip_code`, `ine`, `proof_of_address`, `rfc`, `remember_token`, `tipo_user`) VALUES
-(1, '$2y$10$CZTdQaYJvnbGaYWkW4wzqOLyFaALxQGgx9Mn9wnx4.qbbu3Zihy42', 'Mariné', 'iruhary@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-13 03:50:34', '2021-07-13 03:50:34', 'Moreno', 'Burgos', '1996-10-10', '9992660071', 'México', 'Yucatán', '97470', NULL, NULL, NULL, 'dkHKgoETdq8vPJUL6bXvHrWSnk77bnvpc0AKuCI236yeQP7HGx1CVXzhd5Xs', 3),
+(1, '$2y$10$CZTdQaYJvnbGaYWkW4wzqOLyFaALxQGgx9Mn9wnx4.qbbu3Zihy42', 'Mariné', 'iruhary@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-13 03:50:34', '2021-07-13 03:50:34', 'Moreno', 'Burgos', '1996-10-10', '9992660071', 'México', 'Yucatán', '97470', NULL, NULL, NULL, 'e32w0oCL46LcxmFusHMuGGWrz4Qr7xVSkhHbysD6dkwKLjPkIXUdKLg16oto', 3),
 (2, '$2y$10$Dk/PEIjf/MbcICWh024GQ.g48iZK5GPK8sjpJq6AaR6056WILMO4q', 'Felix', 'felix.rasgado@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:14:18', '2021-07-28 03:14:18', 'Rasgado', 'Rasgado', '1999-09-19', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
 (3, '$2y$10$WXcQmE/lCjROGRYEjXCwvODxdBrUdyJ6r0ebhKr89RbZ7B0xexBXW', 'Gerardo', 'gerardo.bellavista@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:15:15', '2021-07-28 03:15:15', 'Bellavista', 'Bellavista', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
 (4, '$2y$10$8bfx.uCsNvBddgyjdfKhweo2ejERJtwZVIvCr7cYq.9qVgUMd.A5y', 'Erwin', 'erwin.park@mindsovermarket.com', 1, NULL, NULL, NULL, NULL, NULL, '2021-07-28 03:16:17', '2021-07-28 03:16:17', 'Park', 'Park', '1999-01-01', '9999999999', 'MX', 'Yuc', '97000', NULL, NULL, NULL, NULL, 3),
@@ -743,7 +745,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `password_resets`

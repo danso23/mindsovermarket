@@ -80,15 +80,6 @@
                                         <div class="row">
                                             <div class="col-12 d-flex justify-content-center list-contain">
                                                 {!! $producto->listado_puntos !!}
-                                                <!-- <ul class="list-inline">
-                                                    <li>Trading en Vivo</li>
-                                                    <li>Trading Academy</li>
-                                                    <li>WeProfit</li>
-                                                    <li>Criptoanálisis</li>
-                                                    <li>Podcast (Markets)</li>
-                                                    <li>Mindset</li>
-                                                    <li>Grupos de Telegram</li>
-                                                </ul> -->
                                             </div>
                                             <div class="col-12 text-center">
                                                 <p class="fuente">Inscripción 10 usd pago único</p>
