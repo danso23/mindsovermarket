@@ -6,7 +6,6 @@ $(document).ready(function(){
 	// Select/Deselect checkboxes
 	var checkbox = $('table tbody input[type="checkbox"]');
 	$("#selectAll").click(function(){
-		debugger
 		if(this.checked){
 			checkbox.each(function(){
 				this.checked = true;                        
@@ -18,12 +17,10 @@ $(document).ready(function(){
 		} 
 	});
 	checkbox.click(function(){
-		debugger
 		if(!this.checked){
 			$("#selectAll").prop("checked", false);
 		}
 	});
-	dataTemario();
 	$("#btnGuardarTemario").click(function(e) {
 		e.preventDefault();
 		guardarTemario();
@@ -69,7 +66,7 @@ function dataTemario() {
 					"<td>"+el.url_video+"</td>"+
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
-						"<a href='#editTemarioModal' class='edit' id='btn_edit_"+el.id_temario+"' data-toggle='modal' onclick='editaTemario("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#editTemarioModal' class='edit' id='btn_edit_"+el.id_temario+"' data-toggle='modal' onclick='storeTemario("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
 						"<a href='#deleteTemarioModal' class='delete' id='btn_delete_"+el.id_temario+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_temario+"</td>"+
@@ -119,8 +116,7 @@ function crearDataTable(table){
         ]
 	});
 }
-var form = $("#formEditarTemario");
-function editaTemario(position, tipoAccion){	
+function storeTemario(position, tipoAccion){	
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
@@ -136,6 +132,10 @@ function editaTemario(position, tipoAccion){
 		document.querySelector('#'+form[0].id+' #hddIdTemario').value=0;
 		document.getElementById("formEditarTemario").reset();
 	}
+}
+
+function storeMaterial(){
+
 }
 
 function guardarTemario(){

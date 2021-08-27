@@ -15,7 +15,14 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 
 class TemarioController extends Controller {
-    public function mostraTemarios(){
+    public function mostrarTemariosView(Request $request){
+        $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
+        $modulos = Modulo::where('activo', '1')->selectRaw('id_modulo, nombre')->get();
+        $datos = array("cursos" => $cursos, "modulos" => $modulos);
+        return view('cursos.catalogos.temario')->with('datos', $datos);
+    }
+
+    public function mostrarTemarios(){
         $temarios = Temario::join('modulos', 'temario.id_temario', 'modulos.id_modulo')
         ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
         ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')

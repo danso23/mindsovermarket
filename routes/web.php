@@ -61,10 +61,11 @@ Route::get('sendMail','UtilsController@EnvioCorreo');
 /****CURSOS****/
 Route::get('productos', 'ProductoController@index')->name('productos');
 Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
+
 Route::group(['prefix' => 'cursos'], function() {
     Route::get('/view', 'Cursos\CursoController@index')->name('cursos.view');
     Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
-
+    /**Formularios */
     Route::get('/form/createmateriales', 'Cursos\CursoController@create')->name('cursos.form.materialescreate');
     Route::get('/form/createcurso', 'Cursos\CursoController@createcurso')->name('cursos.form.cursoscreate');
     Route::get('/form/createtemario', 'Cursos\CursoController@createtemario')->name('cursos.form.temariocreate');
@@ -76,8 +77,10 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
     
 
-    /***CATALÓGOS***/
-    Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos')->middleware('auth');
+    /***CATALÓGOS VISTA***/
+    Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
+    // Route::get('/catalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('cursos.catalogoCurso')->middleware('auth');
+    Route::get('/catalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
 
     /** LIVES **/
     Route::get('/lives', 'Cursos\CursoController@obtenerLives')->name('cursos.lives')->middleware('auth');
@@ -94,6 +97,8 @@ Route::group(['prefix' => 'Perfil'], function() {
 });
 
 Route::group(['prefix' => 'Admin'], function() {
-    Route::get('/mostrarTemarios', 'Admin\TemarioController@mostraTemarios')->name('admin.mostrarTemarios');
+    Route::get('/mostrarTemarios', 'Admin\TemarioController@mostrarTemarios')->name('admin.mostrarTemarios');
     Route::post('/storeTemario/{id}', 'Admin\TemarioController@storeTemario')->name('admin.storeTemario');
+    Route::get('/mostrarMateriales', 'Admin\TemarioController@mostrarMateriales')->name('admin.mostrarMateriales');
+    Route::post('/storeMaterial/{id}', 'Admin\TemarioController@storeMaterial')->name('admin.storeMaterial');
 });

@@ -185,3 +185,7 @@ table.table .avatar {
     box-shadow: none;
     background: #ddd;
 }
+
+.modal-open .modal{
+    overflow-y: scroll !important;
+}

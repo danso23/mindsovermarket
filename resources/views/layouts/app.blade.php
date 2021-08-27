@@ -73,7 +73,7 @@
                                     <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
                                     <br>
                                     @if (auth()->user()->tipo_user == 3)
-                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                        <a href='{{ route('Catalogo.Temario') }}' class='btn'>Administrador</a>
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
@@ -138,7 +138,7 @@
                                     <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
                                     <br>
                                     @if (auth()->user()->tipo_user == 3)
-                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                        <a href='{{ route('Catalogo.Temario') }}' class='btn'>Administrador</a>
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true"><span class="d-none d-sm-block d-md-inline">{{auth()->user()->name}}</span>
