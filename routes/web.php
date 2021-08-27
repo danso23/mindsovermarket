@@ -96,4 +96,6 @@ Route::group(['prefix' => 'Perfil'], function() {
 Route::group(['prefix' => 'Admin'], function() {
     Route::get('/mostrarTemarios', 'Admin\TemarioController@mostraTemarios')->name('admin.mostrarTemarios');
     Route::post('/storeTemario/{id}', 'Admin\TemarioController@storeTemario')->name('admin.storeTemario');
+    Route::get('/mostrarCurso', 'Admin\CursoController@mostraCurso')->name('admin.mostrarCurso');
+    Route::post('/storeCurso/{id}', 'Admin\CursoController@storeTemario')->name('admin.storeCurso);
 });

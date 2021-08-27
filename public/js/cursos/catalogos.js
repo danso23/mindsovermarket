@@ -85,6 +85,55 @@ function dataTemario() {
 	})
 }
 
+function dataCurso() {
+	$.ajax({
+    	type: "GET",
+    	dataType: "json",
+    	url: url_global+"/Admin/mostrarCursos",
+		success: function(data){
+			var element ="";
+			element +="<thead>"+
+                    "<tr>"+
+						"<th>"+
+							"<!-- <span class='custom-checkbox'>"+
+								"<input type='checkbox' id='selectAll'>"+
+								"<label for='selectAll'></label>"+
+							"</span>--> Folio"+
+						"</th>"+
+                        "<th>Curso</th>"+
+                        "<th>Descripción</th>"+
+						"<th>Portada</th>"+
+                        "<th>Fecha creación</th>"+
+                        "<th>Acciones</th>"+
+                    "</tr>"+
+                "</thead>"+
+				"<tbody>";
+			data.forEach((el, i) => {
+				element+="<tr>"+
+					"<td>"+
+						"<span class='custom-checkbox'>"+
+							"<input type='checkbox' id='checkbox"+el.id_curso+"' name='options[]' value='"+el.id_curso+"'>"+
+							"<label for='checkbox"+el.id_curso+"'>"+el.id_curso+"</label>"+
+						"</span>"+
+					"</td>"+
+					"<td>"+el.nombre+"</td>"+
+					"<td>"+el.desc_curso+"</td>"+
+					"<td>"+el.portada+"</td>"+
+					"<td>"+el.fecha_creacion+"</td>"+
+					"<td>"+
+						"<a href='#editCursoModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteCursoModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+					"</td>"+
+				"</tr>";
+			});
+			element+="</tbody>";
+			$("#catalogoCursos").empty();
+			$("#catalogoCursos").html(element);
+			crearDataTable("catalogoCursos");
+        }
+	})
+}
+
 function crearDataTable(table){
 	objDataTbl= $("#"+table).DataTable({
 		responsive: true,
@@ -119,8 +168,25 @@ function crearDataTable(table){
         ]
 	});
 }
-var form = $("#formEditarTemario");
-function editaTemario(position, tipoAccion){	
+
+//Funcion editar curso
+function storeCurso(position, tipoAccion){	
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
+		document.querySelector('#'+form[0].id +' #desc_curso').value=datos[2];
+		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
+		document.querySelector('#'+form[0].id+' #hddIdCurso').value=datos[6];
+		document.getElementById("modal-title-curso").innerHTML = 'Editar curso N° '+datos[6];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-curso").innerHTML = 'Agregar curso';
+		document.querySelector('#'+form[0].id+' #hddIdCurso').value=0;
+		document.getElementById("formEditarCurso").reset();
+	}
+}
+
+function storeTemario(position, tipoAccion){	
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
@@ -129,12 +195,12 @@ function editaTemario(position, tipoAccion){
 		document.querySelector('#'+form[0].id+' #hddIdTemario').value=datos[6];
 		document.querySelector('#'+form[0].id +' #modulo').value=datos[7];
 		document.querySelector('#'+form[0].id +' #curso').value=datos[8];
-		document.getElementById("modal-title-temario").innerHTML = 'Editar temario N° '+datos[6];
+		document.getElementById("modal-title-curso").innerHTML = 'Editar curso N° '+datos[6];
 	}
 	if(tipoAccion == "Nuevo"){
-		document.getElementById("modal-title-temario").innerHTML = 'Agregar temario';
-		document.querySelector('#'+form[0].id+' #hddIdTemario').value=0;
-		document.getElementById("formEditarTemario").reset();
+		document.getElementById("modal-title-curso").innerHTML = 'Agregar curso';
+		document.querySelector('#'+form[0].id+' #hddIdCurso').value=0;
+		document.getElementById("formEditarCurso").reset();
 	}
 }
 
@@ -146,6 +212,40 @@ function guardarTemario(){
 		type: "POST",
     	dataType: "json",
     	url: url_global+"/Admin/storeTemario/"+document.getElementById("hddIdTemario").value,
+		data: dataform,
+		success: function(data){
+			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
+
+function guardarCurso(){
+	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeCurso/"+document.getElementById("hddIdCurso").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);

@@ -14,31 +14,31 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-6">
-						<h2>Administrador de <b>Temarios</b></h2>
+						<h2>Administrador de <b>Cursos</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<a href="#editTemarioModal" class="btn btn-success mb-2" data-toggle="modal" onclick="editaTemario('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Temario</span></a>
+						<a href="#editCursosModal" class="btn btn-success mb-2" data-toggle="modal" onclick="editaCursos('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Cursos</span></a>
                         <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
 					</div>
                 </div>
             </div>
-            <table id="catalogoTemario" class="table table-striped table-hover">
+            <table id="catalogoCursos" class="table table-striped table-hover">
 			
             </table>
         </div>
     </div>
 	<!-- Edit Modal HTML -->
-	<div id="editTemarioModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
+	<div id="editCursosModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="formEditarTemario">
+				<form id="formEditarCursos">
 					@csrf
 					<div class="modal-header">
-						<h4 class="modal-title" id="modal-title-temario">Edit Temario</h4>
+						<h4 class="modal-title" id="modal-title-Cursos">Edit Cursos</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" name="hddIdTemario" id="hddIdTemario">			
+						<input type="hidden" name="hddIdCursos" id="hddIdCursos">			
 						<div class="form-group">
 							<label>Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -71,15 +71,15 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" id="btnCancelarTemario" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" id="btnGuardarTemario" value="Save">
+						<input type="button" class="btn btn-default" id="btnCancelarCursos" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-info" id="btnGuardarCursos" value="Save">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<!-- Delete Modal HTML -->
-	<div id="deleteTemarioModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
+	<div id="deleteCursosModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
@@ -107,7 +107,5 @@
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";
-		var form = $("#formEditarCursos");
-		dataCurso();
 	</script>
 @endsection
