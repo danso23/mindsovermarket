@@ -1,4 +1,5 @@
 var objDataTbl;
+var objTarget;
 $(document).ready(function(){
 	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
@@ -25,6 +26,11 @@ $(document).ready(function(){
 		e.preventDefault();
 		guardarTemario();
 	});
+
+	$("#btnGuardarCurso").click(function(e) {
+		e.preventDefault();
+		guardarCurso();
+	})
 });
 
 function dataTemario() {
@@ -75,9 +81,10 @@ function dataTemario() {
 				"</tr>";
 			});
 			element+="</tbody>";
+			objTarget = {"visible": false,  "targets": [ 6,7,8 ] };
 			$("#catalogoTemario").empty();
 			$("#catalogoTemario").html(element);
-			crearDataTable("catalogoTemario");
+			crearDataTable("catalogoTemario", objTarget);
         }
 	})
 }
@@ -86,7 +93,7 @@ function dataCurso() {
 	$.ajax({
     	type: "GET",
     	dataType: "json",
-    	url: url_global+"/Admin/mostrarCursos",
+    	url: url_global+"/Admin/mostrarCurso",
 		success: function(data){
 			var element ="";
 			element +="<thead>"+
@@ -102,6 +109,8 @@ function dataCurso() {
 						"<th>Portada</th>"+
                         "<th>Fecha creación</th>"+
                         "<th>Acciones</th>"+
+						"<th>Id</th>"+
+						"<th>IdCategoria</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
@@ -121,17 +130,20 @@ function dataCurso() {
 						"<a href='#editCursoModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
 						"<a href='#deleteCursoModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
+					"<td>"+el.id_curso+"</td>"+
+					"<td>"+el.id_categoria+"</td>"+
 				"</tr>";
 			});
 			element+="</tbody>";
+			objTarget = {"visible": false,  "targets": [ 6,7 ] };
 			$("#catalogoCursos").empty();
 			$("#catalogoCursos").html(element);
-			crearDataTable("catalogoCursos");
+			crearDataTable("catalogoCursos", objTarget);
         }
 	})
 }
 
-function crearDataTable(table){
+function crearDataTable(table, target){
 	objDataTbl= $("#"+table).DataTable({
 		responsive: true,
 		autoWidth: false,
@@ -161,7 +173,8 @@ function crearDataTable(table){
                 // },
                 // "targets": 0
         	},
-        	{"visible": false,  "targets": [ 6,7,8 ] }
+			target
+        	// {"visible": false,  "targets": [ 6,7,8 ] }
         ]
 	});
 }
@@ -173,13 +186,15 @@ function storeCurso(position, tipoAccion){
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
 		document.querySelector('#'+form[0].id +' #desc_curso').value=datos[2];
 		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
+		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
 		document.querySelector('#'+form[0].id+' #hddIdCurso').value=datos[6];
+		document.querySelector('#'+form[0].id +' #categoria').value=datos[7];
 		document.getElementById("modal-title-curso").innerHTML = 'Editar curso N° '+datos[6];
 	}
 	if(tipoAccion == "Nuevo"){
 		document.getElementById("modal-title-curso").innerHTML = 'Agregar curso';
 		document.querySelector('#'+form[0].id+' #hddIdCurso').value=0;
-		document.getElementById("formEditarCurso").reset();
+		document.getElementById(form[0].id).reset();
 	}
 }
 
@@ -192,12 +207,12 @@ function storeTemario(position, tipoAccion){
 		document.querySelector('#'+form[0].id+' #hddIdTemario').value=datos[6];
 		document.querySelector('#'+form[0].id +' #modulo').value=datos[7];
 		document.querySelector('#'+form[0].id +' #curso').value=datos[8];
-		document.getElementById("modal-title-curso").innerHTML = 'Editar curso N° '+datos[6];
+		document.getElementById("modal-title-temario").innerHTML = 'Editar Temario N° '+datos[6];
 	}
 	if(tipoAccion == "Nuevo"){
-		document.getElementById("modal-title-curso").innerHTML = 'Agregar curso';
-		document.querySelector('#'+form[0].id+' #hddIdCurso').value=0;
-		document.getElementById("formEditarCurso").reset();
+		document.getElementById("modal-title-temario").innerHTML = 'Agregar temario';
+		document.querySelector('#'+form[0].id+' #hddIdTemario').value=0;
+		document.getElementById(form[0].id).reset();
 	}
 }
 

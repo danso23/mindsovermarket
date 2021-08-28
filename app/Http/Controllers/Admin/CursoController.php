@@ -8,6 +8,7 @@ use App\Models\Curso;
 use App\Models\CursoMaterial As Material;
 use App\Models\CursoTemario As Temario;
 use App\Models\CursoModulo As Modulo;
+use App\Models\CategoriaModel As Categoria;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Response;
@@ -17,18 +18,15 @@ use DB;
 class CursoController extends Controller
 {
     public function mostrarCursosView(Request $request){
-        $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
-        $modulos = Modulo::where('activo', '1')->selectRaw('id_modulo, nombre')->get();
-        $datos = array("cursos" => $cursos, "modulos" => $modulos);
+        $categorias = Categoria::where('activo', '1')->selectRaw('id_categoria, nombre_categoria AS nombre')->get();
+        $datos = array("categorias" => $categorias);
         return view('cursos.catalogos.cursos')->with('datos', $datos);
     }
 
-    public function mostraCursos(){
-        $cursos = Curso::join('modulos', 'temario.id_temario', 'modulos.id_modulo')
-        ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
-        ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')
+    public function mostrarCurso(){
+        $cursos = Curso::selectRaw('cursos.*')
         ->get();
-        return Response::json($temarios);
+        return Response::json($cursos);
     }
 
     public function storeCurso(Request $request, $id){
@@ -37,12 +35,11 @@ class CursoController extends Controller
             if($id != 0){
                 $curso = Curso::where('id_curso', $id)
                 ->update([
-                    'id_curso' => $request->id_curso,
                     'nombre' => $request->nombre,
                     'desc_curso' => $request->desc_curso,
                     'portada' => $request->portada,
-                    'activo' => $request->activo,
-                    'id_categoria' => $request->id_categoria
+                    'activo' => 1,
+                    'id_categoria' => $request->categoria
                 ]);
                 $result = array(
                     "Error" => false,
@@ -52,10 +49,9 @@ class CursoController extends Controller
             else{
                 $temario = new Curso();
                 $temario->nombre = $request->nombre;
-                $temario->descripcion = $request->descripcion;
-                $temario->url_video = $request->url_video;
-                $temario->id_modulo = $request->modulo;
-                $temario->id_curso = $request->curso;
+                $temario->desc_curso = $request->desc_curso;
+                $temario->portada = $request->portada;
+                $temario->id_categoria = $request->categoria;
                 $temario->bActivo = 1;
                 $temario->save();
                 $result = array(

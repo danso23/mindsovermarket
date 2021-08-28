@@ -79,8 +79,8 @@ Route::group(['prefix' => 'cursos'], function() {
 
     /***CATALÓGOS VISTA***/
     Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
-    // Route::get('/catalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('cursos.catalogoCurso')->middleware('auth');
-    Route::get('/catalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
+    Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('cursos.catalogoCurso')->middleware('auth');
+    Route::get('/CatalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
 
     /** LIVES **/
     Route::get('/lives', 'Cursos\CursoController@obtenerLives')->name('cursos.lives')->middleware('auth');
@@ -101,6 +101,6 @@ Route::group(['prefix' => 'Admin'], function() {
     Route::post('/storeTemario/{id}', 'Admin\TemarioController@storeTemario')->name('admin.storeTemario');
     Route::get('/mostrarMateriales', 'Admin\TemarioController@mostrarMateriales')->name('admin.mostrarMateriales');
     Route::post('/storeMaterial/{id}', 'Admin\TemarioController@storeMaterial')->name('admin.storeMaterial');
-    Route::get('/mostrarCurso', 'Admin\CursoController@mostraCurso')->name('admin.mostrarCurso');
-    Route::post('/storeCurso/{id}', 'Admin\CursoController@storeTemario')->name('admin.storeCurso');
+    Route::get('/mostrarCurso', 'Admin\CursoController@mostrarCurso')->name('admin.mostrarCurso');
+    Route::post('/storeCurso/{id}', 'Admin\CursoController@storeCurso')->name('admin.storeCurso');
 });

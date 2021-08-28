@@ -17,62 +17,53 @@
 						<h2>Administrador de <b>Cursos</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<a href="#editCursosModal" class="btn btn-success mb-2" data-toggle="modal" onclick="editaCursos('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Cursos</span></a>
+						<a href="#editCursoModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeCurso('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Cursos</span></a>
                         <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
 					</div>
                 </div>
             </div>
-            <table id="catalogoCursos" class="table table-striped table-hover">
+            <table id="catalogoCursos" class="table table-striped table-hover table-responsive">
 			
             </table>
         </div>
     </div>
 	<!-- Edit Modal HTML -->
-	<div id="editCursosModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
+	<div id="editCursoModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="formEditarCursos">
+				<form id="formCurso">
 					@csrf
 					<div class="modal-header">
-						<h4 class="modal-title" id="modal-title-Cursos">Edit Cursos</h4>
+						<h4 class="modal-title" id="modal-title-curso">Editar Cursos</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" name="hddIdCursos" id="hddIdCursos">			
+						<input type="hidden" name="hddIdCurso" id="hddIdCurso">			
 						<div class="form-group">
-							<label>Nombre</label>
+							<label for="nombre">Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Descripción</label>
-							<textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
+							<label for="desc_curso">Descripción</label>
+							<textarea name="desc_curso" id="desc_curso" class="form-control" required></textarea>
 						</div>
 						<div class="form-group">
-							<label>Video</label>
-							<input type="text" name="url_video" id="url_video" class="form-control" required>
+							<label for="portada">Video</label>
+							<input type="text" name="portada" id="portada" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Módulo</label>
-							<select class="form-control" name="modulo" id="modulo">
-								<option selected hidden value="default">Selecciona un módulo</option>
-								@foreach($datos['modulos'] as $mod)
-									<option value="{{$mod->id_modulo}}">{{$mod->nombre}}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="form-group">
-							<label>Curso</label>
-							<select class="form-control" name="curso" id="curso">
-								<option selected hidden value="default">Selecciona un curso</option>
-								@foreach($datos['cursos'] as $cur)
-									<option value="{{$cur->id_curso}}">{{$cur->nombre}}</option>
+							<label for="categoria">Categoría</label>
+							<select class="form-control" name="categoria" id="categoria">
+								<option selected hidden value="default">Selecciona una categoría</option>
+								@foreach($datos['categorias'] as $cat)
+									<option value="{{$cat->id_categoria}}">{{$cat->nombre}}</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" id="btnCancelarCursos" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" id="btnGuardarCursos" value="Save">
+						<input type="button" class="btn btn-default" id="btnCancelarCurso" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-info" id="btnGuardarCurso" value="Save">
 					</div>
 				</form>
 			</div>
@@ -102,10 +93,12 @@
 </body>
 @endsection
 @section('script')
-	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";
+		var form = $("#formCurso");
+		dataCurso();
 	</script>
 @endsection

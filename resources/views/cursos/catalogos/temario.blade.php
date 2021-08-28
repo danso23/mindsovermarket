@@ -22,7 +22,7 @@
 					</div>
                 </div>
             </div>
-            <table id="catalogoTemario" class="table table-striped table-hover">
+            <table id="catalogoTemario" class="table table-striped table-hover table-responsive">
 			
             </table>
         </div>
