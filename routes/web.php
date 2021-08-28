@@ -79,7 +79,7 @@ Route::group(['prefix' => 'cursos'], function() {
 
     /***CATALÓGOS VISTA***/
     Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
-    Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('cursos.catalogoCurso')->middleware('auth');
+    Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('Catalogo.Curso')->middleware('auth');
     Route::get('/CatalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
 
     /** LIVES **/
