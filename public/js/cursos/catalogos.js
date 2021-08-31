@@ -143,6 +143,56 @@ function dataCurso() {
 	})
 }
 
+function dataLives() {
+	$.ajax({
+    	type: "GET",
+    	dataType: "json",
+    	url: url_global+"/Admin/mostrarLives",
+		success: function(data){
+			var element ="";
+			element +="<thead>"+
+                    "<tr>"+
+						"<th>"+
+							"<!-- <span class='custom-checkbox'>"+
+								"<input type='checkbox' id='selectAll'>"+
+								"<label for='selectAll'></label>"+
+							"</span>--> Folio"+
+						"</th>"+
+                        "<th>Nombre</th>"+
+                        "<th>Descripción</th>"+
+						"<th>Portada</th>"+
+                        "<th>URL</th>"+
+                        "<th>Acciones</th>"
+                    "</tr>"+
+                "</thead>"+
+				"<tbody>";
+			data.forEach((el, i) => {
+				element+="<tr>"+
+					"<td>"+
+						"<span class='custom-checkbox'>"+
+							"<input type='checkbox' id='checkbox"+el.id_live+"' name='options[]' value='"+el.id_live+"'>"+
+							"<label for='checkbox"+el.id_live+"'>"+el.id_live+"</label>"+
+						"</span>"+
+					"</td>"+
+					"<td>"+el.nombre+"</td>"+
+					"<td>"+el.descripcion+"</td>"+
+					"<td>"+el.portada+"</td>"+
+					"<td>"+el.url+"</td>"+
+					"<td>"+
+						"<a href='#editCursoModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteCursoModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+					"</td>"+
+				"</tr>";
+			});
+			element+="</tbody>";
+			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			$("#catalogoLives").empty();
+			$("#catalogoLives").html(element);
+			crearDataTable("catalogoLives", objTarget);
+        }
+	})
+}
+
 function crearDataTable(table, target){
 	objDataTbl= $("#"+table).DataTable({
 		responsive: true,
@@ -194,6 +244,23 @@ function storeCurso(position, tipoAccion){
 	if(tipoAccion == "Nuevo"){
 		document.getElementById("modal-title-curso").innerHTML = 'Agregar curso';
 		document.querySelector('#'+form[0].id+' #hddIdCurso').value=0;
+		document.getElementById(form[0].id).reset();
+	}
+}
+
+function storeLives(position, tipoAccion){	
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
+		document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
+		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
+		document.querySelector('#'+form[0].id +' #url').value=datos[3];
+		document.querySelector('#'+form[0].id+' #hddIdLive').value=datos[6];
+		document.getElementById("modal-title-live").innerHTML = 'Editar live N° '+datos[6];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-live").innerHTML = 'Agregar live';
+		document.querySelector('#'+form[0].id+' #hddIdLive').value=0;
 		document.getElementById(form[0].id).reset();
 	}
 }
@@ -262,6 +329,40 @@ function guardarCurso(){
 		type: "POST",
     	dataType: "json",
     	url: url_global+"/Admin/storeCurso/"+document.getElementById("hddIdCurso").value,
+		data: dataform,
+		success: function(data){
+			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
+
+function guardarLives(){
+	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeLives/"+document.getElementById("hddIdLive").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);

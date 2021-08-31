@@ -69,9 +69,11 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/form/createmateriales', 'Cursos\CursoController@create')->name('cursos.form.materialescreate');
     Route::get('/form/createcurso', 'Cursos\CursoController@createcurso')->name('cursos.form.cursoscreate');
     Route::get('/form/createtemario', 'Cursos\CursoController@createtemario')->name('cursos.form.temariocreate');
+    Route::get('/form/createlives', 'Lives\LivesController@createlives')->name('cursos.form.livescreate');
     Route::post('/form/saveMateriales','Cursos\CursoController@saveMateriales')->name('cursos.form.saveMateriales');
     Route::post('/form/saveCursos','Cursos\CursoController@saveCursos')->name('cursos.form.saveCursos');
     Route::post('/form/saveTemarios','Cursos\CursoController@saveTemarios')->name('cursos.form.saveTemarios');
+    Route::post('/form/saveLives','Lives\LivesController@saveLives')->name('cursos.form.saveLives');
 
     Route::get('/uploadFile', 'Cursos\CursoController@uploadFile')->name('cursos.uploadFile');
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
@@ -80,6 +82,7 @@ Route::group(['prefix' => 'cursos'], function() {
     /***CATALÓGOS VISTA***/
     Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
     Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('Catalogo.Curso')->middleware('auth');
+    Route::get('/CatalogoLives', 'Admin\LivesController@mostrarLivesView')->name('Catalogo.Lives')->middleware('auth');
     Route::get('/CatalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
 
     /** LIVES **/
@@ -103,4 +106,6 @@ Route::group(['prefix' => 'Admin'], function() {
     Route::post('/storeMaterial/{id}', 'Admin\TemarioController@storeMaterial')->name('admin.storeMaterial');
     Route::get('/mostrarCurso', 'Admin\CursoController@mostrarCurso')->name('admin.mostrarCurso');
     Route::post('/storeCurso/{id}', 'Admin\CursoController@storeCurso')->name('admin.storeCurso');
+    Route::get('/mostrarLives', 'Admin\LivesController@mostrarLives')->name('admin.mostrarLives');
+    Route::post('/storeLives/{id}', 'Admin\LivesController@storeLives')->name('admin.storeLives');
 });
