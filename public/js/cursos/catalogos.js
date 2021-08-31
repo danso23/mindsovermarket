@@ -30,7 +30,12 @@ $(document).ready(function(){
 	$("#btnGuardarCurso").click(function(e) {
 		e.preventDefault();
 		guardarCurso();
-	})
+	});
+
+	$("#btnGuardarMaterial").click(function(e) {
+		e.preventDefault();
+		guardarMaterial();
+	});
 });
 
 function dataTemario() {
@@ -143,6 +148,60 @@ function dataCurso() {
 	})
 }
 
+function dataMaterial() {
+	$.ajax({
+    	type: "GET",
+    	dataType: "json",
+    	url: url_global+"/Admin/mostrarMaterial",
+		success: function(data){
+			var element ="";
+			element +="<thead>"+
+                    "<tr>"+
+						"<th>"+
+							"<!-- <span class='custom-checkbox'>"+
+								"<input type='checkbox' id='selectAll'>"+
+								"<label for='selectAll'></label>"+
+							"</span>--> Folio"+
+						"</th>"+
+                        "<th>Nombre</th>"+
+                        "<th>Url</th>"+
+						"<th>Nombre curso</th>"+
+                        "<th>Fecha de creación</th>"+
+                        "<th>Acciones</th>"+
+						"<th>IdCurso</th>"+
+						"<th>IdMaterial</th>"+
+                    "</tr>"+
+                "</thead>"+
+				"<tbody>";
+			data.forEach((el, i) => {
+				element+="<tr>"+
+					"<td>"+
+						"<span class='custom-checkbox'>"+
+							"<input type='checkbox' id='checkbox"+el.id_material+"' name='options[]' value='"+el.id_material+"'>"+
+							"<label for='checkbox"+el.id_material+"'>"+el.id_material+"</label>"+
+						"</span>"+
+					"</td>"+
+					"<td>"+el.nombre+"</td>"+
+					"<td>"+el.url+"</td>"+
+					"<td>"+el.nombre_curso+"</td>"+
+					"<td>"+el.fecha_creacion+"</td>"+
+					"<td>"+
+						"<a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteMaterialModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+					"</td>"+
+					"<td>"+el.id_curso+"</td>"+
+					"<td>"+el.id_material+"</td>"+
+				"</tr>";
+			});
+			element+="</tbody>";
+			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			$("#catalogoMaterial").empty();
+			$("#catalogoMaterial").html(element);
+			crearDataTable("catalogoMaterial", objTarget);
+        }
+	})
+}
+
 function crearDataTable(table, target){
 	objDataTbl= $("#"+table).DataTable({
 		responsive: true,
@@ -216,8 +275,20 @@ function storeTemario(position, tipoAccion){
 	}
 }
 
-function storeMaterial(){
-
+function storeMaterial(position, tipoAccion){
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
+		document.querySelector('#'+form[0].id +' #url').value=datos[2];
+		document.querySelector('#'+form[0].id +' #curso').value=datos[6];
+		document.querySelector('#'+form[0].id+' #hddIdMaterial').value=datos[7];
+		document.getElementById("modal-title-material").innerHTML = 'Editar material N° '+datos[7];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-material").innerHTML = 'Agregar material';
+		document.querySelector('#'+form[0].id+' #hddIdMaterial').value=0;
+		document.getElementById(form[0].id).reset();
+	}
 }
 
 function guardarTemario(){
@@ -262,6 +333,40 @@ function guardarCurso(){
 		type: "POST",
     	dataType: "json",
     	url: url_global+"/Admin/storeCurso/"+document.getElementById("hddIdCurso").value,
+		data: dataform,
+		success: function(data){
+			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
+
+function guardarMaterial(){
+	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeMaterial/"+document.getElementById("hddIdMaterial").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);

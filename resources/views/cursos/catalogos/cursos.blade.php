@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
     <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
