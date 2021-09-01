@@ -16,11 +16,58 @@ use DB;
 
 class MaterialController extends Controller
 {
+    public function mostrarMaterialesView(){
+        $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
+        $datos = array("cursos" => $cursos);
+        return view('cursos.catalogos.material')->with('datos', $datos);
+    }
     public function mostrarMateriales(){
-        $materiales = Material::join('modulos', 'temario.id_temario', 'modulos.id_modulo')
-        ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
-        ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')
+        $materiales = Material::join('cursos', 'materiales.id_curso', 'cursos.id_curso')
+        ->selectRaw('materiales.*, cursos.nombre AS nombre_curso')
         ->get();
         return Response::json($materiales);
+    }
+
+    public function storeMaterial(Request $request, $id){
+        DB::beginTransaction();
+        try {
+            if($id != 0){
+                $material = Material::where('id_curso', $id)
+                ->update([
+                    'nombre' => $request->nombre,
+                    'url' => $request->url,
+                    'bActivo' => 1,
+                    'id_curso' => $request->curso
+                ]);
+                if($material)
+                    $result = array(
+                        "Error" => false,
+                        "message" => "Se ha editado con exito el material con folio [$id]"
+                    );
+            }
+            else{
+                $material = new Material();
+                $material->nombre = $request->nombre;
+                $material->url = $request->url;
+                $material->bActivo = 1;
+                $material->id_curso = $request->curso;
+                $material->save();
+                $result = array(
+                    "Error" => false,
+                    "message" => "Se ha guardado con exito el material ",
+                    "iId" => $material->id
+                );
+            }
+        }
+        catch (\Exception $e) {
+            DB::rollback();
+            $result = array(
+                "Error" => true,
+                "message" => "Ha ocurrido un error, por favor contacte al administrador o inténtelo más tarde | ".$e
+            );
+            return Response::json($result);
+        }
+        DB::commit();
+        return Response::json($result);
     }
 }

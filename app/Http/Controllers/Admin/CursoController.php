@@ -52,7 +52,7 @@ class CursoController extends Controller
                 $temario->desc_curso = $request->desc_curso;
                 $temario->portada = $request->portada;
                 $temario->id_categoria = $request->categoria;
-                $temario->bActivo = 1;
+                $temario->activo = 1;
                 $temario->save();
                 $result = array(
                     "Error" => false,

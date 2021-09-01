@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
     <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
@@ -17,12 +17,12 @@
 						<h2>Administrador de <b>Materiales</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<a href="#editTemarioModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeMaterial('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Material</span></a>
+						<a href="#editMaterialModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeMaterial('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Material</span></a>
                         <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
 					</div>
                 </div>
             </div>
-            <table id="catalogoMaterial" class="table table-striped table-hover">
+            <table id="catalogoMaterial" class="table table-striped table-hover table-responsive">
 			
             </table>
         </div>
@@ -31,10 +31,10 @@
 	<div id="editMaterialModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="formEditarMaterial">
+				<form id="formMaterial">
 					@csrf
 					<div class="modal-header">
-						<h4 class="modal-title" id="modal-title-Material">Edit Material</h4>
+						<h4 class="modal-title" id="modal-title-material">Edit Material</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
@@ -44,21 +44,8 @@
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Descripción</label>
-							<textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Video</label>
-							<input type="text" name="url_video" id="url_video" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Módulo</label>
-							<select class="form-control" name="modulo" id="modulo">
-								<option selected hidden value="default">Selecciona un módulo</option>
-								@foreach($datos['modulos'] as $mod)
-									<option value="{{$mod->id_modulo}}">{{$mod->nombre}}</option>
-								@endforeach
-							</select>
+							<label for="url">Url</label>
+							<textarea name="url" id="url" class="form-control" required></textarea>
 						</div>
 						<div class="form-group">
 							<label>Curso</label>
@@ -102,12 +89,12 @@
 </body>
 @endsection
 @section('script')
-	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";
-        var form = $("#formEditarMaterial");
+        var form = $("#formMaterial");
 		dataMaterial();
 	</script>
 @endsection

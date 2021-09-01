@@ -140,6 +140,7 @@
                                         <br>
                                         <a href='{{ route('Catalogo.Temario') }}' class='btn'>Catalogo Temario</a>
                                         <a href='{{ route('Catalogo.Curso') }}' class='btn'>Catalogo Curso</a>
+                                        <a href='{{ route('Catalogo.Material') }}' class='btn'>Catalogo Material</a>
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true"><span class="d-none d-sm-block d-md-inline">{{auth()->user()->name}}</span>

@@ -30,7 +30,12 @@ $(document).ready(function(){
 	$("#btnGuardarCurso").click(function(e) {
 		e.preventDefault();
 		guardarCurso();
-	})
+	});
+
+	$("#btnGuardarMaterial").click(function(e) {
+		e.preventDefault();
+		guardarMaterial();
+	});
 });
 
 function dataTemario() {
@@ -143,11 +148,11 @@ function dataCurso() {
 	})
 }
 
-function dataLives() {
+function dataMaterial() {
 	$.ajax({
     	type: "GET",
     	dataType: "json",
-    	url: url_global+"/Admin/mostrarLives",
+    	url: url_global+"/Admin/mostrarMaterial",
 		success: function(data){
 			var element ="";
 			element +="<thead>"+
@@ -159,10 +164,12 @@ function dataLives() {
 							"</span>--> Folio"+
 						"</th>"+
                         "<th>Nombre</th>"+
-                        "<th>Descripción</th>"+
-						"<th>Portada</th>"+
-                        "<th>URL</th>"+
-                        "<th>Acciones</th>"
+                        "<th>Url</th>"+
+						"<th>Nombre curso</th>"+
+                        "<th>Fecha de creación</th>"+
+                        "<th>Acciones</th>"+
+						"<th>IdCurso</th>"+
+						"<th>IdMaterial</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
@@ -170,25 +177,27 @@ function dataLives() {
 				element+="<tr>"+
 					"<td>"+
 						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id_live+"' name='options[]' value='"+el.id_live+"'>"+
-							"<label for='checkbox"+el.id_live+"'>"+el.id_live+"</label>"+
+							"<input type='checkbox' id='checkbox"+el.id_material+"' name='options[]' value='"+el.id_material+"'>"+
+							"<label for='checkbox"+el.id_material+"'>"+el.id_material+"</label>"+
 						"</span>"+
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
-					"<td>"+el.descripcion+"</td>"+
-					"<td>"+el.portada+"</td>"+
 					"<td>"+el.url+"</td>"+
+					"<td>"+el.nombre_curso+"</td>"+
+					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
-						"<a href='#editCursoModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
-						"<a href='#deleteCursoModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+						"<a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteMaterialModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
+					"<td>"+el.id_curso+"</td>"+
+					"<td>"+el.id_material+"</td>"+
 				"</tr>";
 			});
 			element+="</tbody>";
 			objTarget = {"visible": false,  "targets": [ 6,7 ] };
-			$("#catalogoLives").empty();
-			$("#catalogoLives").html(element);
-			crearDataTable("catalogoLives", objTarget);
+			$("#catalogoMaterial").empty();
+			$("#catalogoMaterial").html(element);
+			crearDataTable("catalogoMaterial", objTarget);
         }
 	})
 }
@@ -283,8 +292,20 @@ function storeTemario(position, tipoAccion){
 	}
 }
 
-function storeMaterial(){
-
+function storeMaterial(position, tipoAccion){
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
+		document.querySelector('#'+form[0].id +' #url').value=datos[2];
+		document.querySelector('#'+form[0].id +' #curso').value=datos[6];
+		document.querySelector('#'+form[0].id+' #hddIdMaterial').value=datos[7];
+		document.getElementById("modal-title-material").innerHTML = 'Editar material N° '+datos[7];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-material").innerHTML = 'Agregar material';
+		document.querySelector('#'+form[0].id+' #hddIdMaterial').value=0;
+		document.getElementById(form[0].id).reset();
+	}
 }
 
 function guardarTemario(){
@@ -355,14 +376,14 @@ function guardarCurso(){
 	});
 }
 
-function guardarLives(){
+function guardarMaterial(){
 	dataform = $('#'+form[0].id).serialize();
 	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
 	;
 	$.ajax({
 		type: "POST",
     	dataType: "json",
-    	url: url_global+"/Admin/storeLives/"+document.getElementById("hddIdLive").value,
+    	url: url_global+"/Admin/storeMaterial/"+document.getElementById("hddIdMaterial").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);
