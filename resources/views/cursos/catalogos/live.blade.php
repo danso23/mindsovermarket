@@ -38,7 +38,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" name="hddIdLives" id="hddIdLives">			
+						<input type="hidden" name="hddIdLivess" id="hddIdLivess">			
 						<div class="form-group">
 							<label for="nombre">Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>

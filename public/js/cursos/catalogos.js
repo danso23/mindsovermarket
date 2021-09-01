@@ -36,6 +36,16 @@ $(document).ready(function(){
 		e.preventDefault();
 		guardarMaterial();
 	});
+
+	$("#btnGuardarLives").click(function(e) {
+		e.preventDefault();
+		guardarLives();
+	});
+
+	$("#btnGuardarUsuario").click(function(e) {
+		e.preventDefault();
+		guardarUsuario();
+	});
 });
 
 function dataTemario() {
@@ -202,6 +212,106 @@ function dataMaterial() {
 	})
 }
 
+function dataLives() {
+	$.ajax({
+    	type: "GET",
+    	dataType: "json",
+    	url: url_global+"/Admin/mostrarLives",
+		success: function(data){
+			var element ="";
+			element +="<thead>"+
+                    "<tr>"+
+						"<th>"+
+							"<!-- <span class='custom-checkbox'>"+
+								"<input type='checkbox' id='selectAll'>"+
+								"<label for='selectAll'></label>"+
+							"</span>--> Folio"+
+						"</th>"+
+                        "<th>Nombre</th>"+
+                        "<th>Descripción</th>"+
+						"<th>Portada</th>"+
+                        "<th>Link</th>"+
+                        "<th>Acciones</th>"+
+                    "</tr>"+
+                "</thead>"+
+				"<tbody>";
+			data.forEach((el, i) => {
+				element+="<tr>"+
+					"<td>"+
+						"<span class='custom-checkbox'>"+
+							"<input type='checkbox' id='checkbox"+el.id_live+"' name='options[]' value='"+el.id_live+"'>"+
+							"<label for='checkbox"+el.id_live+"'>"+el.id_live+"</label>"+
+						"</span>"+
+					"</td>"+
+					"<td>"+el.nombre+"</td>"+
+					"<td>"+el.descripcion+"</td>"+
+					"<td>"+el.portada+"</td>"+
+					"<td>"+el.url+"</td>"+
+					"<td>"+
+						"<a href='#editLivesModal' class='edit' id='btn_edit_"+el.id_live+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteLivesModal' class='delete' id='btn_delete_"+el.id_live+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+					"</td>"+
+				"</tr>";
+			});
+			element+="</tbody>";
+			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			$("#catalogoLives").empty();
+			$("#catalogoLives").html(element);
+			crearDataTable("catalogoLives", objTarget);
+        }
+	})
+}
+
+function dataUsuario() {
+	$.ajax({
+    	type: "GET",
+    	dataType: "json",
+    	url: url_global+"/Admin/mostrarUsuarios",
+		success: function(data){
+			var element ="";
+			element +="<thead>"+
+                    "<tr>"+
+						"<th>"+
+							"<!-- <span class='custom-checkbox'>"+
+								"<input type='checkbox' id='selectAll'>"+
+								"<label for='selectAll'></label>"+
+							"</span>--> Folio"+
+						"</th>"+
+                        "<th>Nombre</th>"+
+                        "<th>Apellido Paterno</th>"+
+						"<th>Apellido Materno</th>"+
+                        "<th>Correo</th>"+
+                        "<th>Acciones</th>"+
+                    "</tr>"+
+                "</thead>"+
+				"<tbody>";
+			data.forEach((el, i) => {
+				element+="<tr>"+
+					"<td>"+
+						"<span class='custom-checkbox'>"+
+							"<input type='checkbox' id='checkbox"+el.id+"' name='options[]' value='"+el.id+"'>"+
+							"<label for='checkbox"+el.id+"'>"+el.id+"</label>"+
+						"</span>"+
+					"</td>"+
+					"<td>"+el.name+"</td>"+
+					"<td>"+el.last_name+"</td>"+
+					"<td>"+el.last_name2+"</td>"+
+					"<td>"+el.email+"</td>"+
+					"<td>"+
+						"<a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteMaterialModal' class='delete' id='btn_delete_"+el.id+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+					"</td>"+
+				"</tr>";
+			});
+			element+="</tbody>";
+			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			$("#catalogoUsuarios").empty();
+			$("#catalogoUsuarios").html(element);
+			crearDataTable("catalogoUsuarios", objTarget);
+        }
+	})
+}
+
 function crearDataTable(table, target){
 	objDataTbl= $("#"+table).DataTable({
 		responsive: true,
@@ -264,12 +374,29 @@ function storeLives(position, tipoAccion){
 		document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
 		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
 		document.querySelector('#'+form[0].id +' #url').value=datos[3];
-		document.querySelector('#'+form[0].id+' #hddIdLive').value=datos[6];
+		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[6];
 		document.getElementById("modal-title-live").innerHTML = 'Editar live N° '+datos[6];
 	}
 	if(tipoAccion == "Nuevo"){
 		document.getElementById("modal-title-live").innerHTML = 'Agregar live';
-		document.querySelector('#'+form[0].id+' #hddIdLive').value=0;
+		document.querySelector('#'+form[0].id+' #hddIdLives').value=0;
+		document.getElementById(form[0].id).reset();
+	}
+}
+
+function storeUsuarios(position, tipoAccion){	
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #name').value=datos[1];
+		document.querySelector('#'+form[0].id +' #last_name').value=datos[2];
+		document.querySelector('#'+form[0].id +' #last_name2').value=datos[3];
+		document.querySelector('#'+form[0].id +' #email').value=datos[3];
+		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[6];
+		document.getElementById("modal-title-live").innerHTML = 'Editar Usuario N° '+datos[6];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-live").innerHTML = 'Agregar usuario';
+		document.querySelector('#'+form[0].id+' #hddIdUsuario').value=0;
 		document.getElementById(form[0].id).reset();
 	}
 }
@@ -350,6 +477,74 @@ function guardarCurso(){
 		type: "POST",
     	dataType: "json",
     	url: url_global+"/Admin/storeCurso/"+document.getElementById("hddIdCurso").value,
+		data: dataform,
+		success: function(data){
+			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
+
+function guardarLives(){
+	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeLives/"+document.getElementById("hddIdLives").value,
+		data: dataform,
+		success: function(data){
+			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
+
+function guardarUsuario(){
+	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeUsuario/"+document.getElementById("hddIdUsuario").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);
