@@ -25,13 +25,34 @@
         </div>
     </div>
     <div class="content-banner">
-        <div class="container h-100">
+        <!-- <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-6 text-left">
                     <h1>APRENDE DE NASDAQ Y DOW JONES</h1>
                     <p class="lead">Impartido por: Isaac Peña</p>
                 </div>
             </div>}
+        </div> -->
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="{{url('public/img/Imagenes/banner.jpg') }}" class="d-block w-100" alt="a">
+                </div>
+                <div class="carousel-item">
+                <img src="{{ url('/public/img/bg-masthead.jpg') }}" class="d-block w-100" alt="a">
+                </div>
+                <div class="carousel-item">
+                <img src="{{ url('/public/img/carousel/example.jpg') }}" class="d-block w-100" alt="a">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
         <div class="row">
