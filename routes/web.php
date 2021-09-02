@@ -83,6 +83,7 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
     Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('Catalogo.Curso')->middleware('auth');
     Route::get('/CatalogoLives', 'Admin\LivesController@mostrarLivesView')->name('Catalogo.Lives')->middleware('auth');
+    Route::get('/CatalogoUsuarios', 'Admin\UsuarioController@mostrarUsuariosView')->name('Catalogo.Usuario')->middleware('auth');
     Route::get('/CatalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
     Route::get('/CatalogoMaterial', 'Admin\MaterialController@mostrarMaterialesView')->name('Catalogo.Material')->middleware('auth');
 
@@ -112,4 +113,5 @@ Route::group(['prefix' => 'Admin'], function() {
     Route::post('/storeCurso/{id}', 'Admin\CursoController@storeCurso')->name('admin.storeCurso');
     Route::get('/mostrarLives', 'Admin\LivesController@mostrarLives')->name('admin.mostrarLives');
     Route::post('/storeLives/{id}', 'Admin\LivesController@storeLives')->name('admin.storeLives');
+    Route::get('/mostrarUsuarios', 'Admin\UsuarioController@mostrarUsuarios')->name('admin.mostrarUsuarios');
 });
