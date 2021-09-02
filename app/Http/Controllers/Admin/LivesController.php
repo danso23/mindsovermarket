@@ -16,7 +16,7 @@ class LivesController extends Controller
     public function mostrarLivesView(Request $request){
         $lives = Lives::where('activo', '1')->selectRaw('id_live, nombre, descripcion, portada, url')->get();
         $datos = array("lives" => $lives);
-        return view('cursos.catalogos.lives')->with('datos', $datos);
+        return view('cursos.catalogos.live')->with('datos', $datos);
     }
 
     public function mostrarLives(){

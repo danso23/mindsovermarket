@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-    <link href="{{ asset('public/css/Livess/catalogos.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/css/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 <body>
@@ -90,7 +90,7 @@
 @section('script')
 	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/Lives/catalogos.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";
 		var form = $("#formLives");

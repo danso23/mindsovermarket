@@ -59,27 +59,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
+                        @foreach($lives as $live)
+                            <tr>
+                                <td>{{$live->nombre}}</td>
+                                <td>{{$live->descripcion}}</td>
+                                <td>{{$live->fecha_hora}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="content-ebooks">
-        <div class="container content-f1">
+        <!-- <div class="container content-f1">
                 <div class="row mrl-q">
                 <div class="container h-100" > 
                     <div class="h-100 align-items-center d-lg-inline-flex col-12">
@@ -114,7 +107,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="container content-f1 mt-5">
                 <div class="row mrl-q">
                 <div class="container h-100">

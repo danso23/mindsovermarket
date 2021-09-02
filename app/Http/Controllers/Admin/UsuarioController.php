@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Response;
@@ -16,7 +17,7 @@ class UsuarioController extends Controller
     public function mostrarUsuariosView(){
         $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
         $datos = array("cursos" => $cursos);
-        return view('cursos.catalogos.material')->with('datos', $datos);
+        return view('cursos.catalogos.usuarios')->with('datos', $datos);
     }
     public function mostrarUsuarios(){
         $materiales = Material::join('cursos', 'materiales.id_curso', 'cursos.id_curso')

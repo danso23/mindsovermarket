@@ -55,8 +55,8 @@
 							<label for="categoria">Categoría</label>
 							<select class="form-control" name="categoria" id="categoria">
 								<option selected hidden value="default">Selecciona una categoría</option>
-								@foreach($datos['categorias'] as $cat)
-									<option value="{{$cat->id_categoria}}">{{$cat->nombre}}</option>
+								@foreach($datos['cursos'] as $cur)
+									<option value="{{$cur->id_curso}}">{{$cur->nombre}}</option>
 								@endforeach
 							</select>
 						</div>

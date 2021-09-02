@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cursos;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\Lives;
 use App\Models\CursoMaterial As Material;
 use App\Models\CursoModulo As Modulo;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +108,7 @@ class CursoController extends Controller
     }
 
     public function obtenerLives(){
-        return view('cursos.lives');
+        $lives = Lives::where('activo', '1')->get();
+        return view('cursos.lives')->with('lives', $lives);
     }
 }
