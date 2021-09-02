@@ -40,15 +40,7 @@
                            
                     </div>
                 </div></br>
-                <div class="row justify-content-md-start justify-content-center mt-3">
-                        <label for="fechaInicial" class="col-md-3 col-form-label text-md-right title-small label-form">Filtro de fechas</label></br>
-                        <div class="col-md-4">
-                                <input type="date" class="form-control custom-input datepicker" placeholder="Fecha inicial" name="fechaInicial" id="fechaInicial">
-                        </div>
-                        <div class="col-md-4">
-                                <input type="date" class="form-control custom-input datepicker" placeholder="Fecha final" name="fechaFinal" id="fechaFinal">
-                        </div>
-                </div></br>
+                
                 <div class="row justify-content-md-start justify-content-center mt-4">
                 <table class="table table-sm" style="color: #48448f !important;">
                     <thead>
