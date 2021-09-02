@@ -71,9 +71,11 @@
                                     <span class="user-perfil" data-toggle="popover" tabindex="0" data-trigger="focus" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
                                     <br>
                                     <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
-                                    <br>
                                     @if (auth()->user()->tipo_user == 3)
-                                        <a href='{{ route('Catalogo.Temario') }}' class='btn'>Administrador</a>
+                                        <br>
+                                        <a href='{{ route('Catalogo.Temario') }}' class='btn'>Catalogo Temario</a>
+                                        <a href='{{ route('Catalogo.Curso') }}' class='btn'>Catalogo Curso</a>
+                                        <a href='{{ route('Catalogo.Material') }}' class='btn'>Catalogo Material</a>
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>

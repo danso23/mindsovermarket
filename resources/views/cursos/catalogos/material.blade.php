@@ -45,7 +45,7 @@
 						</div>
 						<div class="form-group">
 							<label for="url">Url</label>
-							<textarea name="url" id="url" class="form-control" required></textarea>
+							<input type="text" name="url" id="url" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Curso</label>

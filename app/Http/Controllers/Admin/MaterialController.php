@@ -32,6 +32,7 @@ class MaterialController extends Controller
         DB::beginTransaction();
         try {
             if($id != 0){
+                $result= array();
                 $material = Material::where('id_curso', $id)
                 ->update([
                     'nombre' => $request->nombre,
@@ -39,11 +40,11 @@ class MaterialController extends Controller
                     'bActivo' => 1,
                     'id_curso' => $request->curso
                 ]);
-                if($material)
-                    $result = array(
-                        "Error" => false,
-                        "message" => "Se ha editado con exito el material con folio [$id]"
-                    );
+                // print_r($material);exit;
+                $result = array(
+                    "Error" => false,
+                    "message" => "Se ha editado con exito el material con folio [$id]"
+                );
             }
             else{
                 $material = new Material();
