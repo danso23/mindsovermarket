@@ -75,9 +75,7 @@
                                         <br>
                                         <a href='{{ route('Catalogo.Temario') }}' class='btn'>Catalogo Temario</a>
                                         <a href='{{ route('Catalogo.Curso') }}' class='btn'>Catalogo Curso</a>
-                                        <a href='{{ route('Catalogo.Curso') }}' class='btn'>Catalogo Lives</a>
-                                        <a href='{{ route('Catalogo.Lives') }}' class='btn'>Catalogo Usuarios</a>
-                                        <a href='{{ route('Catalogo.Usuarios') }}' class='btn'>Catalogo Material</a>
+                                        <a href='{{ route('Catalogo.Material') }}' class='btn'>Catalogo Material</a>
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
