@@ -17,8 +17,8 @@
 						<h2>Administrador de <b>Usuarios</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<a href="#editUsuariosModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeCurso('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Usuario</span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
+						<!-- <a href="#editUsuariosModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeCurso('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Usuario</span></a> -->
+                        <!-- <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a> -->
 					</div>
                 </div>
             </div>

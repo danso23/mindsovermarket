@@ -17,8 +17,8 @@
 						<h2>Administrador de <b>Lives</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<a href="#editLivesModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeLives('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Live</span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
+						<!-- <a href="#editLivesModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeLives('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Live</span></a> -->
+                        <!-- <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a> -->
 					</div>
                 </div>
             </div>
