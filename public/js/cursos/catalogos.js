@@ -222,16 +222,14 @@ function dataLives() {
 			element +="<thead>"+
                     "<tr>"+
 						"<th>"+
-							"<!-- <span class='custom-checkbox'>"+
-								"<input type='checkbox' id='selectAll'>"+
-								"<label for='selectAll'></label>"+
-							"</span>--> Folio"+
+							"Folio"+
 						"</th>"+
                         "<th>Nombre</th>"+
                         "<th>Descripción</th>"+
 						"<th>Portada</th>"+
                         "<th>Link</th>"+
                         "<th>Acciones</th>"+
+						"<th>IDLIVES</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
@@ -248,13 +246,14 @@ function dataLives() {
 					"<td>"+el.portada+"</td>"+
 					"<td>"+el.url+"</td>"+
 					"<td>"+
-						"<a href='#editLivesModal' class='edit' id='btn_edit_"+el.id_live+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#editLivesModal' class='edit' id='btn_edit_"+el.id_live+"' data-toggle='modal' onclick='storeLives("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
 						"<a href='#deleteLivesModal' class='delete' id='btn_delete_"+el.id_live+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
+					"<td>"+el.id_live+"</td>"+//LIVE
 				"</tr>";
 			});
 			element+="</tbody>";
-			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			objTarget = {"visible": false,  "targets": [ 6 ] };
 			$("#catalogoLives").empty();
 			$("#catalogoLives").html(element);
 			crearDataTable("catalogoLives", objTarget);
@@ -272,16 +271,14 @@ function dataUsuario() {
 			element +="<thead>"+
                     "<tr>"+
 						"<th>"+
-							"<!-- <span class='custom-checkbox'>"+
-								"<input type='checkbox' id='selectAll'>"+
-								"<label for='selectAll'></label>"+
-							"</span>--> Folio"+
+							"Folio"+
 						"</th>"+
                         "<th>Nombre</th>"+
                         "<th>Apellido Paterno</th>"+
 						"<th>Apellido Materno</th>"+
                         "<th>Correo</th>"+
                         "<th>Acciones</th>"+
+						"<th>IDUSER</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
@@ -289,8 +286,8 @@ function dataUsuario() {
 				element+="<tr>"+
 					"<td>"+
 						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id+"' name='options[]' value='"+el.id+"'>"+
-							"<label for='checkbox"+el.id+"'>"+el.id+"</label>"+
+							"<input type='checkbox' id='checkbox"+el.id_user+"' name='options[]' value='"+el.id_user+"'>"+
+							"<label for='checkbox"+el.id_user+"'>"+el.id_user+"</label>"+
 						"</span>"+
 					"</td>"+
 					"<td>"+el.name+"</td>"+
@@ -298,13 +295,14 @@ function dataUsuario() {
 					"<td>"+el.last_name2+"</td>"+
 					"<td>"+el.email+"</td>"+
 					"<td>"+
-						"<a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
-						"<a href='#deleteMaterialModal' class='delete' id='btn_delete_"+el.id+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+						"<!-- <a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id_user+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteMaterialModal' class='delete' id='btn_delete_"+el.id_user+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a> -->"+
 					"</td>"+
+					"<td>"+el.id_user+"</td>"+
 				"</tr>";
 			});
 			element+="</tbody>";
-			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			objTarget = {"visible": false,  "targets": [ 6 ] };
 			$("#catalogoUsuarios").empty();
 			$("#catalogoUsuarios").html(element);
 			crearDataTable("catalogoUsuarios", objTarget);
@@ -369,11 +367,12 @@ function storeCurso(position, tipoAccion){
 
 function storeLives(position, tipoAccion){	
 	if(tipoAccion == "Editar"){
+		debugger
 		var datos = objDataTbl.row( position ).data();
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
-		document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
+		document.querySelector('#'+form[0].id +' #desc_Lives').value=datos[2];
 		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
-		document.querySelector('#'+form[0].id +' #url').value=datos[3];
+		document.querySelector('#'+form[0].id +' #url').value=datos[4];
 		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[6];
 		document.getElementById("modal-title-live").innerHTML = 'Editar live N° '+datos[6];
 	}
@@ -545,6 +544,40 @@ function guardarMaterial(){
 		type: "POST",
     	dataType: "json",
     	url: url_global+"/Admin/storeMaterial/"+document.getElementById("hddIdMaterial").value,
+		data: dataform,
+		success: function(data){
+			alert(data.message);
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
+
+function guardarUsuario(){
+	dataform = $('#'+form[0].id).serialize();
+	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	;
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeUsuario/"+document.getElementById("hddIdUsuario").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);

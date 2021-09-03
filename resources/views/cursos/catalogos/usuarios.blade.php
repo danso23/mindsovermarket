@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-    <link href="{{ asset('public/css/Usuarios/catalogos.css') }}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
+    <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 <body>
@@ -28,17 +28,17 @@
         </div>
     </div>
 	<!-- Edit Modal HTML -->
-	<div id="editUsuarioModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
+	<!-- <div id="editUsuarioModal" class="modal fade" tabindex="-1" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="formCurso">
+				<form id="formUsuarios">
 					@csrf
 					<div class="modal-header">
 						<h4 class="modal-title" id="modal-title-curso">Editar Usuarios</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" name="hddIdCurso" id="hddIdCurso">			
+						<input type="hidden" name="hddIdUsuario" id="hddIdUsuario">			
 						<div class="form-group">
 							<label for="nombre">Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -68,7 +68,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Delete Modal HTML -->
 	<div id="deleteUsuariosModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
@@ -95,10 +95,10 @@
 @section('script')
 	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/Usuarios/catalogos.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";
-		var form = $("#formCurso");
-		dataCurso();
+		var form = $("#formUsuarios");
+		dataUsuario();
 	</script>
 @endsection

@@ -48,12 +48,12 @@ class LivesController extends Controller
                 $lives->descripcion = $request->descripcion;
                 $lives->portada = $request->portada;
                 $lives->url = $request->url;
-                $lives->bActivo = 1;
+                $lives->activo = 1;
                 $lives->save();
                 $result = array(
                     "Error" => false,
                     "message" => "Se ha guardado con exito el live ",
-                    "iId" => $live->id
+                    "iId" => $lives->id
                 );
             }
         }

@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_roboto_varela.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-    <link href="{{ asset('public/css/catalogos.css') }}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
+    <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 <body>
@@ -17,8 +17,8 @@
 						<h2>Administrador de <b>Lives</b></h2>
 					</div>
 					<div class="col-6 col-md-6">
-						<!-- <a href="#editLivesModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeLives('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Live</span></a> -->
-                        <!-- <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a> -->
+						<a href="#editLivesModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeLives('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Live</span></a>
+                        <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
 					</div>
                 </div>
             </div>
@@ -34,11 +34,11 @@
 				<form id="formLives">
 					@csrf
 					<div class="modal-header">
-						<h4 class="modal-title" id="modal-title-Lives">Editar Lives</h4>
+						<h4 class="modal-title" id="modal-title-live">Editar Lives</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" name="hddIdLivess" id="hddIdLivess">			
+						<input type="hidden" name="hddIdLives" id="hddIdLives">			
 						<div class="form-group">
 							<label for="nombre">Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -90,7 +90,7 @@
 @section('script')
 	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/catalogos.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";
 		var form = $("#formLives");
