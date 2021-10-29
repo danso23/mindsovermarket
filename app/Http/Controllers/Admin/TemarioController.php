@@ -24,17 +24,29 @@ class TemarioController extends Controller {
     }
 
     public function mostrarTemarios(){
-        $temarios = Temario::join('modulos', 'temario.id_temario', 'modulos.id_modulo')
-        ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
-        ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')
-        ->get();
+        
+        $temarios = Temario::join('modulos', 'temario.id_modulo', 'modulos.id_modulo')
+                            ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
+                            ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')
+                            ->get();
+        
         return Response::json($temarios);
     }
 
-    public function storeTemario(Request $request, $id){
+    public function storeTemario(Request $request, $id = null){
+
+        if (!\Auth::check()) {
+            $jsonData = [
+                'Error' => false,
+                'redirect' => url('/login')
+            ];
+            
+            return response()->json($jsonData);
+        }
+
         DB::beginTransaction();
         try {
-            if($id != 0){
+            if(isset($id) && $id != null && $id != 0 && !isset($request->delete)){
                 $temario = Temario::where('id_temario', $id)
                 ->update([
                     'nombre' => $request->nombre,
@@ -49,19 +61,42 @@ class TemarioController extends Controller {
                 );
             }
             else{
-                $temario = new Temario();
-                $temario->nombre = $request->nombre;
-                $temario->descripcion = $request->descripcion;
-                $temario->url_video = $request->url_video;
-                $temario->id_modulo = $request->modulo;
-                $temario->id_curso = $request->curso;
-                $temario->bActivo = 1;
-                $temario->save();
-                $result = array(
-                    "Error" => false,
-                    "message" => "Se ha guardado con exito el temario ",
-                    "iId" => $temario->id
-                );
+                if(isset($id) && $id == 0 && !isset($request->delete)){
+                    $temario = new Temario();
+                    $temario->nombre = $request->nombre;
+                    $temario->descripcion = $request->descripcion;
+                    $temario->url_video = $request->url_video;
+                    $temario->id_modulo = $request->modulo;
+                    $temario->id_curso = $request->curso;
+                    $temario->bActivo = 1;
+                    $temario->save();
+                    $result = array(
+                        "Error" => false,
+                        "message" => "Se ha guardado con exito el temario ",
+                        "iId" => $temario->id
+                    );    
+                }
+                else{
+                    $delete = (isset($id) && $id != null && isset($request->delete) && isset($request->cadenadelete)) ? explode(",",$request->cadenadelete) : $id;
+                    $bSuccess = Temario::whereIn('id_temario', $delete)->delete();
+
+                    if($bSuccess){
+                        $result = [
+                            "Error" => false,
+                            "message" => "Eliminado con éxito.",
+                            "iId" => $delete 
+                        ];       
+                    }
+                    else{
+                        $result = [
+                            "Error" => false,
+                            "message" => "No se pudeo eliminar el Temario ".$id,
+                            "iId" => '' 
+                        ];   
+                    }
+                    
+                }
+                
             }
         }
         catch (\Exception $e) {
