@@ -8,6 +8,7 @@ use App\Models\Curso;
 use App\Models\Lives;
 use App\Models\CursoMaterial As Material;
 use App\Models\CursoModulo As Modulo;
+use App\Models\CursoDetalle as Temario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Response;
@@ -23,14 +24,31 @@ class CursoController extends Controller
      */
     public function index(Request $request) {
         $user = Auth::user();
+        /*$temarios = Temario::all();
+        $arrTemarios = array();
+        foreach($temarios as $tem => $v){
+            $arrTemarios[] = $this->cursoXTemario($v->id_curso, $v->id_modulo);
+        }*/
         $cursos = Curso::where('activo', '1')->get();
-        if($user == null)
+        if($user == null){
             return redirect('/');
+        }
+        
         if($user->membresia == 1)
-            return view('cursos.view', compact('cursos'));
+            return view('cursos.view')->with('cursos', $cursos);
         else{
             return redirect('/'); // AQUI FALTA AGREGAR PANTALLA PARA INVITARLO A RENOVAR SU SUSCRIPCION
         }
+    }
+
+    public function cursoXTemario($idCurso, $idModulo){
+        $cursos = Curso::join('temario', 'temario.id_curso', 'cursos.id_curso')
+            ->selectRaw('cursos.id_curso, cursos.nombre, temario.nombre AS nombreTem')
+            ->where('cursos.activo', '1')
+            ->where('temario.id_curso', $idCurso)
+            ->where('temario.id_modulo', $idModulo)
+            ->get();
+        return $cursos;
     }
     public function create(){
         $user = Auth::user();
@@ -43,6 +61,7 @@ class CursoController extends Controller
     }
     public function createcurso(){
         $user = Auth::user();
+                
         if($user == null)
             return redirect('/');
         if($user->tipo_user != 3)

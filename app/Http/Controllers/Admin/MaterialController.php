@@ -28,15 +28,28 @@ class MaterialController extends Controller
         return Response::json($materiales);
     }
 
-    public function storeMaterial(Request $request, $id){
+    public function storeMaterial(Request $request, $id = null){
+        
+        if (!\Auth::check()) {
+            $jsonData = [
+                'Error' => false,
+                'redirect' => url('/login')
+            ];
+            
+            return response()->json($jsonData);
+        }
+
+            
+
         DB::beginTransaction();
         try {
-            if($id != 0){
+            //if($id != 0){
+            if(isset($id) && $id != null && $id != 0 && !isset($request->delete)){
                 $result= array();
-                $material = Material::where('id_curso', $id)
+                $material = Material::where('id_material', $id)
                 ->update([
                     'nombre' => $request->nombre,
-                    'url' => $request->url,
+                    'url' => $request->archivo_mat,
                     'bActivo' => 1,
                     'id_curso' => $request->curso
                 ]);
@@ -47,17 +60,49 @@ class MaterialController extends Controller
                 );
             }
             else{
-                $material = new Material();
-                $material->nombre = $request->nombre;
-                $material->url = $request->url;
-                $material->bActivo = 1;
-                $material->id_curso = $request->curso;
-                $material->save();
-                $result = array(
-                    "Error" => false,
-                    "message" => "Se ha guardado con exito el material ",
-                    "iId" => $material->id
-                );
+
+                if(isset($id) && $id == 0 && !isset($request->delete)){
+                    $material = new Material();
+                    $material->nombre = $request->nombre;
+                    $material->url = $request->archivo_mat;
+                    $material->bActivo = 1;
+                    $material->id_curso = $request->curso;
+                    $material->save();
+                    
+                    $result = array(
+                        "Error" => false,
+                        "message" => "Se ha guardado con exito el material ",
+                        "iId" => $material->id
+                    );
+                }
+                else{
+                    $delete = (isset($id) && $id != null && isset($request->delete) && isset($request->cadenadelete)) ? explode(",",$request->cadenadelete) : $id;
+                    
+                    if(is_array($delete)){
+                        $bSuccess = Material::whereIn('id_material', $delete)->delete();    
+                    }
+                    else{
+                        $bSuccess = Material::where('id_material', $delete)->delete();
+                    }
+
+                    
+
+                    if($bSuccess){
+                        $result = [
+                            "Error" => false,
+                            "message" => "Eliminado con éxito.",
+                            "iId" => $delete 
+                        ];       
+                    }
+                    else{
+                        $result = [
+                            "Error" => false,
+                            "message" => "No se pudeo eliminar el Temario ".$id,
+                            "iId" => '' 
+                        ];   
+                    }
+                    
+                }
             }
         }
         catch (\Exception $e) {

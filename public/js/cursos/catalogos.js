@@ -1,5 +1,7 @@
 var objDataTbl;
 var objTarget;
+var objChecks;
+
 $(document).ready(function(){
 	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
@@ -17,16 +19,44 @@ $(document).ready(function(){
 			});
 		} 
 	});
+
 	checkbox.click(function(){
 		if(!this.checked){
 			$("#selectAll").prop("checked", false);
 		}
 	});
+
+	//Inicio seccion Temario
+	$('#deleteTemarioModal').on('hidden.bs.modal', function (e) {
+  		objChecks = ''; 
+	});
+	
 	$("#btnGuardarTemario").click(function(e) {
 		e.preventDefault();
-		guardarTemario();
+		guardarTemario(false);
 	});
 
+	$("#btnEliminarTemario").click(function(e) {
+		e.preventDefault();		
+		$('#deleteTemarioModal').modal('hide');					
+		guardarTemario(true);
+		dataTemario();
+	});
+
+	$("#deleteEmployeeModal").click(function(e) {		
+		objChecks = '';
+		$('table tbody').find('input[type="checkbox"]').each(function(){            
+            if($(this).is(':checked')){			
+				objChecks += $(this).val()+",";
+				document.querySelector("#deleteTemarioModal .modal-title").innerHTML = 'Eliminar los elementos seleccionados: <br><b></b>';
+				$('#deleteTemarioModal').modal('show');
+            }			           
+        });
+        objChecks = objChecks.split(',');
+        objChecks.pop();
+        //guardarTemario(true);
+	});
+	//FIn seccion Temario
 	$("#btnGuardarCurso").click(function(e) {
 		e.preventDefault();
 		guardarCurso();
@@ -34,8 +64,30 @@ $(document).ready(function(){
 
 	$("#btnGuardarMaterial").click(function(e) {
 		e.preventDefault();
-		guardarMaterial();
+		guardarMaterial(false);
 	});
+
+	$("#btnEliminarMaterial").click(function(e) {
+		e.preventDefault();		
+		$('#deleteMaterial').modal('hide');					
+		guardarMaterial(true);
+		dataTemario();
+	});
+
+	$("#deleteMaterialModal").click(function(e) {		
+		objChecks = '';
+		$('table tbody').find('input[type="checkbox"]').each(function(){            
+            if($(this).is(':checked')){			
+				objChecks += $(this).val()+",";
+				document.querySelector("#deleteMaterial .modal-title").innerHTML = 'Eliminar los elementos seleccionados: <br><b></b>';
+				$('#deleteMaterial').modal('show');
+            }			           
+        });
+        objChecks = objChecks.split(',');
+        objChecks.pop();
+        //guardarTemario(true);
+	});
+	
 
 	$("#btnGuardarLives").click(function(e) {
 		e.preventDefault();
@@ -88,7 +140,7 @@ function dataTemario() {
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
 						"<a href='#editTemarioModal' class='edit' id='btn_edit_"+el.id_temario+"' data-toggle='modal' onclick='storeTemario("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
-						"<a href='#deleteTemarioModal' class='delete' id='btn_delete_"+el.id_temario+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+						"<a href='#deleteTemarioModal_' class='delete' id='btn_delete_"+el.id_temario+"' data-toggle='modal' onclick='storeTemario("+i+","+'"Eliminar"'+")'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_temario+"</td>"+
 					"<td>"+el.id_modulo+"</td>"+
@@ -97,7 +149,7 @@ function dataTemario() {
 			});
 			element+="</tbody>";
 			objTarget = {"visible": false,  "targets": [ 6,7,8 ] };
-			$("#catalogoTemario").empty();
+			//$("#catalogoTemario").empty();
 			$("#catalogoTemario").html(element);
 			crearDataTable("catalogoTemario", objTarget);
         }
@@ -174,7 +226,7 @@ function dataMaterial() {
 							"</span>--> Folio"+
 						"</th>"+
                         "<th>Nombre</th>"+
-                        "<th>Url</th>"+
+                        "<th>Archivo</th>"+
 						"<th>Nombre curso</th>"+
                         "<th>Fecha de creación</th>"+
                         "<th>Acciones</th>"+
@@ -196,8 +248,8 @@ function dataMaterial() {
 					"<td>"+el.nombre_curso+"</td>"+
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
-						"<a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
-						"<a href='#deleteMaterialModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+						"<a href='#editMaterialModal' class='edit' id='btn_edit_"+el.id_material+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
+						"<a href='#deleteMaterialModal_' class='delete' id='btn_delete_"+el.id_material+"' data-toggle='modal' onclick='storeMaterial("+i+","+'"Eliminar"'+")'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_curso+"</td>"+
 					"<td>"+el.id_material+"</td>"+
@@ -311,11 +363,12 @@ function dataUsuario() {
 }
 
 function crearDataTable(table, target){
-	objDataTbl= $("#"+table).DataTable({
+	objDataTbl = $("#"+table).DataTable({
 		responsive: true,
-		autoWidth: false,
+		//autoWidth: false,
 		order: [ 0, 'asc' ],
-		serverside:true,
+		//serverside:true,
+		destroy: true,
 		language: {
 			"zeroRecords": "No se encontró coincidencias",
 			"info": "Mostrando la página _PAGE_ de _PAGES_",
@@ -416,6 +469,15 @@ function storeTemario(position, tipoAccion){
 		document.querySelector('#'+form[0].id+' #hddIdTemario').value=0;
 		document.getElementById(form[0].id).reset();
 	}
+
+	if(tipoAccion == "Eliminar"){
+		var datos = objDataTbl.row( position ).data();
+
+		document.getElementById("detema").value = datos[6];
+		//document.querySelector("#deleteTemarioModal .modal-body p").innerHTML = 'Eliminar Temario: '+datos[1];		
+		document.querySelector("#deleteTemarioModal .modal-title").innerHTML = 'Eliminar Temario: <br><b>'+datos[1]+'</b>';
+		$('#deleteTemarioModal').modal('show');		
+	}
 }
 
 function storeMaterial(position, tipoAccion){
@@ -432,19 +494,47 @@ function storeMaterial(position, tipoAccion){
 		document.querySelector('#'+form[0].id+' #hddIdMaterial').value=0;
 		document.getElementById(form[0].id).reset();
 	}
+	if(tipoAccion == "Eliminar"){
+		var datos = objDataTbl.row( position ).data();
+		console.log(datos[1]);
+		document.getElementById("delete_materia").value = datos[7];		
+		document.querySelector("#deleteMaterial .modal-title").innerHTML = 'Eliminar Material: <br><b>'+datos[1]+'</b>';
+		$('#deleteMaterial').modal('show');		
+	}
+
 }
 
-function guardarTemario(){
-	dataform = $('#'+form[0].id).serialize();
-	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
-	;
+function guardarTemario(opcion){
+	var reger = '';
+	dataform  = $('#'+form[0].id).serialize();
+	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("detema").value ) : document.getElementById("hddIdTemario").value;
+	dataform += (opcion) ? "&delete=1" : '';
+	dataform += (opcion && objChecks) ? "&cadenadelete="+objChecks : '';
+	
+
 	$.ajax({
 		type: "POST",
     	dataType: "json",
-    	url: url_global+"/Admin/storeTemario/"+document.getElementById("hddIdTemario").value,
-		data: dataform,
+    	url: url_global+"/Admin/storeTemario/"+reger,
+		data: dataform,		
 		success: function(data){
-			alert(data.message);
+
+			if(data.Error && data.redirect){
+				window.location.href = data.redirect;
+			}
+
+			
+			
+
+			//objDataTbl.draw();
+			// objDataTbl.on( 'draw', function () {
+   //  		console.log( 'Redraw occurred at: '+new Date().getTime() );
+			// }); 
+			//$('#catalogoTemario').draw();
+			//dataTemario();
+			//alert(data.message);			
 		},
 		error: function (jqXHR, exception){
 			var msg = '';
@@ -536,14 +626,22 @@ function guardarLives(){
 	});
 }
 
-function guardarMaterial(){
-	dataform = $('#'+form[0].id).serialize();
-	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
-	;
+function guardarMaterial(opcion){
+	// dataform = $('#'+form[0].id).serialize();
+	// dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	var reger = '';
+	dataform  = $('#'+form[0].id).serialize();
+	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("delete_materia").value ) : document.getElementById("hddIdMaterial").value;
+	dataform += (opcion) ? "&delete=1" : '';
+	dataform += (opcion && objChecks) ? "&cadenadelete="+objChecks : '';
+
 	$.ajax({
 		type: "POST",
     	dataType: "json",
-    	url: url_global+"/Admin/storeMaterial/"+document.getElementById("hddIdMaterial").value,
+    	url: url_global+"/Admin/storeMaterial/"+reger,//document.getElementById("hddIdMaterial").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);
@@ -569,6 +667,7 @@ function guardarMaterial(){
 		}
 	});
 }
+
 
 function guardarUsuario(){
 	dataform = $('#'+form[0].id).serialize();

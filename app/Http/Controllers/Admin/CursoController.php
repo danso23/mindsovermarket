@@ -18,7 +18,7 @@ use DB;
 class CursoController extends Controller
 {
     public function mostrarCursosView(Request $request){
-        $categorias = Categoria::where('activo', '1')->selectRaw('id_categoria, nombre_categoria AS nombre')->get();
+        $categorias = Categoria::where('activo', '1')->whereIn('id_categoria', [1,2])->selectRaw('id_categoria, nombre_categoria AS nombre')->get();
         $datos = array("categorias" => $categorias);
         return view('cursos.catalogos.cursos')->with('datos', $datos);
     }

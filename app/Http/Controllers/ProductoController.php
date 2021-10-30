@@ -28,15 +28,39 @@ class ProductoController extends Controller{
     }
 
     public function home(){
-    	$productos = Producto::where('activo', '1')->take(3)->get();
-        $categorias = Categoria::where('activo', '1')->selectRaw('id_categoria, nombre_categoria')->get();
+    	
         $utils = new Utils();
-        foreach($productos as $producto){
-            $monedaConvertida = $utils->convertCurrency($producto->precio);
-            $producto->precio = $monedaConvertida;
+        $datos = [];        
+
+        try{
+
+            $productos  = Producto::where('activo', '1')->take(3)->get();
+            $categorias = Categoria::where('activo', '1')->selectRaw('id_categoria, nombre_categoria')->get();
+
+            if(!$productos->isEmpty()){
+
+                $datos['productos'] = $productos;
+                
+                foreach($productos as $producto){
+                    $monedaConvertida = $utils->convertCurrency($producto->precio);
+                    $producto->precio = $monedaConvertida;
+                }
+
+                if(!$categorias->isEmpty()){
+                    $datos['categorias'] = $categorias;
+                }
+
+            }
+
+            //$datos = array('productos' => $productos, 'categorias' => $categorias);
+
         }
-        $datos = array('productos' => $productos, 'categorias' => $categorias);
-    	return view('home')->with('datos', $datos);
+        catch(Exception $e){
+
+
+        }                                
+    	
+        return view('home')->with('datos', $datos);
     }
 
     public function productoDescripcion($id){

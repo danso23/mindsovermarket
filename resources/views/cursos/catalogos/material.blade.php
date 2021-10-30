@@ -18,7 +18,8 @@
 					</div>
 					<div class="col-6 col-md-6">
 						<a href="#editMaterialModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeMaterial('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Material</span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
+                        <!--<a href="#deleteMaterialModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>-->
+                        <button id="deleteMaterialModal" class="btn btn-danger mb-2"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></button>
 					</div>
                 </div>
             </div>
@@ -44,8 +45,8 @@
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label for="url">Url</label>
-							<input type="text" name="url" id="url" class="form-control" required>
+							<label for="archivo_mat">Archivo</label>
+							<input type="text" name="archivo_mat" id="archivo_mat" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Curso</label>
@@ -79,8 +80,14 @@
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
 					<div class="modal-footer">
+						<!--<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="hidden" id="delete_materia">
+						<input type="submit" class="btn btn-danger" value="Delete">-->
+
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<input type="hidden" id="delete_materia">
+						<input type="button" id="btnEliminarMaterial" class="btn btn-danger" value="Delete">
+
 					</div>
 				</form>
 			</div>

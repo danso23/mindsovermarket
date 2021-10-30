@@ -18,13 +18,16 @@
 					</div>
 					<div class="col-6 col-md-6">
 						<a href="#editTemarioModal" class="btn btn-success mb-2" data-toggle="modal" onclick="storeTemario('', 'Nuevo')"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Temario</span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>
+                        <!--<a href="#deleteEmployeeModal" class="btn btn-danger mb-2" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></a>-->
+                        <button id="deleteEmployeeModal" class="btn btn-danger mb-2"><i class="material-icons">&#xE15C;</i> <span>Eliminar seleccionados</span></button>
 					</div>
                 </div>
             </div>
-            <table id="catalogoTemario" class="table table-striped table-hover table-responsive">
-			
-            </table>
+            <div class="table-resposive">
+	            <table id="catalogoTemario" class="table table-striped table-hover table-responsive">
+				
+	            </table>
+        	</div>
         </div>
     </div>
 	<!-- Edit Modal HTML -->
@@ -82,7 +85,7 @@
 	<div id="deleteTemarioModal" class="modal fade" data-backdrop="false" data-dismiss="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<!--<form>-->
 					<div class="modal-header">						
 						<h4 class="modal-title">Delete Employee</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -93,9 +96,11 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<input type="hidden" id="detema">
+						<input type="button" id="btnEliminarTemario" class="btn btn-danger" value="Delete">
+
 					</div>
-				</form>
+				<!--</form>-->
 			</div>
 		</div>
 	</div>
