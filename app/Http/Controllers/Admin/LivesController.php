@@ -20,7 +20,7 @@ class LivesController extends Controller
     }
 
     public function mostrarLives(){
-        $lives = Lives::selectRaw('lives.*')
+        $lives = Lives::where('activo',1)->selectRaw('lives.*')
         ->get();
         return Response::json($lives);
     }
@@ -28,14 +28,15 @@ class LivesController extends Controller
     public function storeLives(Request $request, $id){
         DB::beginTransaction();
         try {
-            if($id != 0){
+            //if($id != 0){
+            if(isset($id) && $id != null && $id != 0 && !isset($request->delete)){
                 $lives = Lives::where('id_live', $id)
                 ->update([
-                    'nombre' => $request->nombre,
-                    'descripcion' => $request->descripcion,
-                    'portada' => $request->portada,
-                    'url' => $request->url,
-                    'activo' => 1
+                    'nombre'        => $request->nombre,
+                    'descripcion'   => $request->desc_Lives,
+                    'portada'       => $request->portada,
+                    'url'           => $request->url,
+                    'activo'        => 1
                 ]);
                 $result = array(
                     "Error" => false,
@@ -43,18 +44,55 @@ class LivesController extends Controller
                 );
             }
             else{
-                $lives = new Lives();
-                $lives->nombre = $request->nombre;
-                $lives->descripcion = $request->descripcion;
-                $lives->portada = $request->portada;
-                $lives->url = $request->url;
-                $lives->activo = 1;
-                $lives->save();
-                $result = array(
-                    "Error" => false,
-                    "message" => "Se ha guardado con exito el live ",
-                    "iId" => $lives->id
-                );
+
+                if(isset($id) && $id == 0 && !isset($request->delete)){
+                    $lives = new Lives();
+                    $lives->nombre      = $request->nombre;
+                    $lives->descripcion = $request->desc_Lives;
+                    $lives->portada     = $request->portada;
+                    $lives->url         = $request->url;
+                    $lives->activo      = 1;
+                    $lives->save();
+                    $result = array(
+                        "Error" => false,
+                        "message" => "Se ha guardado con exito el live ",
+                        "iId" => $lives->id
+                    );
+                }
+                else{
+
+                    $delete = (isset($id) && $id != null && isset($request->delete) && isset($request->cadenadelete)) ? explode(",",$request->cadenadelete) : $id;
+
+                    if(is_array($delete)){                        
+
+                        $resultLive = Lives::whereIn('id_live', $delete)->update([
+                            'activo' => 0
+                        ]);
+                    }
+                    else{                        
+
+                        $objLive = Lives::find($delete);                        
+                        $objLive->activo = 0;
+                        $resultLive = $objLive->save();                        
+                    }
+
+                    if($resultLive){// && $resultCate){
+                        $result = [
+                            "Error" => false,
+                            "message" => "Eliminado con éxito.",
+                            "iId" => '' 
+                        ];       
+                    }
+                    else{
+                        DB::rollback();
+                        $result = [
+                            "Error" => false,
+                            "message" => "No se pudeo eliminar el curso ".$id,
+                            "iId" => '' 
+                        ];   
+                    }
+
+                }
             }
         }
         catch (\Exception $e) {

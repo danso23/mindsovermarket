@@ -24,7 +24,7 @@ class CursoController extends Controller
     public function index(Request $request) {
         $user = Auth::user();
         $cursos = Curso::where('activo', '1')->get();
-
+        dd($cursos);
         $cursoOrdenado = [];
         foreach($cursos as $indexCurso => $infoCurso){
             switch ($infoCurso->id_modulo) {

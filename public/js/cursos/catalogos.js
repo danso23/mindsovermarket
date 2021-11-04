@@ -57,9 +57,46 @@ $(document).ready(function(){
         //guardarTemario(true);
 	});
 	//FIn seccion Temario
+
+
+	//Inicio seccion Curso
+	$('#deleteCursosModal').on('hidden.bs.modal', function (e) {
+  		objChecks = ''; 
+	});
+
+	$("#btnEliminarCurso").click(function(e) {
+		e.preventDefault();		
+		$('#deleteCursosModal').modal('hide');					
+		guardarCurso(true);
+		dataCurso()();
+	});
+
+	$("#deleteCursoModal").click(function(e) {		
+		objChecks = '';
+		$('table tbody').find('input[type="checkbox"]').each(function(){            
+            if($(this).is(':checked')){			
+				objChecks += $(this).val()+",";
+				document.querySelector("#deleteCursosModal .modal-title").innerHTML = 'Eliminar los elementos seleccionados: <br><b></b>';
+				$('#deleteCursosModal').modal('show');
+            }			           
+        });
+        objChecks = objChecks.split(',');
+        objChecks.pop();        
+	});
+
+
 	$("#btnGuardarCurso").click(function(e) {
 		e.preventDefault();
-		guardarCurso();
+		guardarCurso(false);
+	});
+
+	//FIn seccion Cursos
+
+	
+	//Inicio Materiales
+
+	$('#deleteMaterial').on('hidden.bs.modal', function (e) {
+  		objChecks = ''; 
 	});
 
 	$("#btnGuardarMaterial").click(function(e) {
@@ -84,16 +121,41 @@ $(document).ready(function(){
             }			           
         });
         objChecks = objChecks.split(',');
-        objChecks.pop();
-        //guardarTemario(true);
+        objChecks.pop();        
 	});
+	//Fin Materiales
 	
 
+	//Inicio Live
+	$('#deleteLivesModal').on('hidden.bs.modal', function (e) {
+  		objChecks = ''; 
+	});
+	
 	$("#btnGuardarLives").click(function(e) {
 		e.preventDefault();
-		guardarLives();
+		guardarLives(false);
 	});
 
+	$("#btnEliminarLive").click(function(e) {
+		e.preventDefault();		
+		$('#deleteLivesModal').modal('hide');					
+		guardarLives(true);
+		dataTemario();
+	});
+
+	$("#deleteLiveModal").click(function(e) {		
+		objChecks = '';
+		$('table tbody').find('input[type="checkbox"]').each(function(){            
+            if($(this).is(':checked')){			
+				objChecks += $(this).val()+",";
+				document.querySelector("#deleteLivesModal .modal-title").innerHTML = 'Eliminar los elementos seleccionados: <br><b></b>';
+				$('#deleteLivesModal').modal('show');
+            }			           
+        });
+        objChecks = objChecks.split(',');
+        objChecks.pop();        
+	});
+	//Fin Live
 	$("#btnGuardarUsuario").click(function(e) {
 		e.preventDefault();
 		guardarUsuario();
@@ -195,10 +257,10 @@ function dataCurso() {
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
 						"<a href='#editCursoModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
-						"<a href='#deleteCursoModal' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+						"<a href='#deleteCursoModal_' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Eliminar"'+")'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_curso+"</td>"+
-					"<td>"+el.id_categoria+"</td>"+
+					"<td>"+el.id_categoria+"</td>"+ 
 				"</tr>";
 			});
 			element+="</tbody>";
@@ -299,7 +361,7 @@ function dataLives() {
 					"<td>"+el.url+"</td>"+
 					"<td>"+
 						"<a href='#editLivesModal' class='edit' id='btn_edit_"+el.id_live+"' data-toggle='modal' onclick='storeLives("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
-						"<a href='#deleteLivesModal' class='delete' id='btn_delete_"+el.id_live+"' data-toggle='modal'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
+						"<a href='#deleteLivesModal_' class='delete' id='btn_delete_"+el.id_live+"' data-toggle='modal' onclick='storeLives("+i+","+'"Eliminar"'+")'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
 					"<td>"+el.id_live+"</td>"+//LIVE
 				"</tr>";
@@ -416,6 +478,14 @@ function storeCurso(position, tipoAccion){
 		document.querySelector('#'+form[0].id+' #hddIdCurso').value=0;
 		document.getElementById(form[0].id).reset();
 	}
+
+	if(tipoAccion == "Eliminar"){
+		var datos = objDataTbl.row( position ).data();
+		document.getElementById("detelecurso").value = datos[6];
+		//document.querySelector("#deleteCursosModal .modal-body p").innerHTML = 'Eliminar Temario: '+datos[1];		
+		document.querySelector("#deleteCursosModal .modal-title").innerHTML = 'Eliminar Curso: <br><b>'+datos[1]+'</b>';
+		$('#deleteCursosModal').modal('show');		
+	}
 }
 
 function storeLives(position, tipoAccion){	
@@ -433,6 +503,14 @@ function storeLives(position, tipoAccion){
 		document.getElementById("modal-title-live").innerHTML = 'Agregar live';
 		document.querySelector('#'+form[0].id+' #hddIdLives').value=0;
 		document.getElementById(form[0].id).reset();
+	}
+
+	if(tipoAccion == "Eliminar"){
+		var datos = objDataTbl.row( position ).data();
+		document.getElementById("detelelive").value = datos[6];
+		//document.querySelector("#deleteCursosModal .modal-body p").innerHTML = 'Eliminar Temario: '+datos[1];		
+		document.querySelector("#deleteLivesModal .modal-title").innerHTML = 'Eliminar Live: <br><b>'+datos[1]+'</b>';
+		$('#deleteLivesModal').modal('show');		
 	}
 }
 
@@ -558,14 +636,22 @@ function guardarTemario(opcion){
 	});
 }
 
-function guardarCurso(){
-	dataform = $('#'+form[0].id).serialize();
-	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
-	;
+function guardarCurso(opcion){
+	// dataform = $('#'+form[0].id).serialize();
+	// dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	var reger = '';
+	dataform  = $('#'+form[0].id).serialize();
+	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("detelecurso").value ) : document.getElementById("hddIdCurso").value;
+	dataform += (opcion) ? "&delete=1" : '';
+	dataform += (opcion && objChecks) ? "&cadenadelete="+objChecks : '';
+
 	$.ajax({
 		type: "POST",
     	dataType: "json",
-    	url: url_global+"/Admin/storeCurso/"+document.getElementById("hddIdCurso").value,
+    	url: url_global+"/Admin/storeCurso/"+reger,//document.getElementById("hddIdCurso").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);
@@ -592,14 +678,21 @@ function guardarCurso(){
 	});
 }
 
-function guardarLives(){
-	dataform = $('#'+form[0].id).serialize();
-	dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
-	;
+function guardarLives(opcion){
+	// dataform = $('#'+form[0].id).serialize();	
+	// dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+	var reger = '';
+	dataform  = $('#'+form[0].id).serialize();
+	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("detelelive").value ) : document.getElementById("hddIdLives").value;
+	dataform += (opcion) ? "&delete=1" : '';
+	dataform += (opcion && objChecks) ? "&cadenadelete="+objChecks : '';
+
 	$.ajax({
 		type: "POST",
     	dataType: "json",
-    	url: url_global+"/Admin/storeLives/"+document.getElementById("hddIdLives").value,
+    	url: url_global+"/Admin/storeLives/"+reger,//document.getElementById("hddIdLives").value,
 		data: dataform,
 		success: function(data){
 			alert(data.message);

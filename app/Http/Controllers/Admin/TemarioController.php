@@ -27,6 +27,7 @@ class TemarioController extends Controller {
         
         $temarios = Temario::join('modulos', 'temario.id_modulo', 'modulos.id_modulo')
                             ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
+                            ->where('bActivo',1)
                             ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')
                             ->get();
         
@@ -78,7 +79,17 @@ class TemarioController extends Controller {
                 }
                 else{
                     $delete = (isset($id) && $id != null && isset($request->delete) && isset($request->cadenadelete)) ? explode(",",$request->cadenadelete) : $id;
-                    $bSuccess = Temario::whereIn('id_temario', $delete)->delete();
+                    
+                    if(is_array($delete)){
+                        $bSuccess = Temario::whereIn('id_temario', $delete)->update([
+                            'bActivo' => 0
+                        ]);    
+                    }
+                    else{
+                        $bSuccess = Temario::where('id_temario', $delete)->update([
+                            'bActivo' => 0
+                        ]);
+                    }
 
                     if($bSuccess){
                         $result = [

@@ -38,7 +38,7 @@ Route::post('atributos-producto/{id}', 'Producto_AtributoController@getAtributos
 Route::post('cart-add', 'CartController@add')->name('cart.add');
 Route::get('cart/checkout', 'CartController@cart')->name('cart.checkout');
 Route::post('remove-item', 'CartController@removeItem')->name('cart.remove');
-Route::post('completa-envio', 'CartController@guardaEnvio')->name('guarda.envio')->middleware('auth');
+Route::post('completa-envio', 'CartController@guardaEnvio')->name('guarda.envio');//->middleware('auth');
 
 /**** PAYMENT *****/
 Route::get('/payment', 'PaymentController@index')->name('payment');
@@ -63,7 +63,10 @@ Route::get('productos', 'ProductoController@index')->name('productos');
 Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
 
 Route::group(['prefix' => 'cursos'], function() {
+    
     Route::get('/view', 'Cursos\CursoController@index')->name('cursos.view');
+
+
     Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
     /**Formularios */
     Route::get('/form/createmateriales', 'Cursos\CursoController@create')->name('cursos.form.materialescreate');
@@ -78,7 +81,6 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/uploadFile', 'Cursos\CursoController@uploadFile')->name('cursos.uploadFile');
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
     
-
     /***CATALÓGOS VISTA***/
     Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
     Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('Catalogo.Curso')->middleware('auth');

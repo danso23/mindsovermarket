@@ -8,7 +8,7 @@ $(document).ready( function() {
             $('body').toggleClass('menu-opened');
             $('#navigation').toggleClass('opened'); 
         });
-    }
+    }        
 
     //Buscador
     $('#txtSearch').keypress(function(e){   

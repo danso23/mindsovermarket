@@ -38,16 +38,14 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-lg-3">
-    
-            </div>
+            <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <form  action="{{ route('processPayment') }}"  data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" name="frmStripe" id="frmstripe" method="post">
                     @csrf
-                    <input type="hidden" name="pais" value="{{$datos['pais']}}">
-                    <input type="hidden" name="estado" value="{{$datos['estado']}}">
+                    <input type="hidden" name="pais"      value="{{$datos['pais']}}">
+                    <input type="hidden" name="estado"    value="{{$datos['estado']}}">
                     <input type="hidden" name="direccion" value="{{$datos['direccion']}}">
-                    <input type="hidden" name="cp" value="{{$datos['cp']}}">
+                    <input type="hidden" name="cp"        value="{{$datos['cp']}}">
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <label>Nombre del titular</label>
@@ -77,13 +75,13 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-control total btn btn-primary" style="background-color: #48448F; border-color:#48448F">
-                                Total: <span class="amount font-weight-bold"><input type="hidden" name="total" id="total" value=" {{ Cart::getTotal() }}">${{ Cart::getTotal() }}</span>
+                                Total: <span class="amount font-weight-bold"><input type="hidden" name="total" id="total" value=" {{ Cart::getTotal() }}">${{ number_format(Cart::getTotal(),2)}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 form-group">
-                            <button class="form-control btn btn-success submit-button" type="submit" style="margin-top: 10px; background-color: #70b62c; border-color:#70b62c;">Pagar »</button>
+                            <button class="form-control btn btn-success submit-button" type="submit" style="margin-top: 10px; background-color: #70b62c; border-color:#70b62c;">Pagar </button>
                         </div>
                     </div>
                 </form>

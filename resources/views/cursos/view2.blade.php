@@ -56,9 +56,9 @@
         </div>
     </div>
         <div class="row">            
-            <div class="container mt-4"> 
+            <div class="container mt-4">
+                @if(isset($cursoOrdenado['Basico']) && !empty($cursoOrdenado['Basico']))
                 <h3 class="card-text cursos-title">MATERIAL DE APRENDIZAJE BÁSICO</h3>
-                @if(isset($cursoOrdenado['Basico']) && !empty($cursoOrdenado['Basico']))               
                 <div class="row justify-content-md-start justify-content-center mb-5 col-12">                    
                     @foreach ($cursoOrdenado['Basico'] as $curso)
                     <div class="col-10 col-md-6 col-lg-4 col-sm-6">
