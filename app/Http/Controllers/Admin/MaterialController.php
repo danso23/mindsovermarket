@@ -23,6 +23,7 @@ class MaterialController extends Controller
     }
     public function mostrarMateriales(){
         $materiales = Material::join('cursos', 'materiales.id_curso', 'cursos.id_curso')
+        ->where('bActivo', '1')
         ->selectRaw('materiales.*, cursos.nombre AS nombre_curso')
         ->get();
         return Response::json($materiales);
@@ -78,11 +79,15 @@ class MaterialController extends Controller
                 else{
                     $delete = (isset($id) && $id != null && isset($request->delete) && isset($request->cadenadelete)) ? explode(",",$request->cadenadelete) : $id;
                     
-                    if(is_array($delete)){
-                        $bSuccess = Material::whereIn('id_material', $delete)->delete();    
+                    if(is_array($delete)){                        
+                        $bSuccess = Material::whereIn('id_material', $delete)->update([
+                            'bActivo' => 0
+                        ]);
                     }
                     else{
-                        $bSuccess = Material::where('id_material', $delete)->delete();
+                        $bSuccess = Material::where('id_material', $delete)->update([
+                            'bActivo' => 0
+                        ]);
                     }
 
                     

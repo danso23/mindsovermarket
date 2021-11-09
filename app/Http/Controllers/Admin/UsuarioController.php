@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\User As Usuario;
 use App\Models\Curso;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -20,10 +20,10 @@ class UsuarioController extends Controller
         return view('cursos.catalogos.usuarios')->with('datos', $datos);
     }
     public function mostrarUsuarios(){
-        $materiales = Material::join('cursos', 'materiales.id_curso', 'cursos.id_curso')
-        ->selectRaw('materiales.*, cursos.nombre AS nombre_curso')
+        $usuarios = Usuario::selectRaw('id AS id_user, name, last_name, last_name2, email')
+        ->where('tipo_user', '1')
         ->get();
-        return Response::json($materiales);
+        return Response::json($usuarios);
     }
 
 }

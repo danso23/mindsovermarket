@@ -19,22 +19,31 @@ class PaymentController extends Controller
 
     // Metodo que procesa el pago y realiza el registro tanto en la DB como en la plataforma de stripe.
     public function processPayment(Request $request){
-        $total = \Cart::getTotal();
-        // Validacion para el envio de los datos que son necesarios para proceder a la compra
-        //dd($request->all());
-        $this->validate($request, [
-            'card_no' => 'required',
-            'expiry_month' => 'required',
-            'expiry_year' => 'required',
-            'cvv' => 'required',
-        ]);
+
+        
+         
         DB::beginTransaction();
         try {
 
-            // Se inicializa el stripe con la clave secreta, aqui se debe de remplazar por la del cliente
-            // esta se otorga al crear una cuenta en stripe
-            $stripe = Stripe\Stripe::setApiKey('sk_test_51IvU3hCjrYS9cPLbMhk1XGD5AjhGqm3qtFR3dPkH6DG7BTVPKW8TSjGuWvEJuzAgKo7KssFlty4pIzImyNKEGTJm00rjryyGTu');
+            $stripe = Stripe\Stripe::setApiKey('sk_test_51JgH49Jjp1PfXXy1xCWNiGDlE8chsbcmT0GWzoZpgde4uSP34OEg2qPdHuqJQWIk6iuSc7acIboBnEzaU56OzvAV00YuDZbsvf');
 
+            $response = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                            'price' => 'price_1JkfmPJjp1PfXXy1WIbpQoFr',
+                            'quantity' => 1,
+                        ]],
+                'mode' => 'subscription',
+                'success_url' => 'https://www.facebook.com',
+                'cancel_url' => 'https://www.yahoo.com'
+            ]);
+
+            return response()->json($response, 200);
+
+
+
+            $stripe = Stripe\Stripe::setApiKey('sk_test_51JgH49Jjp1PfXXy1xCWNiGDlE8chsbcmT0GWzoZpgde4uSP34OEg2qPdHuqJQWIk6iuSc7acIboBnEzaU56OzvAV00YuDZbsvf');
+            
             // Crea la tarjeta o token que servira para realizar el pago
             $response = \Stripe\Token::create([
                 "card" => array(
@@ -44,7 +53,9 @@ class PaymentController extends Controller
                     "cvc"       => $request->input('cvv')
                 )
             ]);
-                
+
+            return response()->json($response,200);
+
             $venta = new Venta();
             $venta->fecha_venta = date('Y-m-d');
             $venta->total_productos = \Cart::getTotalQuantity();

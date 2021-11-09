@@ -24,10 +24,27 @@ class CursoController extends Controller
     public function index(Request $request) {
         $user = Auth::user();
         $cursos = Curso::where('activo', '1')->get();
-        if($user == null)
+        $cursoOrdenado = [];
+        foreach($cursos as $indexCurso => $infoCurso){
+            switch ($infoCurso->id_modulo) {
+                case 10:
+                    $cursoOrdenado['Basico'][] = $infoCurso;
+                    break;
+                case 11:
+                    $cursoOrdenado['Intermedio'][] = $infoCurso;
+                    break;
+                case 12:
+                    $cursoOrdenado['Avanzado'][] = $infoCurso;
+                    break;
+            }
+        }
+        //dd($cursoOrdenado);
+        if($user == null){
             return redirect('/');
+        }
+        
         if($user->membresia == 1)
-            return view('cursos.view', compact('cursos'));
+            return view('cursos.view2', compact('cursoOrdenado'));
         else{
             return redirect('/'); // AQUI FALTA AGREGAR PANTALLA PARA INVITARLO A RENOVAR SU SUSCRIPCION
         }
@@ -43,6 +60,7 @@ class CursoController extends Controller
     }
     public function createcurso(){
         $user = Auth::user();
+                
         if($user == null)
             return redirect('/');
         if($user->tipo_user != 3)

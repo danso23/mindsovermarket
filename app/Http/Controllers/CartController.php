@@ -12,8 +12,9 @@ use Hamcrest\Util;
 class CartController extends Controller{
 
     public function add (Request $request){
+        
         $producto = ProductoModel::find($request->id_producto);
-        //dd($producto);
+        
         $utils = new Utils();
         \Cart::clear();
         \Cart::add(array(
@@ -48,12 +49,14 @@ class CartController extends Controller{
     }
 
     public function guardaEnvio(Request $request){
+        
         $datos = array(
             'pais'      => $request->pais,
             'estado'    => $request->estado,
             'direccion' => $request->direccion,
             'cp'        => $request->codigoPostal
         );
+
         return view('payment.payment')->with('datos', $datos);
     }
 }
