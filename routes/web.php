@@ -89,6 +89,8 @@ Route::group(['prefix' => 'cursos'], function() {
     Route::get('/CatalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
     Route::get('/CatalogoMaterial', 'Admin\MaterialController@mostrarMaterialesView')->name('Catalogo.Material')->middleware('auth');
 
+    Route::get('/CatalogoModulos', 'Admin\ModulosController@mostrarModulosView')->name('Modulos.catalogoModulos')->middleware('auth');
+
     /** LIVES **/
     Route::get('/lives', 'Cursos\CursoController@obtenerLives')->name('cursos.lives')->middleware('auth');
 });
@@ -116,4 +118,7 @@ Route::group(['prefix' => 'Admin'], function() {
     Route::get('/mostrarLives', 'Admin\LivesController@mostrarLives')->name('admin.mostrarLives');
     Route::post('/storeLives/{id}', 'Admin\LivesController@storeLives')->name('admin.storeLives');
     Route::get('/mostrarUsuarios', 'Admin\UsuarioController@mostrarUsuarios')->name('admin.mostrarUsuarios');
+
+    Route::get('/mostrarModulos', 'Admin\ModulosController@mostrarModulos')->name('admin.mostrarModulos');
+    Route::post('/storeModulos/{id}', 'Admin\ModulosController@storeModulos')->name('admin.storeModulos');
 });
