@@ -24,32 +24,14 @@ class ModulosController extends Controller
 
         return view('cursos.catalogos.modulos')->with('datos', $datos);
     }
-    public function mostrarModulos(){
-        // $materiales = Material::join('cursos', 'materiales.id_curso', 'cursos.id_curso')
-        //                 ->where('bActivo', '1')
-        //                 ->selectRaw('materiales.*, cursos.nombre AS nombre_curso')
-        //                 ->get();
-        // return Response::json($materiales);
+    public function mostrarModulos(){        
 
         $modulos = Modulo::join('cursos', 'cursos.id_curso', 'modulos.id_curso')
                                ->where('modulos.activo', 1)
                                ->select('modulos.*','cursos.nombre as nombre_curso')
                                ->get();
 
-        
-
-        return Response::json($modulos);                
-
-        /*
-            $temarios = Temario::join('modulos', 'temario.id_modulo', 'modulos.id_modulo')
-                            ->join('cursos', 'temario.id_curso', 'cursos.id_curso')
-                            ->where('bActivo',1)
-                            ->selectRaw('temario.*, modulos.nombre AS nombre_modulo, cursos.nombre AS nombre_curso')
-                            ->get();
-        
-        return Response::json($temarios);
-        
-        */
+        return Response::json($modulos);                        
     }
 
     public function storeModulos(Request $request, $id = null){
@@ -71,13 +53,13 @@ class ModulosController extends Controller
                 $material = Modulo::where('id_modulo', $id)
                 ->update([
                     'nombre' => $request->nombre,
-                    'id_curso' => $request->archivo_mat,
+                    'id_curso' => $request->curso,
                     'activo' => 1,                    
                 ]);
                 // print_r($material);exit;
                 $result = array(
                     "Error" => false,
-                    "message" => "Se ha editado con exito el material con folio [$id]"
+                    "message" => "Se ha editado con exito el modulo con folio [$id]"
                 );
             }
             else{
@@ -91,7 +73,7 @@ class ModulosController extends Controller
                     
                     $result = array(
                         "Error" => false,
-                        "message" => "Se ha guardado con exito el material ",
+                        "message" => "Modulo guardado con exito. ",
                         "iId" => $modulo->id
                     );
                 }
@@ -107,9 +89,7 @@ class ModulosController extends Controller
                         $bSuccess = Modulo::where('id_modulo', $delete)->update([
                             'activo' => 0
                         ]);
-                    }
-
-                    
+                    }                    
 
                     if($bSuccess){
                         $result = [
@@ -133,7 +113,7 @@ class ModulosController extends Controller
             DB::rollback();
             $result = array(
                 "Error" => true,
-                "message" => "Ha ocurrido un error, por favor contacte al administrador o inténtelo más tarde | ".$e
+                "message" => "Ha ocurrido un error, por favor contacte al administrador o inténte más tarde."//.$e
             );
             return Response::json($result);
         }

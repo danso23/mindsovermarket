@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
 
+	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/public/css/responsive.bootstrap4.min.css') }}"/>
+	<link rel="stylesheet" href="{{asset('public/plugins/alertifyjs/css/alertify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/plugins/alertifyjs/css/themes/default.min.css')}}">
+
     <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
@@ -24,7 +29,8 @@
 					</div>
                 </div>
             </div>
-            <table id="catalogoCursos" class="table table-striped table-hover table-responsive">
+            
+            <table id="catalogoCursos" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
 			
             </table>
         </div>
@@ -65,8 +71,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" id="btnCancelarCurso" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" id="btnGuardarCurso" value="Save">
+						<input type="button" class="btn btn-default" id="btnCancelarCurso" data-dismiss="modal" value="Cancelar">
+						<input type="submit" class="btn btn-info" id="btnGuardarCurso" value="Guardar">
 					</div>
 				</form>
 			</div>
@@ -78,19 +84,19 @@
 			<div class="modal-content">
 				<form>
 					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
+						<h4 class="modal-title">Eliminar Curso</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
+						<p>Está seguro para eliminar el siguiente registro?</p>
+						<p class="text-warning"><small>Esta acción no se puede revertir.</small></p>
 					</div>
 					<div class="modal-footer">
 						<!--<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						<input type="submit" class="btn btn-danger" value="Delete">-->
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
 						<input type="hidden" id="detelecurso">
-						<input type="button" id="btnEliminarCurso" class="btn btn-danger" value="Delete">
+						<input type="button" id="btnEliminarCurso" class="btn btn-danger" value="Eliminar">
 
 					</div>
 				</form>
@@ -101,7 +107,11 @@
 @endsection
 @section('script')
 	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>	
+	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('public/js/datatable_responsive_2_2_9.js') }}"></script>
+	<script src="{{ asset('public/js/responsive.bootstrap4.min.js') }}"></script>
+	<script src="{{asset('public/plugins/alertifyjs/alertify.min.js')}}"></script>		
+
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 
 	<script>

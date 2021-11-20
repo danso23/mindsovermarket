@@ -33,14 +33,14 @@ $(document).ready(function(){
 	
 	$("#btnGuardarTemario").click(function(e) {
 		e.preventDefault();
+		$('#editTemarioModal').modal('hide');
 		guardarTemario(false);
 	});
 
 	$("#btnEliminarTemario").click(function(e) {
 		e.preventDefault();		
 		$('#deleteTemarioModal').modal('hide');					
-		guardarTemario(true);
-		dataTemario();
+		guardarTemario(true);		
 	});
 
 	$("#deleteEmployeeModal").click(function(e) {		
@@ -53,8 +53,7 @@ $(document).ready(function(){
             }			           
         });
         objChecks = objChecks.split(',');
-        objChecks.pop();
-        //guardarTemario(true);
+        objChecks.pop();        
 	});
 	//FIn seccion Temario
 
@@ -68,7 +67,7 @@ $(document).ready(function(){
 		e.preventDefault();		
 		$('#deleteCursosModal').modal('hide');					
 		guardarCurso(true);
-		dataCurso()();
+		//dataCurso()();
 	});
 
 	$("#deleteCursoModal").click(function(e) {		
@@ -85,8 +84,9 @@ $(document).ready(function(){
 	});
 
 
-	$("#btnGuardarCurso").click(function(e) {
+	$("#btnGuardarCurso").click(function(e) {		
 		e.preventDefault();
+		$('#editCursoModal').modal('hide');
 		guardarCurso(false);
 	});
 
@@ -101,14 +101,14 @@ $(document).ready(function(){
 
 	$("#btnGuardarMaterial").click(function(e) {
 		e.preventDefault();
+		$('#editMaterialModal').modal('hide');
 		guardarMaterial(false);
 	});
 
 	$("#btnEliminarMaterial").click(function(e) {
 		e.preventDefault();		
-		$('#deleteMaterial').modal('hide');					
-		guardarMaterial(true);
-		dataTemario();
+		$('#deleteMaterial').modal('hide');
+		guardarMaterial(true);		
 	});
 
 	$("#deleteMaterialModal").click(function(e) {		
@@ -133,14 +133,14 @@ $(document).ready(function(){
 	
 	$("#btnGuardarLives").click(function(e) {
 		e.preventDefault();
+		$('#editLivesModal').modal('hide');		
 		guardarLives(false);
 	});
 
 	$("#btnEliminarLive").click(function(e) {
 		e.preventDefault();		
 		$('#deleteLivesModal').modal('hide');					
-		guardarLives(true);
-		dataTemario();
+		guardarLives(true);		
 	});
 
 	$("#deleteLiveModal").click(function(e) {		
@@ -163,15 +163,16 @@ $(document).ready(function(){
 	});
 	
 	$("#btnGuardarModulo").click(function(e) {
-		e.preventDefault();
-		guardarModulos(false);
+		e.preventDefault();		
+		$('#editModulosModal').modal('hide');
+		guardarModulos(false);		
 	});
 
 	$("#btnEliminarModulo").click(function(e) {
 		e.preventDefault();		
 		$('#deleteModuloModal').modal('hide');					
 		guardarModulos(true);
-		dataModulo();
+		//dataModulo();
 	});
 
 	$("#deleteModulosModal").click(function(e) {		
@@ -222,11 +223,9 @@ function dataTemario() {
 				"<tbody>";
 			data.forEach((el, i) => {
 				element+="<tr>"+
-					"<td>"+
-						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id_temario+"' name='options[]' value='"+el.id_temario+"'>"+
-							"<label for='checkbox"+el.id_temario+"'>"+el.id_temario+"</label>"+
-						"</span>"+
+					"<td>"+						
+						"<input type='checkbox' id='checkbox"+el.id_temario+"' name='options[]' value='"+el.id_temario+"'>"+
+						"<label for='checkbox"+el.id_temario+"' class='lblChk'>"+el.id_temario+"</label>"+						
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
 					"<td>"+el.descripcion+"</td>"+
@@ -278,10 +277,8 @@ function dataCurso() {
 			data.forEach((el, i) => {
 				element+="<tr>"+
 					"<td>"+
-						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id_curso+"' name='options[]' value='"+el.id_curso+"'>"+
-							"<label for='checkbox"+el.id_curso+"'>"+el.id_curso+"</label>"+
-						"</span>"+
+						"<input type='checkbox' id='checkbox"+el.id_curso+"' name='options[]' value='"+el.id_curso+"'>"+
+						"<label for='checkbox"+el.id_curso+"' class='lblChk'>"+el.id_curso+"</label>"+												
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
 					"<td>"+el.desc_curso+"</td>"+
@@ -332,10 +329,9 @@ function dataMaterial() {
 			data.forEach((el, i) => {
 				element+="<tr>"+
 					"<td>"+
-						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id_material+"' name='options[]' value='"+el.id_material+"'>"+
-							"<label for='checkbox"+el.id_material+"'>"+el.id_material+"</label>"+
-						"</span>"+
+
+						"<input type='checkbox' id='checkbox"+el.id_material+"' name='options[]' value='"+el.id_material+"'>"+
+						"<label for='checkbox"+el.id_material+"' class='lblChk'>"+el.id_material+"</label>"+						
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
 					"<td>"+el.url+"</td>"+
@@ -382,10 +378,8 @@ function dataLives() {
 			data.forEach((el, i) => {
 				element+="<tr>"+
 					"<td>"+
-						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id_live+"' name='options[]' value='"+el.id_live+"'>"+
-							"<label for='checkbox"+el.id_live+"'>"+el.id_live+"</label>"+
-						"</span>"+
+						"<input type='checkbox' id='checkbox"+el.id_live+"' name='options[]' value='"+el.id_live+"'>"+
+						"<label for='checkbox"+el.id_live+"' class='lblChk'>"+el.id_live+"</label>"+
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
 					"<td>"+el.descripcion+"</td>"+
@@ -465,7 +459,7 @@ function dataModulo() {
 			var element ="";
 			console.log(data);
 			element +="<thead>"+
-                    "<tr>"+
+                    "<tr>"+						
 						"<th>"+
 							"<!-- <span class='custom-checkbox'>"+
 								"<input type='checkbox' id='selectAll'>"+
@@ -479,17 +473,15 @@ function dataModulo() {
                         "<th>Acciones</th>"+
 						"<th>ID</th>"+
 						"<th>Mod</th>"+
-						"<th>Cur</th>"+
+						//"<th>Cur</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
 			data.forEach((el, i) => {
 				element+="<tr>"+
 					"<td>"+
-						"<span class='custom-checkbox'>"+
-							"<input type='checkbox' id='checkbox"+el.id_modulo+"' name='options[]' value='"+el.id_modulo+"'>"+
-							"<label for='checkbox"+el.id_modulo+"'>"+el.id_modulo+"</label>"+
-						"</span>"+
+						"<input type='checkbox' id='checkbox"+el.id_modulo+"' name='options[]' value='"+el.id_modulo+"'>"+
+							"<label for='checkbox"+el.id_modulo+"' class='lblChk'>"+el.id_modulo+"</label>"+						
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
 					//"<td>"+el.descripcion+"</td>"+
@@ -499,13 +491,12 @@ function dataModulo() {
 						"<a href='#editModulosModal' class='edit' id='btn_edit_"+el.id_modulo+"' data-toggle='modal' onclick='storeModulo("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
 						"<a href='#deleteTemarioModal_' class='delete' id='btn_delete_"+el.id_modulo+"' data-toggle='modal' onclick='storeModulo("+i+","+'"Eliminar"'+")'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
-					"<td>"+el.id_modulo+"</td>"+
-					"<td>"+el.id_modulo+"</td>"+
+					"<td>"+el.id_modulo+"</td>"+					
 					"<td>"+el.id_curso+"</td>"+
 				"</tr>";
 			});
 			element +="</tbody>";			
-			objTarget = {"visible": false,  "targets": [ 5,6,7 ] };
+			objTarget = { "visible": false,  "targets": [ 5,6 ] };
 			$("#catalogoModulo").empty();
 			$("#catalogoModulo").html(element);
 			crearDataTable("catalogoModulo", objTarget);
@@ -515,12 +506,12 @@ function dataModulo() {
 
 function crearDataTable(table, target){
 	objDataTbl = $("#"+table).DataTable({
-		responsive: true,
+		"responsive": true,
 		//autoWidth: false,
-		order: [ 0, 'asc' ],
-		//serverside:true,
-		destroy: true,
-		language: {
+		"order": [ 0, 'asc' ],
+		//serverside:true,	
+		"destroy": true,	
+		"language": {
 			"zeroRecords": "No se encontró coincidencias",
 			"info": "Mostrando la página _PAGE_ de _PAGES_",
 			"infoEmpty": "No records available",
@@ -533,7 +524,7 @@ function crearDataTable(table, target){
 			}
 		},
 		"lengthMenu":		[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-		"iDisplayLength":	5,
+		"iDisplayLength":	10,
 		"columnDefs": [
 			{
                 // The `data` parameter refers to the data for the cell (defined by the
@@ -546,7 +537,7 @@ function crearDataTable(table, target){
         	},
 			target
         	// {"visible": false,  "targets": [ 6,7,8 ] }
-        ]
+        ]        
 	});
 }
 
@@ -603,26 +594,10 @@ function storeLives(position, tipoAccion){
 	}
 }
 
-function storeUsuarios(position, tipoAccion){	
-	if(tipoAccion == "Editar"){
-		var datos = objDataTbl.row( position ).data();
-		document.querySelector('#'+form[0].id +' #name').value=datos[1];
-		document.querySelector('#'+form[0].id +' #last_name').value=datos[2];
-		document.querySelector('#'+form[0].id +' #last_name2').value=datos[3];
-		document.querySelector('#'+form[0].id +' #email').value=datos[3];
-		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[6];
-		document.getElementById("modal-title-live").innerHTML = 'Editar Usuario N° '+datos[6];
-	}
-	if(tipoAccion == "Nuevo"){
-		document.getElementById("modal-title-live").innerHTML = 'Agregar usuario';
-		document.querySelector('#'+form[0].id+' #hddIdUsuario').value=0;
-		document.getElementById(form[0].id).reset();
-	}
-}
-
 function storeTemario(position, tipoAccion){	
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
+		console.log(datos);
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
 		document.querySelector('#'+form[0].id +' #descripcion').value=datos[2];
 		document.querySelector('#'+form[0].id +' #url_video').value=datos[3];
@@ -651,7 +626,7 @@ function storeMaterial(position, tipoAccion){
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
-		document.querySelector('#'+form[0].id +' #url').value=datos[2];
+		document.querySelector('#'+form[0].id +' #archivo_mat').value=datos[2];
 		document.querySelector('#'+form[0].id +' #curso').value=datos[6];
 		document.querySelector('#'+form[0].id+' #hddIdMaterial').value=datos[7];
 		document.getElementById("modal-title-material").innerHTML = 'Editar material N° '+datos[7];
@@ -671,15 +646,13 @@ function storeMaterial(position, tipoAccion){
 
 }
 
-
 function storeModulo(position, tipoAccion){
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
-		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
-		//document.querySelector('#'+form[0].id +' #url').value=datos[2];
-		document.querySelector('#'+form[0].id +' #curso').value=datos[6];
-		document.querySelector('#'+form[0].id+' #hddIdModulo').value=datos[7];
-		document.getElementById("modal-title-modulo").innerHTML = 'Editar modulo N° '+datos[7];
+		document.querySelector('#'+form[0].id +' #nombre').value    = datos[1];		
+		document.querySelector('#'+form[0].id +' #curso').value     = datos[6];
+		document.querySelector('#'+form[0].id+' #hddIdModulo').value= datos[5];
+		document.getElementById("modal-title-modulo").innerHTML = 'Editar modulo: <br><b>'+datos[1]+'</b>';
 	}
 	if(tipoAccion == "Nuevo"){
 		document.getElementById("modal-title-modulo").innerHTML = 'Agregar modulo';
@@ -694,6 +667,23 @@ function storeModulo(position, tipoAccion){
 		$('#deleteModuloModal').modal('show');		
 	}
 
+}
+
+function storeUsuarios(position, tipoAccion){	
+	if(tipoAccion == "Editar"){
+		var datos = objDataTbl.row( position ).data();
+		document.querySelector('#'+form[0].id +' #name').value=datos[1];
+		document.querySelector('#'+form[0].id +' #last_name').value=datos[2];
+		document.querySelector('#'+form[0].id +' #last_name2').value=datos[3];
+		document.querySelector('#'+form[0].id +' #email').value=datos[3];
+		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[6];
+		document.getElementById("modal-title-live").innerHTML = 'Editar Usuario N° '+datos[6];
+	}
+	if(tipoAccion == "Nuevo"){
+		document.getElementById("modal-title-live").innerHTML = 'Agregar usuario';
+		document.querySelector('#'+form[0].id+' #hddIdUsuario').value=0;
+		document.getElementById(form[0].id).reset();
+	}
 }
 
 function guardarTemario(opcion){
@@ -717,16 +707,20 @@ function guardarTemario(opcion){
 				window.location.href = data.redirect;
 			}
 
-			
-			
+			if(data.Error){
 
-			//objDataTbl.draw();
-			// objDataTbl.on( 'draw', function () {
-   //  		console.log( 'Redraw occurred at: '+new Date().getTime() );
-			// }); 
-			//$('#catalogoTemario').draw();
-			//dataTemario();
-			//alert(data.message);			
+				alertify.alert().setting(
+						{
+				    		'title': 'Atención',
+				    		'label':'Aceptar',
+				    		'message': '<div style="word-break: break-all;">'+data.message+'</div>',
+				    		'onok': function(){}
+  						}).show();
+			}
+			else{
+				alertify.success(data.message);
+				dataTemario();	
+			}				
 		},
 		error: function (jqXHR, exception){
 			var msg = '';
@@ -773,16 +767,20 @@ function guardarCurso(opcion){
 				window.location.href = data.redirect;
 			}
 
-			
-			
+			if(data.Error){
 
-			//objDataTbl.draw();
-			// objDataTbl.on( 'draw', function () {
-   //  		console.log( 'Redraw occurred at: '+new Date().getTime() );
-			// }); 
-			//$('#catalogoTemario').draw();
-			//dataTemario();
-			//alert(data.message);			
+				alertify.alert().setting(
+						{
+				    		'title': 'Atención',
+				    		'label':'Aceptar',
+				    		'message': '<div style="word-break: break-all;">'+data.message+'</div>',
+				    		'onok': function(){}
+  						}).show();
+			}
+			else{
+				alertify.success(data.message);
+				dataCurso();	
+			}		
 		},
 		error: function (jqXHR, exception){
 			var msg = '';
@@ -823,7 +821,26 @@ function guardarLives(opcion){
     	url: url_global+"/Admin/storeLives/"+reger,//document.getElementById("hddIdLives").value,
 		data: dataform,
 		success: function(data){
-			alert(data.message);
+			
+			if(data.Error && data.redirect){
+				window.location.href = data.redirect;
+			}
+
+			if(data.Error){
+
+				alertify.alert().setting(
+						{
+				    		'title': 'Atención',
+				    		'label':'Aceptar',
+				    		'message': '<div style="word-break: break-all;">'+data.message+'</div>',
+				    		'onok': function(){}
+  						}).show();
+			}
+			else{
+				alertify.success(data.message);
+				dataLives();
+			}
+
 		},
 		error: function (jqXHR, exception){
 			var msg = '';
@@ -865,7 +882,25 @@ function guardarMaterial(opcion){
     	url: url_global+"/Admin/storeMaterial/"+reger,//document.getElementById("hddIdMaterial").value,
 		data: dataform,
 		success: function(data){
-			alert(data.message);
+			
+			if(data.Error && data.redirect){
+				window.location.href = data.redirect;
+			}
+
+			if(data.Error){
+
+				alertify.alert().setting(
+						{
+				    		'title': 'Atención',
+				    		'label':'Aceptar',
+				    		'message': '<div style="word-break: break-all;">'+data.message+'</div>',
+				    		'onok': function(){}
+  						}).show();
+			}
+			else{
+				alertify.success(data.message);
+				dataMaterial();
+			}						
 		},
 		error: function (jqXHR, exception){
 			var msg = '';
@@ -889,6 +924,64 @@ function guardarMaterial(opcion){
 	});
 }
 
+function guardarModulos(opcion){
+	
+	var reger = '';
+	dataform  = $('#'+form[0].id).serialize();
+	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
+
+	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("deleteModulo").value ) : document.getElementById("hddIdModulo").value;
+	dataform += (opcion) ? "&delete=1" : '';
+	dataform += (opcion && objChecks) ? "&cadenadelete="+objChecks : '';
+	console.log(dataform);
+	$.ajax({
+		type: "POST",
+    	dataType: "json",
+    	url: url_global+"/Admin/storeModulos/"+reger,//document.getElementById("hddIdLives").value,
+		data: dataform,
+		success: function(data){
+			
+
+			if(data.Error && data.redirect){
+				window.location.href = data.redirect;
+			}
+
+			if(data.Error){
+
+				alertify.alert().setting(
+						{
+				    		'title': 'Atención',
+				    		'label':'Aceptar',
+				    		'message': '<div style="word-break: break-all;">'+data.message+'</div>',
+				    		'onok': function(){}
+  						}).show();
+			}
+			else{
+				alertify.success(data.message);
+				dataModulo();	
+			}						
+		},
+		error: function (jqXHR, exception){
+			var msg = '';
+			if (jqXHR.status === 0)
+				msg = 'Not connect.\n Verify Network.';
+			else if (jqXHR.status == 404)
+				msg = 'Requested page not found. [404]';
+			else if (jqXHR.status == 500)
+				msg = 'Internal Server Error [500].';
+			else if (exception === 'parsererror')
+				msg = 'Requested JSON parse failed.';
+			else if (exception === 'timeout')
+				msg = 'Time out error.';
+			else if (exception === 'abort')
+				msg = 'Se aborto el proceso.';
+			else
+				msg = 'Uncaught Error.\n' + jqXHR.responseText;
+			console.log(msg);
+			alert("Ocurrio un error[1]")
+		}
+	});
+}
 
 function guardarUsuario(){
 	dataform = $('#'+form[0].id).serialize();
@@ -922,50 +1015,4 @@ function guardarUsuario(){
 			alert("Ocurrio un error[1]")
 		}
 	});
-}
-
-function guardarModulos(opcion){
-	// dataform = $('#'+form[0].id).serialize();	
-	// dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
-	var reger = '';
-	dataform  = $('#'+form[0].id).serialize();
-	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
-
-	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("deleteModulo").value ) : document.getElementById("hddIdModulo").value;
-	dataform += (opcion) ? "&delete=1" : '';
-	dataform += (opcion && objChecks) ? "&cadenadelete="+objChecks : '';
-	console.log(dataform);
-	$.ajax({
-		type: "POST",
-    	dataType: "json",
-    	url: url_global+"/Admin/storeModulos/"+reger,//document.getElementById("hddIdLives").value,
-		data: dataform,
-		success: function(data){
-			alert(data.message);
-		},
-		error: function (jqXHR, exception){
-			var msg = '';
-			if (jqXHR.status === 0)
-				msg = 'Not connect.\n Verify Network.';
-			else if (jqXHR.status == 404)
-				msg = 'Requested page not found. [404]';
-			else if (jqXHR.status == 500)
-				msg = 'Internal Server Error [500].';
-			else if (exception === 'parsererror')
-				msg = 'Requested JSON parse failed.';
-			else if (exception === 'timeout')
-				msg = 'Time out error.';
-			else if (exception === 'abort')
-				msg = 'Se aborto el proceso.';
-			else
-				msg = 'Uncaught Error.\n' + jqXHR.responseText;
-			console.log(msg);
-			alert("Ocurrio un error[1]")
-		}
-	});
-}
-
-
-function eliminarRow(){
-
 }

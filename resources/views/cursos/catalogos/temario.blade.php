@@ -5,7 +5,11 @@
     <link rel="stylesheet" href="{{ asset('public/fonts/fonts_material.css') }}">
     <link rel="stylesheet" href="{{ asset('public/fonts/font_awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('public/css/dataTables.bootstrap4.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/public/css/responsive.bootstrap4.min.css') }}"/>
     <link href="{{ asset('public/css/cursos/catalogos.css') }}" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="{{asset('public/plugins/alertifyjs/css/alertify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/plugins/alertifyjs/css/themes/default.min.css')}}">
 @endsection
 @section('content')
 <body>
@@ -24,7 +28,7 @@
                 </div>
             </div>
             <div class="table-resposive">
-	            <table id="catalogoTemario" class="table table-striped table-hover table-responsive">
+            	<table id="catalogoTemario" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
 				
 	            </table>
         	</div>
@@ -37,7 +41,7 @@
 				<form id="formEditarTemario">
 					@csrf
 					<div class="modal-header">
-						<h4 class="modal-title" id="modal-title-temario">Edit Temario</h4>
+						<h4 class="modal-title" id="modal-title-temario">Editar Temario</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
@@ -75,7 +79,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" id="btnCancelarTemario" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" id="btnGuardarTemario" value="Save">
+						<input type="submit" class="btn btn-info" id="btnGuardarTemario" value="Guardar">
 					</div>
 				</form>
 			</div>
@@ -87,17 +91,17 @@
 			<div class="modal-content">
 				<!--<form>-->
 					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
+						<h4 class="modal-title">Eliminar Temario</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
+						<p>Está seguro para eliminar el siguiente registro?</p>
+						<p class="text-warning"><small>Esta acción no se puede revertir.</small></p>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
 						<input type="hidden" id="detema">
-						<input type="button" id="btnEliminarTemario" class="btn btn-danger" value="Delete">
+						<input type="button" id="btnEliminarTemario" class="btn btn-danger" value="Eliminar">
 					</div>
 				<!--</form>-->
 			</div>
@@ -105,9 +109,13 @@
 	</div>
 </body>
 @endsection
-@section('script')
+@section('script')	
 	<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('public/js/datatable_responsive_2_2_9.js') }}"></script>
+	<script src="{{ asset('public/js/responsive.bootstrap4.min.js') }}"></script>
+	<script src="{{asset('public/plugins/alertifyjs/alertify.min.js')}}"></script>		
+
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
 		var url_global = "{{ url('') }}";

@@ -49,6 +49,11 @@ body.menu-opened {
   z-index: 100;
 }
 
+.lblChk{
+  padding-left: 7px;
+  margin-bottom: 1px;
+}
+
 .info-nav ul.menu-right, .info-nav ul.menu-center{
   list-style: none;
   float: right;
