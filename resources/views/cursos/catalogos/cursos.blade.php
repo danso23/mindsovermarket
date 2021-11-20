@@ -69,6 +69,15 @@
 								@endforeach
 							</select>
 						</div>
+						<div class="form-group">
+							<label for="academico">Nivel académico</label>
+							<select class="form-control" name="academico" id="academico">
+								<option selected hidden value="default">Selecciona una categoría</option>
+								<option value="1">Aprendizaje Básico</option>
+								<option value="2">Aprendizaje Intermedio</option>
+								<option value="3">Aprendizaje Avanzado</option>
+							</select>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" id="btnCancelarCurso" data-dismiss="modal" value="Cancelar">

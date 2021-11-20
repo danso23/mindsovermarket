@@ -51,7 +51,8 @@ class CursoController extends Controller
                     'desc_curso' => $request->desc_curso,
                     'portada' => $request->portada,
                     'activo' => 1,
-                    'id_categoria' => $request->categoria
+                    'id_categoria' => $request->categoria,
+                    'id_academica' => $request->academica
                 ]);
                 $result = array(
                     "Error" => false,
@@ -65,6 +66,7 @@ class CursoController extends Controller
                     $temario->desc_curso = $request->desc_curso;
                     $temario->portada = $request->portada;
                     $temario->id_categoria = $request->categoria;
+                    $temario->id_academica = $request->academica;
                     $temario->activo = 1;
                     $temario->save();
                     $result = array(

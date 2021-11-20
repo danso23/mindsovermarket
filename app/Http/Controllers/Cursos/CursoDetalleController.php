@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Response;
 class CursoDetalleController extends Controller
 {
     public function index(Request $request, $id){
-        dd('hol');
         $materiales = Material::selectRaw('materiales.id_material, materiales.nombre, materiales.url')
         ->where('materiales.id_curso', $id)
         ->get();
