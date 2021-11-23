@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Lives;
 use App\Models\CursoMaterial As Material;
-use App\Models\CursoModulo As Modulo;
+use App\Models\CursoModulo   As Modulo;
+use App\Models\NivelModel    As Nivel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Response;
@@ -23,21 +24,19 @@ class CursoController extends Controller
      */
     public function index(Request $request) {
         $user = Auth::user();
-        $cursos = Curso::where('activo', '1')->get();
+        $cursos = Curso::join('nivelacademico','nivelacademico.id_nivel','cursos.id_nivel')
+                  ->where('cursos.activo', '1')
+                  ->select('cursos.*','nivelacademico.id_nivel as nivel','nivelacademico.nombre as nombrenivel')
+                  ->get();
+        //dd($cursos);
         $cursoOrdenado = [];
+        
+
         foreach($cursos as $indexCurso => $infoCurso){
-            switch ($infoCurso->id_modulo) {
-                case 10:
-                    $cursoOrdenado['Basico'][] = $infoCurso;
-                    break;
-                case 11:
-                    $cursoOrdenado['Intermedio'][] = $infoCurso;
-                    break;
-                case 12:
-                    $cursoOrdenado['Avanzado'][] = $infoCurso;
-                    break;
-            }
+            $cursoOrdenado[$infoCurso->id_nivel][] = $infoCurso;
         }
+        
+
         //dd($cursoOrdenado);
         if($user == null){
             return redirect('/');

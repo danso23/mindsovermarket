@@ -9,6 +9,8 @@ use App\Models\CursoMaterial As Material;
 use App\Models\CursoTemario As Temario;
 use App\Models\CursoModulo As Modulo;
 use App\Models\CategoriaModel As Categoria;
+use App\Models\NivelModel As Nivel;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Response;
@@ -18,15 +20,28 @@ use DB;
 class CursoController extends Controller
 {
     public function mostrarCursosView(Request $request){
-        $categorias = Categoria::where('activo', 1)->whereIn('id_categoria', [1,2])->selectRaw('id_categoria, nombre_categoria AS nombre')->get();    
-        $datos = array("categorias" => $categorias);
+        
+        $arrayCategorias = [1,2];
+
+        $categorias = Categoria::where('activo', 1)
+                        ->whereIn('id_categoria', $arrayCategorias)
+                        ->selectRaw('id_categoria, nombre_categoria AS nombre')
+                        ->get();  
+
+        $nivel  =  Nivel::where('activo',1)
+                   ->select('id_nivel','nombre')
+                   ->get(); 
+        
+        $datos = array("categorias" => $categorias, "niveles" => $nivel);
+        
         return view('cursos.catalogos.cursos')->with('datos', $datos);
     }
 
     public function mostrarCurso(){
-        $cursos =   Curso::selectRaw('cursos.*')
-                    ->where('activo', 1)
-                    ->get();
+        $cursos =  Curso::selectRaw('cursos.*')
+                   ->where('activo', 1)
+                   ->get();
+        
         return Response::json($cursos);
     }
 
@@ -40,19 +55,37 @@ class CursoController extends Controller
             
             return response()->json($jsonData);
         }
+        /*
+            desc_curso
+que_curso
+sobre_profe
+categoria
+nivel_academico
 
+
+//BD
+id_curso
+nombre
+desc_curso
+objetivo
+about_teacher
+activo
+id_categoria
+id_nivel
+        */
         DB::beginTransaction();
         try {
             //if($id != 0){
             if(isset($id) && $id != null && $id != 0 && !isset($request->delete)){
                 $curso = Curso::where('id_curso', $id)
                 ->update([
-                    'nombre' => $request->nombre,
-                    'desc_curso' => $request->desc_curso,
-                    'portada' => $request->portada,
-                    'activo' => 1,
-                    'id_categoria' => $request->categoria,
-                    'id_academica' => $request->academica
+                    'nombre'        => $request->nombre,
+                    'desc_curso'    => $request->desc_curso,
+                    'objetivo'      => $request->que_curso,
+                    'about_teacher' => $request->sobre_profe,
+                    'id_categoria'  => $request->categoria,
+                    'id_nivel'      => $request->nivel_academico,
+                    'activo'        => 1                    
                 ]);
                 $result = array(
                     "Error" => false,
@@ -62,12 +95,13 @@ class CursoController extends Controller
             else{
                 if(isset($id) && $id == 0 && !isset($request->delete)){
                     $temario = new Curso();
-                    $temario->nombre = $request->nombre;
-                    $temario->desc_curso = $request->desc_curso;
-                    $temario->portada = $request->portada;
-                    $temario->id_categoria = $request->categoria;
-                    $temario->id_academica = $request->academica;
-                    $temario->activo = 1;
+                    $temario->nombre        = $request->nombre;
+                    $temario->desc_curso    = $request->desc_curso;
+                    $temario->objetivo      = $request->que_curso;
+                    $temario->about_teacher = $request->sobre_profe;
+                    $temario->id_categoria  = $request->categoria;
+                    $temario->id_nivel      = $request->nivel_academico;
+                    $temario->activo        = 1;
                     $temario->save();
                     $result = array(
                         "Error" => false,

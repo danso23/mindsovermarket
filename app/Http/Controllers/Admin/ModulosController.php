@@ -54,6 +54,7 @@ class ModulosController extends Controller
                 ->update([
                     'nombre' => $request->nombre,
                     'id_curso' => $request->curso,
+                    'descripcion' => $request->descripcion_modulo,
                     'activo' => 1,                    
                 ]);
                 // print_r($material);exit;
@@ -69,6 +70,7 @@ class ModulosController extends Controller
                     $modulo->nombre     = $request->nombre;                    
                     $modulo->activo     = 1;
                     $modulo->id_curso   = $request->curso;
+                    $modulo->descripcion = $request->descripcion_modulo;
                     $modulo->save();
                     
                     $result = array(

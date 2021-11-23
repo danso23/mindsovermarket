@@ -50,11 +50,15 @@
 						<div class="form-group">
 							<label>Nombre</label>
 							<input type="text" name="nombre" id="nombre" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label for="descripcion_modulo">Descripción</label>
+							<input type="text" name="descripcion_modulo" id="descripcion_modulo" class="form-control" required>
 						</div>						
 						<div class="form-group">
 							<label>Curso</label>
 							<select class="form-control" name="curso" id="curso">
-								<option selected hidden value="default">Selecciona un curso</option>
+								<option selected value="default">Selecciona un curso</option>
 								@foreach($datos['cursos'] as $cur)
 									<option value="{{$cur->id_curso}}">{{$cur->nombre}}</option>
 								@endforeach

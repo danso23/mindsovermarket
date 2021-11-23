@@ -71,7 +71,8 @@
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
         <div class="col-12 col-sm-6 text-left div-info-curso">   
             <p style="color: #484490; font-family: inherit; font-weight: bold">¿QUÉ APRENDERÁS DE ESTE CURSO?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi magni ducimus tempora numquam adipisci autem fugiat, quidem, consequuntur libero velit voluptatem officia. Placeat fugit molestiae nesciunt ex beatae suscipit?</p>
+            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi magni ducimus tempora numquam adipisci autem fugiat, quidem, consequuntur libero velit voluptatem officia. Placeat fugit molestiae nesciunt ex beatae suscipit?</p>-->
+            <p>{{ $datos['curso'][0]->objetivo }}</p>
         </div>
         <div class="d-lg-inline col-sm-12 col-md-6 col-12 text-lg-left text-center"></div>
         </div>
@@ -79,7 +80,8 @@
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
         <div class="col-12 col-sm-6 text-left div-info-curso">   
             <p style="color: #484490; font-family: inherit; font-weight: bold">SOBRE EL PROFESOR</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi magni ducimus tempora numquam adipisci autem fugiat, quidem, consequuntur libero velit voluptatem officia. Placeat fugit molestiae nesciunt ex beatae suscipit?</p>
+            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi magni ducimus tempora numquam adipisci autem fugiat, quidem, consequuntur libero velit voluptatem officia. Placeat fugit molestiae nesciunt ex beatae suscipit?</p>-->
+            <p>{{ $datos['curso'][0]->about_teacher }}</p>
         </div>
         <div class="d-lg-inline col-sm-12 col-md-6 col-12 text-lg-left text-center"></div>
         </div>
@@ -87,7 +89,7 @@
     <div class="h-100 align-items-center d-lg-inline-flex col-12 mt-4">
         <div class="col-12 col-sm-6 text-left div-info-curso">   
             <p style="color: #484490; font-family: inherit; font-weight: bold">DESCARGA AQUÍ EL MATERIAL</p>
-            <p>{{$datos['materiales'][0]->nombre}}</p>
+            <p>{{ $datos['materiales'][0]->nombre }}</p>
             <a class="btn btn-green-df"  href="{{ asset('public/cursos/documento-prueba.pdf') }}" download="Reporte2Mayo2010"> Descargar </a>
         </div>
         <div class="d-lg-inline col-sm-12 col-md-6 col-12 text-lg-left text-center"></div>
