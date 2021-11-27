@@ -1,6 +1,7 @@
 var objDataTbl;
 var objTarget;
 var objChecks;
+var objCursosw;
 
 $(document).ready(function(){
 	// Activate tooltip
@@ -34,20 +35,22 @@ $(document).ready(function(){
 		
 		htmlElem = '<option selected disabled hidden value="default">Selecciona una opción</option>';
 		
-		objCursosw.forEach(element => {                    	       
-	       		       		       
-	       	if(parseInt($(this).val()) === parseInt(element.id_curso)){	       		
-	       		htmlElem += '<option class="text-uppercase" value="'+element.id_modulo+'" >'+element.nombre+'</option>';	       		
-                bVacio = true;
-	       	} 
-			
-			//console.log(htmlElem);
-			htmlElem2 = (!bVacio) ? "<option selected disabled value='#'>Sin datos</option>" : htmlElem;
+		if(objCursosw){
 
-			$("#modulo").empty();
-            $("#modulo").append(htmlElem2); 
-	                                    
-	    });
+			objCursosw.forEach(element => {                    	       
+		       		       		       
+		       	if(parseInt($(this).val()) === parseInt(element.id_curso)){	       		
+		       		htmlElem += '<option class="text-uppercase" value="'+element.id_modulo+'" >'+element.nombre+'</option>';	       		
+	                bVacio = true;
+		       	} 
+				
+				//console.log(htmlElem);
+				htmlElem2 = (!bVacio) ? "<option selected disabled value='#'>Sin datos</option>" : htmlElem;
+
+				$("#modulo").empty();
+	            $("#modulo").append(htmlElem2); 	                                    
+		    });
+		}
 
 		// if(objCursosw && $(this).val() != 'default'){
 	        
@@ -409,6 +412,7 @@ function dataLives() {
                         "<th>Nombre</th>"+
                         "<th>Descripción</th>"+
 						"<th>Portada</th>"+
+						"<th>Fecha Live</th>"+
                         "<th>Link</th>"+
                         "<th>Acciones</th>"+
 						"<th>IDLIVES</th>"+
@@ -424,6 +428,7 @@ function dataLives() {
 					"<td>"+el.nombre+"</td>"+
 					"<td>"+el.descripcion+"</td>"+
 					"<td>"+el.portada+"</td>"+
+					"<td>"+el.fecha_live+"</td>"+
 					"<td>"+el.url+"</td>"+
 					"<td>"+
 						"<a href='#editLivesModal' class='edit' id='btn_edit_"+el.id_live+"' data-toggle='modal' onclick='storeLives("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
@@ -433,7 +438,7 @@ function dataLives() {
 				"</tr>";
 			});
 			element+="</tbody>";
-			objTarget = {"visible": false,  "targets": [ 6 ] };
+			objTarget = {"visible": false,  "targets": [ 7 ] };
 			$("#catalogoLives").empty();
 			$("#catalogoLives").html(element);
 			crearDataTable("catalogoLives", objTarget);
@@ -611,15 +616,28 @@ function storeCurso(position, tipoAccion){
 }
 
 function storeLives(position, tipoAccion){	
+
+	/*
+		nombre
+		desc_Lives
+		fecha_live
+		portada
+		url
+	*/
+
 	if(tipoAccion == "Editar"){
 		debugger
 		var datos = objDataTbl.row( position ).data();
+		console.log(datos);
 		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
 		document.querySelector('#'+form[0].id +' #desc_Lives').value=datos[2];
+		//document.querySelector('#'+form[0].id +' #fecha_live').value= "";//datos[2];				
 		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
-		document.querySelector('#'+form[0].id +' #url').value=datos[4];
-		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[6];
-		document.getElementById("modal-title-live").innerHTML = 'Editar live N° '+datos[6];
+		//$('#').value(datos[4]);
+		document.querySelector('#'+form[0].id +' #fecha_live').value=datos[4];
+		document.querySelector('#'+form[0].id +' #url').value=datos[5];
+		document.querySelector('#'+form[0].id+' #hddIdLives').value=datos[7];
+		document.getElementById("modal-title-live").innerHTML = 'Editar live N° '+datos[7];
 	}
 	if(tipoAccion == "Nuevo"){
 		document.getElementById("modal-title-live").innerHTML = 'Agregar live';
@@ -629,7 +647,7 @@ function storeLives(position, tipoAccion){
 
 	if(tipoAccion == "Eliminar"){
 		var datos = objDataTbl.row( position ).data();
-		document.getElementById("detelelive").value = datos[6];
+		document.getElementById("detelelive").value = datos[7];
 		//document.querySelector("#deleteCursosModal .modal-body p").innerHTML = 'Eliminar Temario: '+datos[1];		
 		document.querySelector("#deleteLivesModal .modal-title").innerHTML = 'Eliminar Live: <br><b>'+datos[1]+'</b>';
 		$('#deleteLivesModal').modal('show');		
@@ -851,6 +869,8 @@ function guardarLives(opcion){
 	// dataform+="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
 	var reger = '';
 	dataform  = $('#'+form[0].id).serialize();
+
+	
 	dataform +="&token="+document.querySelector('meta[name="_token"]').getAttribute('content');
 
 	reger 	  = (opcion) ? ((objChecks) ? null : document.getElementById("detelelive").value ) : document.getElementById("hddIdLives").value;

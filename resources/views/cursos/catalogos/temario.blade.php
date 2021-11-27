@@ -114,9 +114,9 @@
 	<script src="{{ asset('public/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script src="{{ asset('public/js/datatable_responsive_2_2_9.js') }}"></script>
 	<script src="{{ asset('public/js/responsive.bootstrap4.min.js') }}"></script>
-	<script src="{{asset('public/plugins/alertifyjs/alertify.min.js')}}"></script>		
-	<script>var objCursosw = "{{$modsObj}}";</script>
+	<script src="{{asset('public/plugins/alertifyjs/alertify.min.js')}}"></script>			
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
+    <script>objCursosw = "{{$modsObj}}";</script>
 	<script>
 		objCursosw = objCursosw.replace(/(&quot\;)/g,"\"");
 		objCursosw = JSON.parse(objCursosw);

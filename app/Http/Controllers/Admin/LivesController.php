@@ -14,27 +14,38 @@ use DB;
 class LivesController extends Controller
 {
     public function mostrarLivesView(Request $request){
-        $lives = Lives::where('activo', '1')->selectRaw('id_live, nombre, descripcion, portada, url')->get();
+        $lives = Lives::where('activo', '1')->selectRaw('id_live, nombre, descripcion, portada, url, fecha_live' )->get();
         $datos = array("lives" => $lives);
         return view('cursos.catalogos.live')->with('datos', $datos);
     }
 
     public function mostrarLives(){
         $lives = Lives::where('activo',1)->selectRaw('lives.*')
-        ->get();
+                 ->get();
         return Response::json($lives);
     }
 
     public function storeLives(Request $request, $id){
         DB::beginTransaction();
+        
+        //$dateForm = (isset($request->fecha_live) && $request->fecha_live != '') ? $this->formatDateTime($request->fecha_live) : '';
+
+
+        // $result = array(
+        //         "Error" => true,
+        //         "message" => $dateForm//. "\n".$request->fecha_live
+        //     );
+        // return Response::json($result);
+
         try {
             //if($id != 0){
             if(isset($id) && $id != null && $id != 0 && !isset($request->delete)){
                 $lives = Lives::where('id_live', $id)
                 ->update([
                     'nombre'        => $request->nombre,
-                    'descripcion'   => $request->desc_Lives,
+                    'descripcion'   => $request->desc_Lives,                    
                     'portada'       => $request->portada,
+                    'fecha_live'    => $request->fecha_live,
                     'url'           => $request->url,
                     'activo'        => 1
                 ]);
@@ -50,6 +61,7 @@ class LivesController extends Controller
                     $lives->nombre      = $request->nombre;
                     $lives->descripcion = $request->desc_Lives;
                     $lives->portada     = $request->portada;
+                    $lives->fecha_live  = $request->fecha_live;
                     $lives->url         = $request->url;
                     $lives->activo      = 1;
                     $lives->save();
@@ -105,5 +117,63 @@ class LivesController extends Controller
         }
         DB::commit();
         return Response::json($result);
+    }
+
+    function formatDateTime($dateTime){
+
+        $step1 = explode(',', $dateTime);
+        $arrayMeses = [
+            "ENERO"     => 1,
+            "FEBRERO"   => 2,
+            "MARZO"     => 3,
+            "ABRIL"     => 4,
+            "MAYO"      => 5,
+            "JUNIO"     => 6,
+            "JULIO"     => 7,
+            "AGOSTO"    => 8,
+            "SEPTIEMBRE"=> 9,
+            "OCTUBRE"   => 10,
+            "NOVIEMBRE" => 11,
+            "DICIEMBRE" => 12
+        ];
+
+        //Mié, Noviembre 17, 2021 5:25 AM
+        /*
+        0: "Jue"
+        1: " Noviembre 18"
+        2: " 2021 4:25 AM"
+        */
+        if(is_array($step1)){
+
+            $MesDia   = str_replace(' ', '',$step1[1]);
+            $HoraAnio = explode(' ',$step1[2]);
+            $comodin  = array_shift($HoraAnio);
+
+            $arrayFecha = [];
+            for ($i=0; $i < strlen($MesDia); $i++) { 
+                if(is_numeric($MesDia[$i])){
+
+
+                    $arrayFecha['dia'] = substr($MesDia,$i,strlen($MesDia));
+                    
+                    break;
+                }
+                else{
+                    //substr("Hello world",0,-1)
+                    //substr("Hello world",0,-2) == Hello wor
+                    
+                    $arrayFecha['mes'] = strval(strtoupper(substr($MesDia,0,$i+1)));
+                }                
+            }
+
+            $arrayFecha['mes']  = $arrayMeses[$arrayFecha['mes']];
+            $arrayFecha['anio'] = $HoraAnio[0];
+            $arrayFecha['hora'] = $HoraAnio[1];
+            $arrayFecha['uso']  = $HoraAnio[2];
+
+        }
+
+        return $arrayFecha;//dia." - Mes: ".$mes." Posision ".$i." Textcompleto: ".$MesDia;
+
     }
 }

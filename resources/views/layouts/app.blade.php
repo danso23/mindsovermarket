@@ -78,6 +78,7 @@
                                         <a href='{{ route('Catalogo.Material') }}' class='btn'>Catalogo Material</a>
                                         <a href='{{ route('Catalogo.Lives') }}' class='btn'>Catalogo Live</a>
                                         <a href='{{ route('Catalogo.Usuario') }}' class='btn'>Catalogo Usuarios</a>
+                                        <a href='{{ route('Modulos.catalogoModulos') }}' class='btn'>Catalogo Modulos</a>                                        
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>

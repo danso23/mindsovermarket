@@ -57,7 +57,7 @@
 						<div class="form-group">
 							<div class="md-form">
 								<label for="fecha_live">Fecha - Hora</label>
-							  	<input id="fecha_live"  />							  
+							  	<input name="fecha_live" id="fecha_live" class="form-control"  />							  
 							</div>
 						</div>
 						<div class="form-group">
@@ -120,6 +120,7 @@
 			//format: 'dd mmmm yyyy h.m'
 			mode: 'ampm',			
 			format: "ddd, mmmm d, yyyy h:MM TT",
+			//format: 'dd mmmm yyyy HH:MM',
 			disableDates:  function (date) {
             	const currentDate = new Date();
             	return date > currentDate ? true : false;
