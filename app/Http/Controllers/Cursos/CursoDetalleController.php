@@ -29,8 +29,6 @@ class CursoDetalleController extends Controller
             $modulo[$mod]['temario'] = array($arrNewTemarios);
         }
         $datos = array('modulos' => $modulo, 'materiales' => $materiales);
-        // return Response::json($datos);
-        //dd($datos);
         return view('cursos.detail')->with('datos', $datos);
     }
 
