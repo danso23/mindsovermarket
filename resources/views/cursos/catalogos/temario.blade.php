@@ -59,15 +59,6 @@
 							<input type="text" name="url_video" id="url_video" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Módulo</label>
-							<select class="form-control" name="modulo" id="modulo">
-								<option selected hidden value="default">Selecciona un módulo</option>
-								@foreach($datos['modulos'] as $mod)
-									<option value="{{$mod->id_modulo}}">{{$mod->nombre}}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="form-group">
 							<label>Curso</label>
 							<select class="form-control" name="curso" id="curso">
 								<option selected hidden value="default">Selecciona un curso</option>
@@ -76,6 +67,15 @@
 								@endforeach
 							</select>
 						</div>
+						<div class="form-group">
+							<label>Módulo</label>
+							<select class="form-control" name="modulo" id="modulo">
+								<option selected hidden value="default">Selecciona un módulo</option>
+								@foreach($datos['modulos'] as $mod)
+									<option value="{{$mod->id_modulo}}">{{$mod->nombre}}</option>
+								@endforeach
+							</select>
+						</div>						
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" id="btnCancelarTemario" data-dismiss="modal" value="Cancel">
@@ -115,11 +115,13 @@
 	<script src="{{ asset('public/js/datatable_responsive_2_2_9.js') }}"></script>
 	<script src="{{ asset('public/js/responsive.bootstrap4.min.js') }}"></script>
 	<script src="{{asset('public/plugins/alertifyjs/alertify.min.js')}}"></script>		
-
+	<script>var objCursosw = "{{$modsObj}}";</script>
     <script type="text/javascript" src="{{ asset('public/js/cursos/catalogos.js') }}"></script>
 	<script>
+		objCursosw = objCursosw.replace(/(&quot\;)/g,"\"");
+		objCursosw = JSON.parse(objCursosw);
 		var url_global = "{{ url('') }}";
-		var form = $("#formEditarTemario");
+		var form = $("#formEditarTemario");		
 		dataTemario();
 	</script>
 @endsection

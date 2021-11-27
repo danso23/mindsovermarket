@@ -26,6 +26,41 @@ $(document).ready(function(){
 		}
 	});
 
+	$('#curso').on('change',function(){
+
+		var bVacio = false;		
+		var htmlElem = '';
+		var htmlElem2 = '';
+		
+		htmlElem = '<option selected disabled hidden value="default">Selecciona una opción</option>';
+		
+		objCursosw.forEach(element => {                    	       
+	       		       		       
+	       	if(parseInt($(this).val()) === parseInt(element.id_curso)){	       		
+	       		htmlElem += '<option class="text-uppercase" value="'+element.id_modulo+'" >'+element.nombre+'</option>';	       		
+                bVacio = true;
+	       	} 
+			
+			//console.log(htmlElem);
+			htmlElem2 = (!bVacio) ? "<option selected disabled value='#'>Sin datos</option>" : htmlElem;
+
+			$("#modulo").empty();
+            $("#modulo").append(htmlElem2); 
+	                                    
+	    });
+
+		// if(objCursosw && $(this).val() != 'default'){
+	        
+	 //        console.log(objCursosw.find(x => x.id_curso == $(this).val()));//.campo1
+
+	 //        //$('#txtDireccionEsc').val(elementos['slcEscuela'].find(x => x.iId == $(this).val()).campo1);
+	 //        //$('#txtCveEsc').val(elementos['slcEscuela'].find(x => x.iId == $(this).val()).campo0);     
+  //   	}
+
+		// console.log($(this).val());
+
+	});
+
 	//Inicio seccion Temario
 	$('#deleteTemarioModal').on('hidden.bs.modal', function (e) {
   		objChecks = ''; 
@@ -255,6 +290,7 @@ function dataCurso() {
     	dataType: "json",
     	url: url_global+"/Admin/mostrarCurso",
 		success: function(data){
+			console.log(data);
 			var element ="";
 			element +="<thead>"+
                     "<tr>"+
@@ -266,11 +302,13 @@ function dataCurso() {
 						"</th>"+
                         "<th>Curso</th>"+
                         "<th>Descripción</th>"+
-						"<th>Portada</th>"+
+						"<th>¿Qué aprenderas?</th>"+
                         "<th>Fecha creación</th>"+
                         "<th>Acciones</th>"+
+                        "<th>Sobre el teacher</th>"+
 						"<th>Id</th>"+
 						"<th>IdCategoria</th>"+
+						"<th>IdNivel</th>"+
                     "</tr>"+
                 "</thead>"+
 				"<tbody>";
@@ -282,18 +320,20 @@ function dataCurso() {
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
 					"<td>"+el.desc_curso+"</td>"+
-					"<td>"+el.portada+"</td>"+
+					"<td>"+el.objetivo+"</td>"+
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
 						"<a href='#editCursoModal' class='edit' id='btn_edit_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Editar"'+")'><i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i></a>"+
 						"<a href='#deleteCursoModal_' class='delete' id='btn_delete_"+el.id_curso+"' data-toggle='modal' onclick='storeCurso("+i+","+'"Eliminar"'+")'><i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i></a>"+
 					"</td>"+
+					"<td>"+el.about_teacher+"</td>"+
 					"<td>"+el.id_curso+"</td>"+
-					"<td>"+el.id_categoria+"</td>"+ 
+					"<td>"+el.id_categoria+"</td>"+
+					"<td>"+el.id_nivel+"</td>"+
 				"</tr>";
 			});
 			element+="</tbody>";
-			objTarget = {"visible": false,  "targets": [ 6,7 ] };
+			objTarget = {"visible": false,  "targets": [ 6,7,8,9 ] };
 			$("#catalogoCursos").empty();
 			$("#catalogoCursos").html(element);
 			crearDataTable("catalogoCursos", objTarget);
@@ -467,7 +507,7 @@ function dataModulo() {
 							"</span>--> Folio"+
 						"</th>"+
                         "<th>Modulo</th>"+
-                        //"<th>Descripción</th>"+
+                        "<th>Descripción</th>"+
 						"<th>Curso</th>"+
                         "<th>Fecha creación</th>"+
                         "<th>Acciones</th>"+
@@ -484,7 +524,7 @@ function dataModulo() {
 							"<label for='checkbox"+el.id_modulo+"' class='lblChk'>"+el.id_modulo+"</label>"+						
 					"</td>"+
 					"<td>"+el.nombre+"</td>"+
-					//"<td>"+el.descripcion+"</td>"+
+					"<td>"+el.descripcion+"</td>"+
 					"<td>"+el.nombre_curso+"</td>"+
 					"<td>"+el.fecha_creacion+"</td>"+
 					"<td>"+
@@ -496,7 +536,7 @@ function dataModulo() {
 				"</tr>";
 			});
 			element +="</tbody>";			
-			objTarget = { "visible": false,  "targets": [ 5,6 ] };
+			objTarget = { "visible": false,  "targets": [ 6,7 ] };
 			$("#catalogoModulo").empty();
 			$("#catalogoModulo").html(element);
 			crearDataTable("catalogoModulo", objTarget);
@@ -545,13 +585,15 @@ function crearDataTable(table, target){
 function storeCurso(position, tipoAccion){	
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
-		document.querySelector('#'+form[0].id +' #nombre').value=datos[1];
-		document.querySelector('#'+form[0].id +' #desc_curso').value=datos[2];
-		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
-		document.querySelector('#'+form[0].id +' #portada').value=datos[3];
-		document.querySelector('#'+form[0].id+' #hddIdCurso').value=datos[6];
-		document.querySelector('#'+form[0].id +' #categoria').value=datos[7];
-		document.getElementById("modal-title-curso").innerHTML = 'Editar curso N° '+datos[6];
+		console.log(datos);
+		document.querySelector('#'+form[0].id +' #nombre').value 	      = datos[1];
+		document.querySelector('#'+form[0].id +' #desc_curso').value      = datos[2];
+		document.querySelector('#'+form[0].id +' #que_curso').value   	  = datos[3];
+		document.querySelector('#'+form[0].id +' #sobre_profe').value 	  = datos[6];		
+		document.querySelector('#'+form[0].id +' #hddIdCurso').value  	  = datos[7];		
+		document.querySelector('#'+form[0].id +' #categoria').value   	  = datos[8];
+		document.querySelector('#'+form[0].id +' #nivel_academico').value = datos[9];
+		document.getElementById("modal-title-curso").innerHTML 		      = 'Editar curso N° '+datos[6];
 	}
 	if(tipoAccion == "Nuevo"){
 		document.getElementById("modal-title-curso").innerHTML = 'Agregar curso';
@@ -650,8 +692,8 @@ function storeModulo(position, tipoAccion){
 	if(tipoAccion == "Editar"){
 		var datos = objDataTbl.row( position ).data();
 		document.querySelector('#'+form[0].id +' #nombre').value    = datos[1];		
-		document.querySelector('#'+form[0].id +' #curso').value     = datos[6];
-		document.querySelector('#'+form[0].id+' #hddIdModulo').value= datos[5];
+		document.querySelector('#'+form[0].id +' #curso').value     = datos[7];
+		document.querySelector('#'+form[0].id+' #hddIdModulo').value= datos[6];
 		document.getElementById("modal-title-modulo").innerHTML = 'Editar modulo: <br><b>'+datos[1]+'</b>';
 	}
 	if(tipoAccion == "Nuevo"){
@@ -662,7 +704,7 @@ function storeModulo(position, tipoAccion){
 	if(tipoAccion == "Eliminar"){
 		var datos = objDataTbl.row( position ).data();
 		console.log(datos[1]);
-		document.getElementById("deleteModulo").value = datos[5];		
+		document.getElementById("deleteModulo").value = datos[6];		
 		document.querySelector("#deleteModuloModal .modal-title").innerHTML = 'Eliminar modulo: <br><b>'+datos[1]+'</b>';
 		$('#deleteModuloModal').modal('show');		
 	}

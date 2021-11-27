@@ -57,10 +57,10 @@
     </div>
         <div class="row">            
             <div class="container mt-4">
-                @if(isset($cursoOrdenado['Basico']) && !empty($cursoOrdenado['Basico']))
+                @if(isset($cursoOrdenado[1]) && !empty($cursoOrdenado[1]))
                 <h3 class="card-text cursos-title">MATERIAL DE APRENDIZAJE BÁSICO</h3>
                 <div class="row justify-content-md-start justify-content-center mb-5 col-12">                    
-                    @foreach ($cursoOrdenado['Basico'] as $curso)
+                    @foreach ($cursoOrdenado[1] as $curso)
                     <div class="col-10 col-md-6 col-lg-4 col-sm-6">
                         <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
                             <div class="card mt-3 card-curso">
@@ -76,10 +76,10 @@
                 <hr>
                 @endif
 
-                @if(isset($cursoOrdenado['Intermedio']) && !empty($cursoOrdenado['Intermedio']))               
+                @if(isset($cursoOrdenado[2]) && !empty($cursoOrdenado[2]))               
                 <h3 class="card-text cursos-title">MATERIAL DE APRENDIZAJE INTERMEDIO</h3>
                 <div class="row justify-content-md-start justify-content-center mb-5 col-12">                    
-                    @foreach ($cursoOrdenado['Intermedio'] as $curso)
+                    @foreach ($cursoOrdenado[2] as $curso)
                     <div class="col-10 col-md-6 col-lg-4 col-sm-6">
                         <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
                             <div class="card mt-3 card-curso">
@@ -95,10 +95,10 @@
                 <hr>
                 @endif
 
-                @if(isset($cursoOrdenado['Avanzado']) && !empty($cursoOrdenado['Avanzado']))
+                @if(isset($cursoOrdenado[3]) && !empty($cursoOrdenado[3]))
                 <h3 class="card-text cursos-title">MATERIAL DE APRENDIZAJE AVANZADO</h3>               
                 <div class="row justify-content-md-start justify-content-center mb-5 col-12">                    
-                    @foreach ($cursoOrdenado['Avanzado'] as $curso)
+                    @foreach ($cursoOrdenado[3] as $curso)
                     <div class="col-10 col-md-6 col-lg-4 col-sm-6">
                         <a href="{{ asset('/cursos/detail') }}/{{$curso->id_curso}}">
                             <div class="card mt-3 card-curso">

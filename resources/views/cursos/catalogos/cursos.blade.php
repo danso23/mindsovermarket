@@ -54,12 +54,18 @@
 						<div class="form-group">
 							<label for="desc_curso">Descripción</label>
 							<textarea name="desc_curso" id="desc_curso" class="form-control" required></textarea>
-						</div>												
+						</div>	
 
 						<div class="form-group">
-							<label for="portada">Video</label>
-							<input type="text" name="portada" id="portada" class="form-control" required>
-						</div>
+							<label for="que_curso">¿Que aprenderas de este curso?</label>
+							<textarea name="que_curso" id="que_curso" class="form-control" required></textarea>
+						</div>	
+
+						<div class="form-group">
+							<label for="sobre_profe">Sobre el profesor</label>
+							<textarea name="sobre_profe" id="sobre_profe" class="form-control" required></textarea>
+						</div>	
+						
 						<div class="form-group">
 							<label for="categoria">Categoría</label>
 							<select class="form-control" name="categoria" id="categoria">
@@ -69,15 +75,17 @@
 								@endforeach
 							</select>
 						</div>
+
 						<div class="form-group">
-							<label for="academico">Nivel académico</label>
-							<select class="form-control" name="academico" id="academico">
-								<option selected hidden value="default">Selecciona una categoría</option>
-								<option value="1">Aprendizaje Básico</option>
-								<option value="2">Aprendizaje Intermedio</option>
-								<option value="3">Aprendizaje Avanzado</option>
+							<label for="nivel_academico">Nivel académico</label>
+							<select class="form-control" name="nivel_academico" id="nivel_academico">
+								<option selected hidden value="default">Selecciona un nivel</option>
+								@foreach($datos['niveles'] as $nivel)
+									<option value="{{$nivel->id_nivel}}">{{$nivel->nombre}}</option>
+								@endforeach
 							</select>
 						</div>
+
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" id="btnCancelarCurso" data-dismiss="modal" value="Cancelar">

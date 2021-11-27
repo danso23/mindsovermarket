@@ -17,10 +17,12 @@ use DB;
 class TemarioController extends Controller {
     
     public function mostrarTemariosView(Request $request){
-        $cursos = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
-        $modulos = Modulo::where('activo', '1')->selectRaw('id_modulo, nombre')->get();
-        $datos = array("cursos" => $cursos, "modulos" => $modulos);
-        return view('cursos.catalogos.temario')->with('datos', $datos);
+        $cursos     = Curso::where('activo', '1')->selectRaw('id_curso, nombre')->get();
+        $modulos    = Modulo::where('activo', '1')->selectRaw('id_modulo, nombre, id_curso')->get();
+        $datos      = array("cursos" => $cursos, "modulos" => $modulos);
+        $modsObj    = json_encode($modulos);
+        //dd(json_encode($datos));
+        return view('cursos.catalogos.temario')->with('datos', $datos)->with('modsObj',$modsObj);
     }
 
     public function mostrarTemarios(){
@@ -114,7 +116,7 @@ class TemarioController extends Controller {
             DB::rollback();
             $result = array(
                 "Error" => true,
-                "message" => "Ha ocurrido un error, por favor contacte al administrador o inténtelo más tarde | ".$e
+                "message" => "Ha ocurrido un error, por favor contacte al administrador o intente más tarde."//.$e
             );
             return Response::json($result);
         }
