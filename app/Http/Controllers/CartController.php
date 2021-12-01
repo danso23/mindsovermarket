@@ -21,7 +21,7 @@ class CartController extends Controller{
             'id' => $producto->id_producto,
             'name' => $producto->nombre_producto,
             'price' => $utils->convertCurrency($producto->precio) + 10,//$this->convertCurrency($producto->precio),
-            'quantity' => 1,
+            'quantity' => \Cart::getTotalQuantity(),
             'attributes' => array('url_imagen' => $producto->url_imagen),
         ));
         //return view('checkout');
