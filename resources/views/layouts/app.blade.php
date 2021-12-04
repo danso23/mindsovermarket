@@ -71,9 +71,14 @@
                                     <span class="user-perfil" data-toggle="popover" tabindex="0" data-trigger="focus" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
                                     <br>
                                     <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
-                                    <br>
                                     @if (auth()->user()->tipo_user == 3)
-                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                        <br>
+                                        <a href='{{ route('Catalogo.Temario') }}' class='btn'>Catalogo Temario</a>
+                                        <a href='{{ route('Catalogo.Curso') }}' class='btn'>Catalogo Curso</a>
+                                        <a href='{{ route('Catalogo.Material') }}' class='btn'>Catalogo Material</a>
+                                        <a href='{{ route('Catalogo.Lives') }}' class='btn'>Catalogo Live</a>
+                                        <a href='{{ route('Catalogo.Usuario') }}' class='btn'>Catalogo Usuarios</a>
+                                        <a href='{{ route('Modulos.catalogoModulos') }}' class='btn'>Catalogo Modulos</a>                                        
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>
@@ -136,9 +141,13 @@
                                     <span class="user-perfil" data-toggle="popover" tabindex="0" data-trigger="focus" data-content="<a href='{{ url('Perfil/MostrarPerfil') }}' class='btn'>Mi perfil</a>
                                     <br>
                                     <a href='{{ url('cursos/view') }}' class='btn'>Mis cursos</a>
-                                    <br>
                                     @if (auth()->user()->tipo_user == 3)
-                                        <a href='{{ route('cursos.catalogos') }}' class='btn'>Administrador</a>
+                                        <br>
+                                        <a href='{{ route('Catalogo.Temario') }}' class='btn'>Catalogo Temario</a>
+                                        <a href='{{ route('Catalogo.Curso') }}' class='btn'>Catalogo Curso</a>
+                                        <a href='{{ route('Catalogo.Material') }}' class='btn'>Catalogo Material</a>
+                                        <a href='{{ route('Catalogo.Lives') }}' class='btn'>Catalogo Live</a>
+                                        <a href='{{ route('Catalogo.Usuario') }}' class='btn'>Catalogo Usuarios</a>
                                     @endif
                                     <br>
                                     <a class='btn' href='{{ url('/logout') }}'> Cerrar sesión </a>" data-placement="bottom" data-html="true"><span class="d-none d-sm-block d-md-inline">{{auth()->user()->name}}</span>

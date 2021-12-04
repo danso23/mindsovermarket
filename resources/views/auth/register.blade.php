@@ -50,7 +50,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10">
                             <input type="date" class="form-control custom-input datepicker" data-date-format="mm/dd/yyyy" placeholder="Fecha de nacimiento" name="date_of_birth" id="date_of_birth">
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10 mt-3">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10">
                             <input type="text" class="form-control custom-input" placeholder="Número celular" maxlength="10" name="phone" id="phone">
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10">
                             <input type="text" class="form-control custom-input" placeholder="País" name="country" id="country">
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10 mt-3 mt-md-3">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-10 col-10">
                             <input type="text" class="form-control custom-input" placeholder="Estado" name="state" id="state">
                         </div>
                     </div>

@@ -49,6 +49,11 @@ body.menu-opened {
   z-index: 100;
 }
 
+.lblChk{
+  padding-left: 7px;
+  margin-bottom: 1px;
+}
+
 .info-nav ul.menu-right, .info-nav ul.menu-center{
   list-style: none;
   float: right;
@@ -96,26 +101,6 @@ a.icon-shopping, a.icon-search{
 a.icon-shopping a img, .menu-right a img{
   width: 40px;
   padding-bottom: 10px;
-}
-
-.modal{
-  background-color: #ffffff94!important;
-}
-
-.modal-content .input-group .input-group-prepend span.icon-search{
-  background-color: #010101!important;
-  border: 0!important;
-}
-
-.modal-content .input-group .input-group-prepend span.icon-search i{
-  color: #f0f0f0;
-}
-
-.modal-content .input-group input.form-search{
-  background-color: #010101!important;
-  border: 0!important;
-  border: 0!important;
-  color: #f0f0f0!important;
 }
 
 .form-control:focus {
@@ -596,7 +581,7 @@ a.btn-more:after {
   margin-top: 3em;
 }
 
-.hero .content-why-chooose::after{
+/*.hero .content-why-chooose::after{
   content: '';
   background-color: var(--gray-light-df);
   display: inline-block;
@@ -610,7 +595,7 @@ a.btn-more:after {
   top: 39.1em;
   left: 6.5em;
   z-index: -1;
-}
+}*/
 
 .hero .content-why-chooose h2{
   color: var(--green-df);

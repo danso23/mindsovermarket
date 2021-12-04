@@ -38,7 +38,7 @@ Route::post('atributos-producto/{id}', 'Producto_AtributoController@getAtributos
 Route::post('cart-add', 'CartController@add')->name('cart.add');
 Route::get('cart/checkout', 'CartController@cart')->name('cart.checkout');
 Route::post('remove-item', 'CartController@removeItem')->name('cart.remove');
-Route::post('completa-envio', 'CartController@guardaEnvio')->name('guarda.envio')->middleware('auth');
+Route::post('completa-envio', 'CartController@guardaEnvio')->name('guarda.envio');//->middleware('auth');
 
 /**** PAYMENT *****/
 Route::get('/payment', 'PaymentController@index')->name('payment');
@@ -61,23 +61,38 @@ Route::get('sendMail','UtilsController@EnvioCorreo');
 /****CURSOS****/
 Route::get('productos', 'ProductoController@index')->name('productos');
 Route::get('productos/detalle/{id}', 'ProductoController@productoDescripcion')->name('producto.detalle');
-Route::group(['prefix' => 'cursos'], function() {
-    Route::get('/view', 'Cursos\CursoController@index')->name('cursos.view');
-    Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
 
+Route::group(['prefix' => 'cursos'], function() {
+    
+    Route::get('/view', 'Cursos\CursoController@index')->name('cursos.view');
+
+
+    Route::get('/detail/{id}', 'Cursos\CursoDetalleController@index')->name('cursos.detail');
+    /**Formularios */
     Route::get('/form/createmateriales', 'Cursos\CursoController@create')->name('cursos.form.materialescreate');
     Route::get('/form/createcurso', 'Cursos\CursoController@createcurso')->name('cursos.form.cursoscreate');
     Route::get('/form/createtemario', 'Cursos\CursoController@createtemario')->name('cursos.form.temariocreate');
+    Route::get('/form/createlives', 'Lives\LivesController@createlives')->name('cursos.form.livescreate');
     Route::post('/form/saveMateriales','Cursos\CursoController@saveMateriales')->name('cursos.form.saveMateriales');
     Route::post('/form/saveCursos','Cursos\CursoController@saveCursos')->name('cursos.form.saveCursos');
     Route::post('/form/saveTemarios','Cursos\CursoController@saveTemarios')->name('cursos.form.saveTemarios');
+    Route::post('/form/saveLives','Lives\LivesController@saveLives')->name('cursos.form.saveLives');
 
     Route::get('/uploadFile', 'Cursos\CursoController@uploadFile')->name('cursos.uploadFile');
     Route::get('/obtenerCursos', 'Cursos\CursoController@obtenerCursos')->name('cursos.obtenerCursos');
     
+    /***CATALÓGOS VISTA***/
+    Route::get('/CatalogoTemario', 'Admin\TemarioController@mostrarTemariosView')->name('Catalogo.Temario')->middleware('auth');
+    Route::get('/CatalogoCurso', 'Admin\CursoController@mostrarCursosView')->name('Catalogo.Curso')->middleware('auth');
+    Route::get('/CatalogoLives', 'Admin\LivesController@mostrarLivesView')->name('Catalogo.Lives')->middleware('auth');
+    Route::get('/CatalogoUsuarios', 'Admin\UsuarioController@mostrarUsuariosView')->name('Catalogo.Usuario')->middleware('auth');
+    Route::get('/CatalogoMateriales', 'Admin\MaterialController@mostrarMaterialesView')->name('Materiales.catalogoMateriales')->middleware('auth');
+    Route::get('/CatalogoMaterial', 'Admin\MaterialController@mostrarMaterialesView')->name('Catalogo.Material')->middleware('auth');
 
-    /***CATALÓGOS***/
-    Route::get('/catalogos', 'Cursos\CursoController@mostrarCatalogos')->name('cursos.catalogos')->middleware('auth');
+    Route::get('/CatalogoModulos', 'Admin\ModulosController@mostrarModulosView')->name('Modulos.catalogoModulos')->middleware('auth');
+
+    /** LIVES **/
+    Route::get('/lives', 'Cursos\CursoController@obtenerLives')->name('cursos.lives')->middleware('auth');
 });
 
 
@@ -85,10 +100,25 @@ Route::group(['prefix' => 'categorias'], function() {
     Route::get('/mostrar', 'Categorias\CategoriaController@getCategorias')->name('categorias.getCategorias');
     Route::get('/curso/{id}', 'Categorias\CategoriaController@mostrarCursosByCategoria')->name('categorias.curso.mostrarCursosByCategoria');
 });
-Route::group(['prefix' => 'Admin'], function() {
-    Route::post('/subirArchivo', 'Admin\DetalleController@uploadFile')->name('admin.upload');
-});
 
 Route::group(['prefix' => 'Perfil'], function() {
     Route::get('/MostrarPerfil', 'Perfil\PerfilController@miPerfil')->name('perfil.mostrar')->middleware('auth');
+});
+
+Route::group(['prefix' => 'Admin'], function() {
+    /** Temarios **/
+    Route::get('/mostrarTemarios', 'Admin\TemarioController@mostrarTemarios')->name('admin.mostrarTemarios');
+    Route::post('/storeTemario/{id}', 'Admin\TemarioController@storeTemario')->name('admin.storeTemario');
+    /** Materiales **/
+    Route::get('/mostrarMaterial', 'Admin\MaterialController@mostrarMateriales')->name('admin.mostrarMaterial');
+    Route::post('/storeMaterial/{id}', 'Admin\MaterialController@storeMaterial')->name('admin.storeMaterial');
+    /** Cursos **/
+    Route::get('/mostrarCurso', 'Admin\CursoController@mostrarCurso')->name('admin.mostrarCurso');
+    Route::post('/storeCurso/{id}', 'Admin\CursoController@storeCurso')->name('admin.storeCurso');
+    Route::get('/mostrarLives', 'Admin\LivesController@mostrarLives')->name('admin.mostrarLives');
+    Route::post('/storeLives/{id}', 'Admin\LivesController@storeLives')->name('admin.storeLives');
+    Route::get('/mostrarUsuarios', 'Admin\UsuarioController@mostrarUsuarios')->name('admin.mostrarUsuarios');
+
+    Route::get('/mostrarModulos', 'Admin\ModulosController@mostrarModulos')->name('admin.mostrarModulos');
+    Route::post('/storeModulos/{id}', 'Admin\ModulosController@storeModulos')->name('admin.storeModulos');
 });

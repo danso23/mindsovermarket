@@ -18,8 +18,9 @@
                 </div>
             </div>
         </div>
-        <div class="content-why-chooose container-home">
-            <div class="h-100">
+        <div class="content-why-chooose container-home mt-0">
+            <div class="h-100 p-5" style=" 
+    background-color: var(--gray-light-df); border-radius: 0px 50px;">
                 <div class="row justify-content-center h-100">
                     <div class="col xl-5 col-lg-5 col-md-3 col-sm-9">
                         <h2>¿POR QUÉ ELEGIRNOS A <span>NOSOTROS</span>?</h2>
@@ -79,15 +80,6 @@
                                         <div class="row">
                                             <div class="col-12 d-flex justify-content-center list-contain">
                                                 {!! $producto->listado_puntos !!}
-                                                <!-- <ul class="list-inline">
-                                                    <li>Trading en Vivo</li>
-                                                    <li>Trading Academy</li>
-                                                    <li>WeProfit</li>
-                                                    <li>Criptoanálisis</li>
-                                                    <li>Podcast (Markets)</li>
-                                                    <li>Mindset</li>
-                                                    <li>Grupos de Telegram</li>
-                                                </ul> -->
                                             </div>
                                             <div class="col-12 text-center">
                                                 <p class="fuente">Inscripción 10 usd pago único</p>

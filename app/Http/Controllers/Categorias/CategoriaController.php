@@ -17,8 +17,28 @@ class CategoriaController extends Controller{
     }
 
     public function mostrarCursosByCategoria($id){
+        $user = Auth::user();
         $cursos = Categoria::find($id)->curso()->where('activo', '1')->get();
+        
+        $cursoOrdenado = [];
+        foreach($cursos as $indexCurso => $infoCurso){
+            switch ($infoCurso->id_modulo) {
+                case 10:
+                    $cursoOrdenado['Basico'][] = $infoCurso;
+                    break;
+                case 11:
+                    $cursoOrdenado['Intermedio'][] = $infoCurso;
+                    break;
+                case 12:
+                    $cursoOrdenado['Avanzado'][] = $infoCurso;
+                    break;
+            }
+        }
+        //dd($cursoOrdenado);
+        if($user == null){
+            return redirect('/');
+        }
         if($cursos)
-            return view('cursos.view', compact('cursos'));
+            return view('cursos.view2', compact('cursoOrdenado'));
     }
 }

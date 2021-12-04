@@ -12,15 +12,16 @@ use Hamcrest\Util;
 class CartController extends Controller{
 
     public function add (Request $request){
+        
         $producto = ProductoModel::find($request->id_producto);
-        //dd($producto);
+        
         $utils = new Utils();
         \Cart::clear();
         \Cart::add(array(
             'id' => $producto->id_producto,
             'name' => $producto->nombre_producto,
             'price' => $utils->convertCurrency($producto->precio) + 10,//$this->convertCurrency($producto->precio),
-            'quantity' => 1,
+            'quantity' => \Cart::getTotalQuantity(),
             'attributes' => array('url_imagen' => $producto->url_imagen),
         ));
         //return view('checkout');
@@ -48,12 +49,14 @@ class CartController extends Controller{
     }
 
     public function guardaEnvio(Request $request){
+        
         $datos = array(
             'pais'      => $request->pais,
             'estado'    => $request->estado,
             'direccion' => $request->direccion,
             'cp'        => $request->codigoPostal
         );
+
         return view('payment.payment')->with('datos', $datos);
     }
 }

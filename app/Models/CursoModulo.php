@@ -12,7 +12,7 @@ class CursoModulo extends Model
         public $timestamps = false;
         
         public function temarios(){
-            return $this->belongsTo(Curso::class, 'id_modulo', 'id_modulo');
+            return $this->belongsTo(CursoTemario::class, 'id_temario', 'id_temario');
         }
 }
 
